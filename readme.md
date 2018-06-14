@@ -18,6 +18,11 @@
 1. [Mastering the OSI & TCP/IP Models](http://jaredheinrichs.com/mastering-the-osi-tcpip-models.html)
 2. [PacketLife - Networking Cheat Sheet](http://packetlife.net/library/cheat-sheets/)
 3. [Network commands](https://blog.pandorafms.org/network-commands/)
+4. [Mastering the OSI & TCP/IP Models](http://jaredheinrichs.com/mastering-the-osi-tcpip-models.html)
+5. [PacketLife - Networking Cheat Sheet](http://packetlife.net/library/cheat-sheets/)
+6. [Network commands](https://blog.pandorafms.org/network-commands/)
+7. [7 Best Tools for Network Administration](https://blogs.oracle.com/sql/entry/query_tuning_101_comparing_execution?utm_content=buffer88039&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer)
+8. [Network commands](https://blog.pandorafms.org/network-commands/)
 
 
 
