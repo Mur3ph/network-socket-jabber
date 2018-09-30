@@ -1,4 +1,4 @@
-package main.ie.murph.network;
+package main.ie.murph.network.server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
