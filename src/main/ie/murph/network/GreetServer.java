@@ -13,7 +13,7 @@ public class GreetServer {
     private Socket clientSocket;
     private PrintWriter output;
     private BufferedReader input;
-    private final String CLIENT_VALIDATION = "hello server: ";
+    private final String CLIENT_VALIDATION_MESSAGE_FROM_CLIENT = "hello server: ";
  
     public void start(int port) throws IOException {
         serverSocket = new ServerSocket(port);
@@ -24,7 +24,7 @@ public class GreetServer {
     }
  
     private void replyToClient() throws IOException {
-    	if (CLIENT_VALIDATION.equals(getReplyMessage(input))) {
+    	if (CLIENT_VALIDATION_MESSAGE_FROM_CLIENT.equals(getReplyMessage(input))) {
             output.println("hello client, from server xx");
         }
         else {

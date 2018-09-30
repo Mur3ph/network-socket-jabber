@@ -12,11 +12,12 @@ public class GreetClient {
     private PrintWriter out;
     private BufferedReader in;
     private final String IP_ADDRESS = "127.0.0.1";
+    private final String MESSAGE_TO_SERVER = "hello server: ";
     
     public void start(int port) throws IOException {
     	this.startConnection(IP_ADDRESS, port);
-	    String response = this.sendMessage("hello server: ");
-	    System.out.println("hello client: " + response);
+	    String response = this.sendMessage(MESSAGE_TO_SERVER);
+	    System.out.println("Server Reply: " + response);
     }
  
     public void startConnection(String ip, int port) throws IOException {
