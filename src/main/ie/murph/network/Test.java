@@ -1,4 +1,4 @@
-package ie.murph.network;
+package main.ie.murph.network;
 
 import java.io.IOException;
 
