@@ -24,12 +24,17 @@ public class GreetServer {
     }
  
     private void replyToClient() throws IOException {
-    	if (CLIENT_VALIDATION_MESSAGE_FROM_CLIENT.equals(getReplyMessage(input))) {
+    	if (messageFromClientIsCorrect()) {
             output.println("hello client, from server xx");
         }
         else {
             output.println("unrecognised greeting");
         }
+	}
+
+	private boolean messageFromClientIsCorrect() throws IOException
+	{
+		return CLIENT_VALIDATION_MESSAGE_FROM_CLIENT.equals(getReplyMessage(input));
 	}
 
 	private String getReplyMessage(BufferedReader in2) throws IOException {
