@@ -11,6 +11,7 @@ public class GreetServer {
 	
 	private ServerSocket serverSocket;
     private Socket clientSocket;
+    private final static int PORT = 6666;
     private PrintWriter output;
     private BufferedReader input;
     private final String CLIENT_VALIDATION_MESSAGE_FROM_CLIENT = "hello server: ";
@@ -50,7 +51,7 @@ public class GreetServer {
     
     public static void main(String[] args) throws IOException {
         GreetServer server=new GreetServer();
-        server.start(6666);
+        server.start(PORT);
     }
 
 }

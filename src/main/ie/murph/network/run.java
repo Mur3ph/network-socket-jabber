@@ -6,9 +6,11 @@ import main.ie.murph.network.client.GreetClient;
 
 public class run {
 	
+	private final static int PORT = 6666;
+	
 	public static void main(String[] args) throws IOException {
 	    GreetClient client = new GreetClient();
-	    client.start(6666);
+	    client.start(PORT);
 	}
 
 }
