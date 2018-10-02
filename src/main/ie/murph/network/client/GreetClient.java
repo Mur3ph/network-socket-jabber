@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class GreetClient {
 	
@@ -13,11 +14,25 @@ public class GreetClient {
     private BufferedReader in;
 //    private final String IP_ADDRESS = "127.0.0.1";
     private final String MESSAGE_TO_SERVER = "hello server: ";
+    private Scanner SCANNER = new Scanner(System.in);
     
     public void start(int port, String ipAddress) throws IOException {
     	this.startConnection(ipAddress, port);
-	    String response = this.sendMessage(MESSAGE_TO_SERVER);
-	    System.out.println("Server Reply: " + response);
+	    String messageResponse = this.sendMessage(MESSAGE_TO_SERVER);
+	    System.out.println("Server Reply: " + messageResponse);
+
+	    do {
+			// From server
+			String input = in.readLine();
+			while (in.ready()) {
+			    input += "\n" + in.readLine();
+			}
+			System.out.println(input);
+			
+			// To server
+			messageResponse = SCANNER.nextLine();
+			out.println(messageResponse);
+	} while (messageIsNotExit(messageResponse));
     }
  
     public void startConnection(String ip, int port) throws IOException {
@@ -25,13 +40,18 @@ public class GreetClient {
         out = new PrintWriter(clientSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
     }
- 
+    
     public String sendMessage(String msg) throws IOException {
         out.println(msg);
         String resp = in.readLine();
         return resp;
     }
- 
+    
+    private boolean messageIsNotExit(String response)
+	{
+		return !response.equalsIgnoreCase("exit");
+	}
+
     public void stopConnection() throws IOException {
         in.close();
         out.close();

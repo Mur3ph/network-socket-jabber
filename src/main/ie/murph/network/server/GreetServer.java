@@ -21,7 +21,9 @@ public class GreetServer {
         clientSocket = serverSocket.accept();
         output = new PrintWriter(clientSocket.getOutputStream(), true);
         input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        replyToClient();
+        while(true) {
+        	replyToClient();
+        }
     }
  
     private void replyToClient() throws IOException {
