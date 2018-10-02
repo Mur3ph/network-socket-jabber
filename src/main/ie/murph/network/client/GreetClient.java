@@ -21,18 +21,20 @@ public class GreetClient {
 	    String messageResponse = this.sendMessage(MESSAGE_TO_SERVER);
 	    System.out.println("Server Reply: " + messageResponse);
 
+	    String userInput;
+	    
 	    do {
 			// From server
-			String input = in.readLine();
+	    	messageResponse = in.readLine();
 			while (in.ready()) {
-			    input += "\n" + in.readLine();
+				messageResponse += "\n" + in.readLine();
 			}
-			System.out.println(input);
+			System.out.println(messageResponse);
 			
 			// To server
-			messageResponse = SCANNER.nextLine();
-			out.println(messageResponse);
-	} while (messageIsNotExit(messageResponse));
+			userInput = SCANNER.nextLine();
+			out.println(userInput);
+	} while (messageIsNotExit(userInput));
     }
  
     public void startConnection(String ip, int port) throws IOException {
