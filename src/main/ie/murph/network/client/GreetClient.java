@@ -9,16 +9,22 @@ import java.util.Scanner;
 
 public class GreetClient {
 	
-	private Socket clientSocket;
-    private PrintWriter out;
-    private BufferedReader in;
-//    private final String IP_ADDRESS = "127.0.0.1";
-    private final String MESSAGE_TO_SERVER = "hello server: ";
-    private Scanner SCANNER = new Scanner(System.in);
+	private static Socket clientSocket;
+    private static PrintWriter out;
+    private static BufferedReader in;
+    private static final String IP_ADDRESS = "127.0.0.1";
+    private static final int PORT = 6666;
+    private static final String MESSAGE_TO_SERVER = "hello server: ";
+    private static final Scanner SCANNER = new Scanner(System.in);
     
-    public void start(int port, String ipAddress) throws IOException {
-    	this.startConnection(ipAddress, port);
-	    String messageResponse = this.sendMessage(MESSAGE_TO_SERVER);
+    public static void main(String[] args) throws IOException {
+		System.out.println("Enter IP Address: ");
+	    start(PORT, IP_ADDRESS);
+	}
+    
+    public static void start(int port, String ipAddress) throws IOException {
+    	startConnection(ipAddress, port);
+	    String messageResponse = sendMessage(MESSAGE_TO_SERVER);
 	    System.out.println("Server Reply: " + messageResponse);
 
 	    String userInput;
@@ -37,19 +43,19 @@ public class GreetClient {
 	} while (messageIsNotExit(userInput));
     }
  
-    public void startConnection(String ip, int port) throws IOException {
+    public static void startConnection(String ip, int port) throws IOException {
         clientSocket = new Socket(ip, port);
         out = new PrintWriter(clientSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
     }
     
-    public String sendMessage(String msg) throws IOException {
+    public static String sendMessage(String msg) throws IOException {
         out.println(msg);
         String resp = in.readLine();
         return resp;
     }
     
-    private boolean messageIsNotExit(String response)
+    private static boolean messageIsNotExit(String response)
 	{
 		return !response.equalsIgnoreCase("exit");
 	}

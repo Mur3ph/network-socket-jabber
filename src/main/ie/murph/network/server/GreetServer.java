@@ -18,15 +18,16 @@ public class GreetServer {
  
     public void start(int port) throws IOException {
         serverSocket = new ServerSocket(port);
-        clientSocket = serverSocket.accept();
-        output = new PrintWriter(clientSocket.getOutputStream(), true);
-        input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        
         while(true) {
         	replyToClient();
         }
     }
  
     private void replyToClient() throws IOException {
+    	clientSocket = serverSocket.accept();
+        output = new PrintWriter(clientSocket.getOutputStream(), true);
+        input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
     	if (messageFromClientIsCorrect()) {
             output.println("hello client, from server xx");
         }

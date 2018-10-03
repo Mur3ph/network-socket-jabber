@@ -12,8 +12,7 @@ public class run {
 	public static void main(String[] args) throws IOException {
 		System.out.println("Enter IP Address: ");
 		String ipAddress = scanner.next();
-	    GreetClient client = new GreetClient();
-	    client.start(PORT, ipAddress);
+	    GreetClient.start(PORT, ipAddress);
 	}
 
 }
