@@ -10,9 +10,9 @@ import java.util.Scanner;
 public class GreetClient
 {
 	private final int PORT = 2012;
-	private BufferedReader in;
-	private PrintWriter out;
-	private Socket link;
+	private BufferedReader bufinput = null;
+	private PrintWriter output = null;
+	private Socket link = null;
 
 	public static void main(String[] args)
 	{
@@ -25,30 +25,34 @@ public class GreetClient
 		{
 			link = new Socket("localhost", PORT);
 
-			in = new BufferedReader(new InputStreamReader(link.getInputStream()));
-			out = new PrintWriter(link.getOutputStream(), true);
+			bufinput = new BufferedReader(new InputStreamReader(link.getInputStream()));
+			output = new PrintWriter(link.getOutputStream(), true);
 
-			Scanner scanner = new Scanner(System.in);
+			Scanner scInput = new Scanner(System.in);
 
-			String message;
+			String message = null, response = null;
+			System.out.println("Please enter your username & press enter: ");
 
 			do
 			{
-				// From server
-				String input = in.readLine();
-				while (in.ready())
-				{
-					input += "\n" + in.readLine();
-				}
-				System.out.println(input);
-
 				// To server
-				message = scanner.nextLine();
-				out.println(message);
+				message = scInput.nextLine();
+				output.println(message);
+
+				if (!message.equalsIgnoreCase("exit"))
+				{
+					response = bufinput.readLine();
+
+					while (bufinput.ready())
+					{
+						response += "\n" + bufinput.readLine();
+					}
+
+					// From server
+					System.out.println(response);
+				}
 			}
 			while (!message.equalsIgnoreCase("exit"));
-
-			scanner.close();
 
 			System.out.println("You requested session to end.");
 		}
@@ -70,11 +74,11 @@ public class GreetClient
 
 		try
 		{
-			if (in != null)
-				in.close();
+			if (bufinput != null)
+				bufinput.close();
 
-			if (out != null)
-				out.close();
+			if (output != null)
+				output.close();
 
 			if (link != null)
 				link.close();
