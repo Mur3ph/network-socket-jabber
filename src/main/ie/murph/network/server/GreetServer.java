@@ -1,60 +1,57 @@
 package main.ie.murph.network.server;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class GreetServer {
-	
-	private ServerSocket serverSocket;
-    private Socket clientSocket;
-    private final static int PORT = 6666;
-    private PrintWriter output;
-    private BufferedReader input;
-    private final String CLIENT_VALIDATION_MESSAGE_FROM_CLIENT = "hello server: ";
- 
-    public void start(int port) throws IOException {
-        serverSocket = new ServerSocket(port);
-        
-        while(true) {
-        	replyToClient();
-        }
-    }
- 
-    private void replyToClient() throws IOException {
-    	clientSocket = serverSocket.accept();
-        output = new PrintWriter(clientSocket.getOutputStream(), true);
-        input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-    	if (messageFromClientIsCorrect()) {
-            output.println("hello client, from server xx");
-        }
-        else {
-            output.println("unrecognised greeting");
-        }
-	}
+public class GreetServer
+{
+	private static final int PORT = 2012;
+	private static ServerSocket serverSocket;
+	private static Socket clientSocket;
 
-	private boolean messageFromClientIsCorrect() throws IOException
+	public static void main(String[] args)
 	{
-		return CLIENT_VALIDATION_MESSAGE_FROM_CLIENT.equals(getReplyMessage(input));
+		new GreetServer();
 	}
 
-	private String getReplyMessage(BufferedReader in2) throws IOException {
-		return input.readLine();
-	}
+	private GreetServer()
+	{
+		try
+		{
+			serverSocket = new ServerSocket(PORT);
 
-	public void stop() throws IOException {
-        input.close();
-        output.close();
-        clientSocket.close();
-        serverSocket.close();
-    }
-    
-    public static void main(String[] args) throws IOException {
-        GreetServer server=new GreetServer();
-        server.start(PORT);
-    }
+			while (true)
+			{
+				clientSocket = serverSocket.accept();
+				Provider connect = new Provider(clientSocket);
+//				connect.run();
+				Thread thread = new Thread(connect);
+				thread.start();
+			}
+		}
+		catch (IOException e)
+		{
+			System.out.println("Error: Won't close. " + e);
+		}
+		finally
+		{
+			closeConnection();
+		}
+	} // End of myRun method.
+
+	private static void closeConnection()
+	{
+		try
+		{
+			System.out.println("Closing connection.");
+			clientSocket.close();
+		}
+		catch (IOException e)
+		{
+			System.out.println("Unable to disconnect.");
+			System.exit(1);
+		}
+	}
 
 }

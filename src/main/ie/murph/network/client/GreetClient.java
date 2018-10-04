@@ -7,63 +7,85 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class GreetClient {
-	
-	private static Socket clientSocket;
-    private static PrintWriter out;
-    private static BufferedReader in;
-    private static final String IP_ADDRESS = "127.0.0.1";
-    private static final int PORT = 6666;
-    private static final String MESSAGE_TO_SERVER = "hello server: ";
-    private static final Scanner SCANNER = new Scanner(System.in);
-    
-    public static void main(String[] args) throws IOException {
-		System.out.println("Enter IP Address: ");
-	    start(PORT, IP_ADDRESS);
-	}
-    
-    public static void start(int port, String ipAddress) throws IOException {
-    	startConnection(ipAddress, port);
-	    String messageResponse = sendMessage(MESSAGE_TO_SERVER);
-	    System.out.println("Server Reply: " + messageResponse);
+public class GreetClient
+{
+	private final int PORT = 2012;
+	private BufferedReader in;
+	private PrintWriter out;
+	private Socket link;
 
-	    String userInput;
-	    
-	    do {
-			// From server
-	    	messageResponse = in.readLine();
-			while (in.ready()) {
-				messageResponse += "\n" + in.readLine();
-			}
-			System.out.println(messageResponse);
-			
-			// To server
-			userInput = SCANNER.nextLine();
-			out.println(userInput);
-	} while (messageIsNotExit(userInput));
-    }
- 
-    public static void startConnection(String ip, int port) throws IOException {
-        clientSocket = new Socket(ip, port);
-        out = new PrintWriter(clientSocket.getOutputStream(), true);
-        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-    }
-    
-    public static String sendMessage(String msg) throws IOException {
-        out.println(msg);
-        String resp = in.readLine();
-        return resp;
-    }
-    
-    private static boolean messageIsNotExit(String response)
+	public static void main(String[] args)
 	{
-		return !response.equalsIgnoreCase("exit");
+		new GreetClient();
 	}
 
-    public void stopConnection() throws IOException {
-        in.close();
-        out.close();
-        clientSocket.close();
-    }
+	private GreetClient()
+	{
+		try
+		{
+			link = new Socket("localhost", PORT);
+
+			in = new BufferedReader(new InputStreamReader(link.getInputStream()));
+			out = new PrintWriter(link.getOutputStream(), true);
+
+			Scanner scanner = new Scanner(System.in);
+
+			String message;
+
+			do
+			{
+				// From server
+				String input = in.readLine();
+				while (in.ready())
+				{
+					input += "\n" + in.readLine();
+				}
+				System.out.println(input);
+
+				// To server
+				message = scanner.nextLine();
+				out.println(message);
+			}
+			while (!message.equalsIgnoreCase("exit"));
+
+			scanner.close();
+
+			System.out.println("You requested session to end.");
+		}
+		catch (IOException e)
+		{
+			System.out.println("Connection to server lost.");
+		}
+		finally
+		{
+			closeConnection();
+		}
+
+		System.out.println("Ending chat.");
+	} // End of my Run method
+
+	private void closeConnection()
+	{
+		System.out.println("Closing connection.");
+
+		try
+		{
+			if (in != null)
+				in.close();
+
+			if (out != null)
+				out.close();
+
+			if (link != null)
+				link.close();
+
+			System.out.println("Closed...");
+		}
+		catch (IOException e)
+		{
+			System.out.println("Unable to disconnect..");
+			System.exit(1);
+		}
+	} // End of close connection method...
 
 }

@@ -1,18 +1,16 @@
 package main.ie.murph.network;
 
 import java.io.IOException;
-import java.util.Scanner;
 
-import main.ie.murph.network.client.GreetClient;
 
 public class run {
-	private final static Scanner scanner = new Scanner(System.in);
-	private final static int PORT = 6666;
+//	private final static Scanner scanner = new Scanner(System.in);
+//	private final static int PORT = 6666;
 	
 	public static void main(String[] args) throws IOException {
-		System.out.println("Enter IP Address: ");
-		String ipAddress = scanner.next();
-	    GreetClient.start(PORT, ipAddress);
+//		System.out.println("Enter IP Address: ");
+//		String ipAddress = scanner.next();
+//	    GreetClient.start(PORT, ipAddress);
 	}
 
 }
