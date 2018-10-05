@@ -6,13 +6,13 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class Provider implements Runnable
+public class Provider //implements Runnable
 {
-	private Socket link;
+	private Socket clientSocket;
 
 	public Provider(Socket socket)
 	{
-		link = socket;
+		clientSocket = socket;
 	}
 
 	public void run()
@@ -21,22 +21,7 @@ public class Provider implements Runnable
 
 		try
 		{
-			BufferedReader in = new BufferedReader(new InputStreamReader(link.getInputStream()));
-			PrintWriter out = new PrintWriter(link.getOutputStream(), true);
-
-			String input = in.readLine();
-
-			while (!input.equalsIgnoreCase("exit"))
-			{
-				if (input.equals("hello"))
-				{
-					out.println("Hello from Server, innit bruv");
-				}
-				else
-				{
-					out.println("Sorry, incoorect, Type hello");
-				}
-			}
+			startRespondingToClient();
 		}
 		catch (IOException e)
 		{
@@ -47,7 +32,7 @@ public class Provider implements Runnable
 			try
 			{
 				System.out.println("Closing connection");
-				link.close();
+				clientSocket.close();
 			}
 			catch (IOException e)
 			{
@@ -56,4 +41,27 @@ public class Provider implements Runnable
 			}
 		}
 	} // End of Thread inherited method run()..........
+
+	private void startRespondingToClient() throws IOException
+	{
+		BufferedReader responseFromClient = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+		PrintWriter requestFromClient = new PrintWriter(clientSocket.getOutputStream(), true);
+
+		String input = responseFromClient.readLine();
+
+		while (!input.equalsIgnoreCase("exit"))
+		{
+			if (input.equals("hello"))
+			{
+				requestFromClient.println("Hello from Server, innit bruv");
+				this.startRespondingToClient();
+			}
+			else
+			{
+				requestFromClient.println("Say hello, to my little friend");
+				this.startRespondingToClient();
+			}
+		}
+		
+	}
 }

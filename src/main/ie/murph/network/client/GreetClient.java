@@ -13,6 +13,7 @@ public class GreetClient
 	private BufferedReader bufinput = null;
 	private PrintWriter output = null;
 	private Socket link = null;
+	private Scanner SCANNER = new Scanner(System.in);
 
 	public static void main(String[] args)
 	{
@@ -28,15 +29,13 @@ public class GreetClient
 			bufinput = new BufferedReader(new InputStreamReader(link.getInputStream()));
 			output = new PrintWriter(link.getOutputStream(), true);
 
-			Scanner scInput = new Scanner(System.in);
-
 			String message = null, response = null;
 			System.out.println("Please enter your username & press enter: ");
 
 			do
 			{
 				// To server
-				message = scInput.nextLine();
+				message = SCANNER.nextLine();
 				output.println(message);
 
 				if (!message.equalsIgnoreCase("exit"))

@@ -25,9 +25,9 @@ public class GreetServer
 			{
 				clientSocket = serverSocket.accept();
 				Provider connect = new Provider(clientSocket);
-//				connect.run();
-				Thread thread = new Thread(connect);
-				thread.start();
+				connect.run();
+//				Thread thread = new Thread(connect);
+//				thread.start();
 			}
 		}
 		catch (IOException e)
