@@ -8,13 +8,13 @@ import java.net.Socket;
 
 public class Provider implements Runnable
 {
-	private Socket clientSocket;
-	private BufferedReader responseFromClient;
-	private PrintWriter requestFromClient;
+	private Socket CLIENT_SOCKET;
+	private BufferedReader REQUEST_FROM_CLIENT;
+	private PrintWriter REPONSE_TO_CLIENT;
 
 	public Provider(Socket socket)
 	{
-		clientSocket = socket;
+		CLIENT_SOCKET = socket;
 	}
 
 	public void run()
@@ -31,28 +31,27 @@ public class Provider implements Runnable
 		}
 		finally
 		{
-			System.out.println("Closing connection");
-			closeConnection();
+			System.out.println("Connection closed..");
 		}
 	} // End of Thread inherited method run()..........
 
 	private void startRespondingToClient() throws IOException
 	{
-		responseFromClient = createInputStream();
-		requestFromClient = createOutputStream();
+		REQUEST_FROM_CLIENT = createInputStream();
+		REPONSE_TO_CLIENT = createOutputStream();
 
-		String input = responseFromClient.readLine();
+		String input = REQUEST_FROM_CLIENT.readLine();
 
 		while (!input.equalsIgnoreCase("exit"))
 		{
 			if (input.equals("hello"))
 			{
-				requestFromClient.println("Hello from Server, innit bruv");
+				REPONSE_TO_CLIENT.println("Hello from Server, innit bruv");
 				this.startRespondingToClient();
 			}
 			else
 			{
-				requestFromClient.println("Say hello, to my little friend");
+				REPONSE_TO_CLIENT.println("Say hello, to my little friend");
 				this.startRespondingToClient();
 			}
 		}
@@ -62,30 +61,23 @@ public class Provider implements Runnable
 
 	private BufferedReader createInputStream() throws IOException
 	{
-		return new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+		return new BufferedReader(new InputStreamReader(CLIENT_SOCKET.getInputStream()));
 	}
 	
 	private PrintWriter createOutputStream() throws IOException
 	{
-		return new PrintWriter(clientSocket.getOutputStream(), true);
+		return new PrintWriter(CLIENT_SOCKET.getOutputStream(), true);
 	}
 	
 	private void closeConnection()
 	{
-		System.out.println("Closing connection.");
-
+		System.out.println("Closing connection...");
 		try
 		{
-			if (responseFromClient != null)
-				responseFromClient.close();
-
-			if (requestFromClient != null)
-				requestFromClient.close();
-
-			if (clientSocket != null)
-				clientSocket.close();
-
-			System.out.println("Closed...");
+			closeBufferedReaderRequestStream();
+			closePrinterWriterResponseStream();
+			closeSocketStreamConnection();
+			System.out.println("Connection closing...");
 		}
 		catch (IOException e)
 		{
@@ -93,4 +85,22 @@ public class Provider implements Runnable
 			System.exit(1);
 		}
 	} // End of close connection method...
+
+	private void closeBufferedReaderRequestStream() throws IOException
+	{
+		if (REQUEST_FROM_CLIENT != null)
+			REQUEST_FROM_CLIENT.close();
+	}
+	
+	private void closePrinterWriterResponseStream()
+	{
+		if (REPONSE_TO_CLIENT != null)
+			REPONSE_TO_CLIENT.close();
+	}
+	
+	private void closeSocketStreamConnection() throws IOException
+	{
+		if (CLIENT_SOCKET != null)
+			CLIENT_SOCKET.close();
+	}
 }
