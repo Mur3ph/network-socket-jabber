@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class GreetClient
 {
 	private final int PORT = 2012;
-	private BufferedReader bufinput = null;
+	private BufferedReader RESPONSE_FROM_SERVER = null;
 	private PrintWriter output = null;
 	private Socket link = null;
 	private Scanner SCANNER = new Scanner(System.in);
@@ -26,7 +26,7 @@ public class GreetClient
 		{
 			link = new Socket("localhost", PORT);
 
-			bufinput = new BufferedReader(new InputStreamReader(link.getInputStream()));
+			RESPONSE_FROM_SERVER = new BufferedReader(new InputStreamReader(link.getInputStream()));
 			output = new PrintWriter(link.getOutputStream(), true);
 
 			String message = null, response = null;
@@ -36,19 +36,19 @@ public class GreetClient
 			{
 				// To server
 				message = SCANNER.nextLine();
-				output.println(message);
+				output.println("OUTPUT: " + message);
 
 				if (!message.equalsIgnoreCase("exit"))
 				{
-					response = bufinput.readLine();
+					response = RESPONSE_FROM_SERVER.readLine();
 
-					while (bufinput.ready())
+					while (RESPONSE_FROM_SERVER.ready())
 					{
-						response += "\n" + bufinput.readLine();
+						response += "\n" + RESPONSE_FROM_SERVER.readLine();
 					}
 
 					// From server
-					System.out.println(response);
+					System.out.println("RESONSE: " + response);
 				}
 			}
 			while (!message.equalsIgnoreCase("exit"));
@@ -73,8 +73,8 @@ public class GreetClient
 
 		try
 		{
-			if (bufinput != null)
-				bufinput.close();
+			if (RESPONSE_FROM_SERVER != null)
+				RESPONSE_FROM_SERVER.close();
 
 			if (output != null)
 				output.close();

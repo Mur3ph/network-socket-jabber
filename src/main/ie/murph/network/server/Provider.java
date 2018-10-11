@@ -20,7 +20,6 @@ public class Provider implements Runnable
 	public void run()
 	{
 		System.out.println("Now interacting with the client..");
-
 		try
 		{
 			startRespondingToClient();
@@ -32,6 +31,7 @@ public class Provider implements Runnable
 		finally
 		{
 			System.out.println("Connection closed..");
+			closeConnection();
 		}
 	} // End of Thread inherited method run()..........
 
@@ -39,21 +39,19 @@ public class Provider implements Runnable
 	{
 		REQUEST_FROM_CLIENT = createInputStream();
 		REPONSE_TO_CLIENT = createOutputStream();
+		String input = readRequestFromClient();
 
-		String input = REQUEST_FROM_CLIENT.readLine();
-
-		while (!input.equalsIgnoreCase("exit"))
+		while (inputNotEqualToExit(input))
 		{
-			if (input.equals("hello"))
+			if (inputEqualsHello(input))
 			{
 				REPONSE_TO_CLIENT.println("Hello from Server, innit bruv");
-				this.startRespondingToClient();
 			}
 			else
 			{
 				REPONSE_TO_CLIENT.println("Say hello, to my little friend");
-				this.startRespondingToClient();
 			}
+			this.startRespondingToClient();
 		}
 		System.out.println("You requested session to end.");
 		closeConnection();
@@ -67,6 +65,21 @@ public class Provider implements Runnable
 	private PrintWriter createOutputStream() throws IOException
 	{
 		return new PrintWriter(CLIENT_SOCKET.getOutputStream(), true);
+	}
+	
+	private String readRequestFromClient() throws IOException
+	{
+		return REQUEST_FROM_CLIENT.readLine();
+	}
+	
+	private boolean inputNotEqualToExit(String input)
+	{
+		return !input.equalsIgnoreCase("exit");
+	}
+	
+	public boolean inputEqualsHello(String input)
+	{
+		return input.equals("hello");
 	}
 	
 	private void closeConnection()
