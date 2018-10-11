@@ -7,8 +7,8 @@ import java.net.Socket;
 public class GreetServer
 {
 	private static final int PORT = 2012;
-	private static ServerSocket serverSocket;
-	private static Socket clientSocket;
+	private static ServerSocket SERVER_SOCKET_LISTENER;
+	private static Socket CLIENT_SOCKET;
 
 	public static void main(String[] args)
 	{
@@ -17,17 +17,19 @@ public class GreetServer
 
 	private GreetServer()
 	{
+		establishedConnection();
+	} // End of myRun method.
+
+	private void establishedConnection()
+	{
 		try
 		{
-			serverSocket = new ServerSocket(PORT);
-
+			SERVER_SOCKET_LISTENER = connectToMachinePort();
 			while (true)
 			{
-				clientSocket = serverSocket.accept();
-				Provider connect = new Provider(clientSocket);
-//				connect.run();
-				Thread thread = new Thread(connect);
-				thread.start();
+				CLIENT_SOCKET = acceptConnection();
+				Provider connect = startCommunication();
+				createThreadForEachClientCommunication(connect);
 			}
 		}
 		catch (IOException e)
@@ -38,14 +40,35 @@ public class GreetServer
 		{
 			closeConnection();
 		}
-	} // End of myRun method.
+	}
+
+	private ServerSocket connectToMachinePort() throws IOException
+	{
+		return new ServerSocket(PORT);
+	}
+
+	private Socket acceptConnection() throws IOException
+	{
+		return SERVER_SOCKET_LISTENER.accept();
+	}
+	
+	private Provider startCommunication()
+	{
+		return new Provider(CLIENT_SOCKET);
+	}
+	
+	private void createThreadForEachClientCommunication(Provider connect)
+	{
+		Thread thread = new Thread(connect);
+		thread.start();
+	}
 
 	private static void closeConnection()
 	{
 		try
 		{
 			System.out.println("Closing connection.");
-			clientSocket.close();
+			CLIENT_SOCKET.close();
 		}
 		catch (IOException e)
 		{
