@@ -36,7 +36,7 @@ public class GreetClient
 			{
 				// To server
 				message = SCANNER.nextLine();
-				output.println("OUTPUT: " + message);
+				output.println(message);
 
 				if (!message.equalsIgnoreCase("exit"))
 				{
