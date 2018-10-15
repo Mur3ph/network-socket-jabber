@@ -5,15 +5,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class GreetClient
 {
 	private final int PORT = 2012;
 	private BufferedReader RESPONSE_FROM_SERVER = null;
-	private PrintWriter output = null;
-	private Socket link = null;
-	private Scanner SCANNER = new Scanner(System.in);
+	private PrintWriter MESSAGE_TO_SERVER = null;
+	private Socket SOCKET_LINK = null;
+	private final Scanner SCANNER = new Scanner(System.in);
 
 	public static void main(String[] args)
 	{
@@ -24,19 +25,18 @@ public class GreetClient
 	{
 		try
 		{
-			link = new Socket("localhost", PORT);
+			SOCKET_LINK = createConnection();
+			RESPONSE_FROM_SERVER = createOutputStream();
+			MESSAGE_TO_SERVER = createInputStream();
 
-			RESPONSE_FROM_SERVER = new BufferedReader(new InputStreamReader(link.getInputStream()));
-			output = new PrintWriter(link.getOutputStream(), true);
-
-			String message = null, response = null;
+			String message, response;
 			System.out.println("Please enter your username & press enter: ");
 
 			do
 			{
 				// To server
 				message = SCANNER.nextLine();
-				output.println(message);
+				MESSAGE_TO_SERVER.println(message);
 
 				if (!message.equalsIgnoreCase("exit"))
 				{
@@ -67,21 +67,29 @@ public class GreetClient
 		System.out.println("Ending chat.");
 	} // End of my Run method
 
+	private Socket createConnection() throws UnknownHostException, IOException
+	{
+		return new Socket("localhost", PORT);
+	}
+	
+	private BufferedReader createOutputStream() throws IOException
+	{
+		return new BufferedReader(new InputStreamReader(SOCKET_LINK.getInputStream()));
+	}
+
+	private PrintWriter createInputStream() throws IOException
+	{
+		return new PrintWriter(SOCKET_LINK.getOutputStream(), true);
+	}
+	
 	private void closeConnection()
 	{
 		System.out.println("Closing connection.");
-
 		try
 		{
-			if (RESPONSE_FROM_SERVER != null)
-				RESPONSE_FROM_SERVER.close();
-
-			if (output != null)
-				output.close();
-
-			if (link != null)
-				link.close();
-
+			closeBufferedReaderRequestStream();
+			closePrinterWriterResponseStream();
+			closeSocketStreamConnection();
 			System.out.println("Closed...");
 		}
 		catch (IOException e)
@@ -90,5 +98,23 @@ public class GreetClient
 			System.exit(1);
 		}
 	} // End of close connection method...
+	
+	private void closeBufferedReaderRequestStream() throws IOException
+	{
+		if (RESPONSE_FROM_SERVER != null)
+			RESPONSE_FROM_SERVER.close();
+	}
+	
+	private void closePrinterWriterResponseStream()
+	{
+		if (MESSAGE_TO_SERVER != null)
+			MESSAGE_TO_SERVER.close();
+	}
+	
+	private void closeSocketStreamConnection() throws IOException
+	{
+		if (SOCKET_LINK != null)
+			SOCKET_LINK.close();
+	}
 
 }
