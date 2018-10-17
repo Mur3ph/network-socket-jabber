@@ -3,49 +3,95 @@ package main.ie.murph.network.domain;
 public class Message
 {
 	private String subject;
-	private String messageRecipient;
-	private String messageSender;
+	private String recipientEmailAddress;
+	private String senderEmailAddress;
 	private String message;
 	
-	public Message(){}
-	
-	public Message(String subject, String messageRecipient, String messageSender, String message)
+	private Message(MessageBuilder messageBuilder)
 	{
-//		Builder pattern: https://stackoverflow.com/questions/5007355/builder-pattern-in-effective-java
+		this.subject = messageBuilder.subject;
+		this.recipientEmailAddress = messageBuilder.recipientEmailAddress;
+		this.senderEmailAddress = messageBuilder.senderEmailAddress;
+		this.message = messageBuilder.message;
 	}
-	
+
 	public String getSubject()
 	{
 		return subject;
 	}
+
 	public void setSubject(String subject)
 	{
 		this.subject = subject;
 	}
-	public String getMessageRecipient()
+
+	public String getRecipientEmailAddress()
 	{
-		return messageRecipient;
+		return recipientEmailAddress;
 	}
-	public void setMessageRecipient(String messageRecipient)
+
+	public void setRecipientEmailAddress(String recipientEmailAddress)
 	{
-		this.messageRecipient = messageRecipient;
+		this.recipientEmailAddress = recipientEmailAddress;
 	}
-	public String getMessageSender()
+
+	public String getSenderEmailAddress()
 	{
-		return messageSender;
+		return senderEmailAddress;
 	}
-	public void setMessageSender(String messageSender)
+
+	public void setSenderEmailAddress(String senderEmailAddress)
 	{
-		this.messageSender = messageSender;
+		this.senderEmailAddress = senderEmailAddress;
 	}
+
 	public String getMessage()
 	{
 		return message;
 	}
+
 	public void setMessage(String message)
 	{
 		this.message = message;
 	}
-	
-	
+
+	public static class MessageBuilder
+	{
+		private String subject;
+		private String recipientEmailAddress;
+		private String senderEmailAddress;
+		private String message;
+
+		public MessageBuilder(){}
+
+		public MessageBuilder sendMessageTo(String recipientEmailAddress)
+		{
+			this.recipientEmailAddress = recipientEmailAddress;
+			return this;
+		}
+
+		public MessageBuilder messageFrom(String senderEmailAddress)
+		{
+			this.senderEmailAddress = senderEmailAddress;
+			return this;
+		}
+
+		public MessageBuilder messageSubject(String subject)
+		{
+			this.subject = subject;
+			return this;
+		}
+		
+		public MessageBuilder message(String message)
+		{
+			this.message = message;
+			return this;
+		}
+
+		public Message build()
+		{
+			return new Message(this);
+		}
+	}
+
 }
