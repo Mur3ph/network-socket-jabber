@@ -2,10 +2,10 @@ package main.ie.murph.network.domain;
 
 public class Message
 {
-	private String subject;
-	private String recipientEmailAddress;
-	private String senderEmailAddress;
-	private String message;
+	private final String subject;
+	private final String recipientEmailAddress;
+	private final String senderEmailAddress;
+	private final String message;
 	
 	private Message(MessageBuilder messageBuilder)
 	{
@@ -15,54 +15,17 @@ public class Message
 		this.message = messageBuilder.message;
 	}
 
-	public String getSubject()
-	{
-		return subject;
-	}
-
-	public void setSubject(String subject)
-	{
-		this.subject = subject;
-	}
-
-	public String getRecipientEmailAddress()
-	{
-		return recipientEmailAddress;
-	}
-
-	public void setRecipientEmailAddress(String recipientEmailAddress)
-	{
-		this.recipientEmailAddress = recipientEmailAddress;
-	}
-
-	public String getSenderEmailAddress()
-	{
-		return senderEmailAddress;
-	}
-
-	public void setSenderEmailAddress(String senderEmailAddress)
-	{
-		this.senderEmailAddress = senderEmailAddress;
-	}
-
-	public String getMessage()
-	{
-		return message;
-	}
-
-	public void setMessage(String message)
-	{
-		this.message = message;
-	}
-
 	public static class MessageBuilder
 	{
+		// Required parameters
 		private String subject;
 		private String recipientEmailAddress;
 		private String senderEmailAddress;
 		private String message;
-
-		public MessageBuilder(){}
+		
+		// Optional parameters
+//		private String attachment;
+		
 
 		public MessageBuilder sendMessageTo(String recipientEmailAddress)
 		{
