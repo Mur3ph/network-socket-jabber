@@ -7,18 +7,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import main.ie.murph.network.domain.Message;
-import main.ie.murph.network.domain.Message.MessageBuilder;
 
 public class MessageTest
 {
-
 	private Message message;
-	private MessageBuilder messageBuilder;
 	
 	@Before
 	public void setUp() throws Exception
 	{
-		message = new Message.MessageBuilder().message("Hi Hanna et al..").build();
+		message = new Message.MessageBuilder().message("Hi Hanna et al..").messageFrom("Daddy").sendMessageTo("Hanna").build();
 	}
 
 	@After
@@ -27,9 +24,10 @@ public class MessageTest
 	}
 
 	@Test
-	public void test()
+	public void messageTest()
 	{
-		fail("Not yet implemented");
+		String expectedMessage = "Hi Hanna et al..";
+		assertEquals(expectedMessage, message.getMessage());
 	}
 
 }

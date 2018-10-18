@@ -7,6 +7,26 @@ public class Message
 	private final String senderEmailAddress;
 	private final String message;
 	
+	public String getSubject()
+	{
+		return subject;
+	}
+
+	public String getRecipientEmailAddress()
+	{
+		return recipientEmailAddress;
+	}
+
+	public String getSenderEmailAddress()
+	{
+		return senderEmailAddress;
+	}
+
+	public String getMessage()
+	{
+		return message;
+	}
+	
 	private Message(MessageBuilder messageBuilder)
 	{
 		this.subject = messageBuilder.subject;
