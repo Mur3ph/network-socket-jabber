@@ -17,8 +17,8 @@ public class MessageTest
 	@Before
 	public void setUp() throws Exception
 	{
-		inboxMessage = new InboxMessage.InboxMessageBuilder().message("Hi Hanna et al..").messageFrom("Daddy").sendMessageTo("Hanna").build();
-		sentMessage = new InboxMessage.InboxMessageBuilder().message("Hi Hanna et al..").messageFrom("Daddy").sendMessageTo("Hanna").build();
+		inboxMessage = new InboxMessage.InboxMessageBuilder().message("Hi Hanna et al..").messageFrom("Pop@mail.ie").sendMessageTo("Hanna@mail.ie").build();
+		sentMessage = new InboxMessage.InboxMessageBuilder().message("Hi Hanna et al..").messageFrom("Pop@mail.ie").sendMessageTo("Hanna@mail.ie").build();
 	}
 
 	@After
@@ -45,6 +45,7 @@ public class MessageTest
 	{
 //		Assert.isInstanceOf(message, inboxMessage);
 //		assertThat(message, instanceOf(inboxMessage));
+//		assertTrue(Message.class, instanceOf(inboxMessage));
 	}
 	
 	
