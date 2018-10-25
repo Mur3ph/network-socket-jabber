@@ -1,6 +1,6 @@
 package main.ie.murph.network.domain;
 
-public class InboxMessage
+public class InboxMessage implements Message
 {
 //	private final User user;
 	private final String subject;
@@ -17,21 +17,25 @@ public class InboxMessage
 //		this.user = messageBuilder.user;
 	}
 	
+	@Override
 	public String getSubject()
 	{
 		return subject;
 	}
 
+	@Override 
 	public String getRecipientEmailAddress()
 	{
 		return recipientEmailAddress;
 	}
 
+	@Override
 	public String getSenderEmailAddress()
 	{
 		return senderEmailAddress;
 	}
 
+	@Override
 	public String getMessage()
 	{
 		return message;

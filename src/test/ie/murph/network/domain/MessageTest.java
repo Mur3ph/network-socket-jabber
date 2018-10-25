@@ -11,14 +11,14 @@ import main.ie.murph.network.domain.Message;
 
 public class MessageTest
 {
-	private Message message;
-	private InboxMessage inboxMessage;
+	private Message inboxMessage;
+	private Message sentMessage;
 	
 	@Before
 	public void setUp() throws Exception
 	{
-		message = new Message.MessageBuilder().message("Hi Hanna et al..").messageFrom("Daddy").sendMessageTo("Hanna").build();
 		inboxMessage = new InboxMessage.InboxMessageBuilder().message("Hi Hanna et al..").messageFrom("Daddy").sendMessageTo("Hanna").build();
+		sentMessage = new InboxMessage.InboxMessageBuilder().message("Hi Hanna et al..").messageFrom("Daddy").sendMessageTo("Hanna").build();
 	}
 
 	@After
@@ -30,14 +30,14 @@ public class MessageTest
 	public void messageTest()
 	{
 		String expectedMessage = "Hi Hanna et al..";
-		assertEquals(expectedMessage, message.getMessage());
+		assertEquals(expectedMessage, inboxMessage.getMessage());
 	}
 	
 	@Test
 	public void inboxMessageTest()
 	{
 		String expectedMessage = "Hi Hanna et al..";
-		assertEquals(expectedMessage, inboxMessage.getMessage());
+		assertEquals(expectedMessage, sentMessage.getMessage());
 	}
 	
 	@Test
