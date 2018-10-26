@@ -6,7 +6,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.ie.murph.network.domain.InboxMessage;
 import main.ie.murph.network.domain.Message;
 
 public class MessageTest
@@ -17,8 +16,8 @@ public class MessageTest
 	@Before
 	public void setUp() throws Exception
 	{
-		inboxMessage = new InboxMessage.InboxMessageBuilder().message("Hi Hanna et al..").messageFrom("Pop@mail.ie").sendMessageTo("Hanna@mail.ie").build();
-		sentMessage = new InboxMessage.InboxMessageBuilder().message("Hi Hanna et al..").messageFrom("Pop@mail.ie").sendMessageTo("Hanna@mail.ie").build();
+		inboxMessage = new Message.MessageBuilder().message("Hi Hanna et al..").messageFrom("Pop@mail.ie").sendMessageTo("Hanna@mail.ie").build();
+		sentMessage = new Message.MessageBuilder().message("Hi Hanna et al..").messageFrom("Pop@mail.ie").sendMessageTo("Hanna@mail.ie").build();
 	}
 
 	@After
