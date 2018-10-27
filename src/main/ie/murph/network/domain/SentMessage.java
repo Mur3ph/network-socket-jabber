@@ -7,13 +7,23 @@ public class SentMessage
 	private User user;
 	private List<Message> messaeges;
 	
+	public String viewSenderEmail()
+	{
+		return user.getEmail();
+	}
+	
 	public int getNumberOfMessagesInbox()
 	{
 		return messaeges.size()+1;
 	}
 	
-	public void getMessages()
+	public List<Message> getMessages()
 	{
-//		forEach()
+		return messaeges;
+	}
+	
+	public void viewMessages()
+	{
+		messaeges.forEach(System.out::println);
 	}
 }
