@@ -41,3 +41,8 @@
 ## Articles
 1. [What’s The Difference Between The OSI Seven-Layer Network Model And TCP/IP?](http://www.electronicdesign.com/what-s-difference-between/what-s-difference-between-osi-seven-layer-network-model-and-tcpip)
 2. [OSI and TCP/IP Model Layers](http://www.pearsonitcertification.com/articles/article.aspx?p=1804869)
+
+
+
+## Books
+1. [Guide to Network Programming](http://beej.us/guide/bgnet/pdf/bgnet_USLetter_2.pdf)
