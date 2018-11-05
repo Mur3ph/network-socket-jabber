@@ -8,6 +8,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+import main.ie.murph.network.domain.Message;
+
 public class MessageClient
 {
 	private final int PORT = 2012;
@@ -15,6 +17,7 @@ public class MessageClient
 	private PrintWriter MESSAGE_TO_SERVER = null;
 	private Socket SOCKET_LINK = null;
 	private final Scanner SCANNER = new Scanner(System.in);
+	private Message message;
 
 	public static void main(String[] args)
 	{
@@ -29,16 +32,17 @@ public class MessageClient
 			RESPONSE_FROM_SERVER = createOutputStream();
 			MESSAGE_TO_SERVER = createInputStream();
 
-			String message, response;
+			String messageInput, response;
 			System.out.println("Please enter your username & press enter: ");
 
 			do
 			{
 				// To server
-				message = SCANNER.nextLine();
-				MESSAGE_TO_SERVER.println(message);
+				messageInput = SCANNER.nextLine();
+				message = new Message.MessageBuilder().message(messageInput).build();
+				MESSAGE_TO_SERVER.println(message.getMessage());
 
-				if (!message.equalsIgnoreCase("exit"))
+				if (!message.getMessage().equalsIgnoreCase("exit"))
 				{
 					response = RESPONSE_FROM_SERVER.readLine();
 
@@ -51,7 +55,7 @@ public class MessageClient
 					System.out.println("RESONSE: " + response);
 				}
 			}
-			while (!message.equalsIgnoreCase("exit"));
+			while (!message.getMessage().equalsIgnoreCase("exit"));
 
 			System.out.println("You requested session to end.");
 		}
