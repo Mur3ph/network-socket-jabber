@@ -8,7 +8,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-public class GreetClient
+public class MessageClient
 {
 	private final int PORT = 2012;
 	private BufferedReader RESPONSE_FROM_SERVER = null;
@@ -18,10 +18,10 @@ public class GreetClient
 
 	public static void main(String[] args)
 	{
-		new GreetClient();
+		new MessageClient();
 	}
 
-	private GreetClient()
+	private MessageClient()
 	{
 		try
 		{

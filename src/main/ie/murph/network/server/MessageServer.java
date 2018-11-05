@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class GreetServer
+public class MessageServer
 {
 	private static final int PORT = 2012;
 	private static ServerSocket SERVER_SOCKET_LISTENER;
@@ -12,10 +12,10 @@ public class GreetServer
 
 	public static void main(String[] args)
 	{
-		new GreetServer();
+		new MessageServer();
 	}
 
-	private GreetServer()
+	private MessageServer()
 	{
 		establishedConnection();
 	} // End of myRun method.
