@@ -1,11 +1,17 @@
 package main.ie.murph.network.domain;
 
-public class Message
+import java.lang.reflect.Type;
+
+import com.google.gson.annotations.SerializedName;
+
+public class Message implements Type
 {
 //	private final User user;
 	private final String subject;
 	private final String recipientEmailAddress;
 	private final String senderEmailAddress;
+	
+	@SerializedName("getMessage")
 	private final String message;
 	
 	private Message(MessageBuilder messageBuilder)
@@ -17,6 +23,7 @@ public class Message
 //		this.user = messageBuilder.user;
 	}
 	
+
 	public String getSubject()
 	{
 		return subject;
@@ -32,6 +39,7 @@ public class Message
 		return senderEmailAddress;
 	}
 
+	
 	public String getMessage()
 	{
 		return message;

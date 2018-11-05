@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+import main.ie.murph.blockchain.algorithm.StringUtil;
 import main.ie.murph.network.domain.Message;
 
 public class MessageClient
@@ -40,7 +41,8 @@ public class MessageClient
 				// To server
 				messageInput = SCANNER.nextLine();
 				message = new Message.MessageBuilder().message(messageInput).build();
-				MESSAGE_TO_SERVER.println(message.getMessage());
+				String jsonMessage = StringUtil.getJson(message);
+				MESSAGE_TO_SERVER.println(jsonMessage);
 
 				if (!message.getMessage().equalsIgnoreCase("exit"))
 				{
@@ -53,6 +55,7 @@ public class MessageClient
 
 					// From server
 					System.out.println("RESONSE: " + response);
+					System.out.println("Message: " + jsonMessage);
 				}
 			}
 			while (!message.getMessage().equalsIgnoreCase("exit"));

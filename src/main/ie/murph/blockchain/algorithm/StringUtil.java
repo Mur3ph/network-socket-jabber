@@ -1,8 +1,12 @@
 package main.ie.murph.blockchain.algorithm;
+import java.lang.reflect.Type;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import main.ie.murph.network.domain.Message;
 
 public class StringUtil {
 	
@@ -47,6 +51,10 @@ public class StringUtil {
 	// Short hand helper to turn Object into a JSON string
 	public static String getJson(Object o) {
 		return new GsonBuilder().setPrettyPrinting().create().toJson(o);
+	}
+	
+	public static Message jsonToObj(String jsonInString, Type o) {
+		return new Gson().fromJson(jsonInString, o);   
 	}
 	
 //	Create a char array of length 'difficultyLength', populated by default with 0, or '\u0000' or \0 (which are null characters)

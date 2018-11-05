@@ -16,16 +16,16 @@ public class TestBlockChain {
 	private static void runMining() {
 		// Add our blocks to the Blockchain ArrayList
 		System.out.println("Trying to Mine block 1... ");
-		addBlock(new Block("First block - €100: ", "0"));
+		addBlockToChainList(new Block("First block - €100: ", "0"));
 
 		System.out.println("Trying to Mine block 2... ");
-		addBlock(new Block("Second block - €20: ", blockchain.get(blockchain.size() - 1).hash));
+		addBlockToChainList(new Block("Second block - €20: ", blockchain.get(blockchain.size() - 1).hash));
 
 		System.out.println("Trying to Mine block 3... ");
-		addBlock(new Block("Third block - €1100: ", blockchain.get(blockchain.size() - 1).calculateHash()));
+		addBlockToChainList(new Block("Third block - €1100: ", blockchain.get(blockchain.size() - 1).calculateHash()));
 	}
 	
-	public static void addBlock(Block newBlock) {
+	public static void addBlockToChainList(Block newBlock) {
 		newBlock.mineBlock(difficultyLength);
 		blockchain.add(newBlock);
 	}

@@ -6,11 +6,15 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import main.ie.murph.blockchain.algorithm.StringUtil;
+import main.ie.murph.network.domain.Message;
+
 public class Provider implements Runnable
 {
 	private Socket CLIENT_SOCKET;
 	private BufferedReader REQUEST_FROM_CLIENT;
 	private PrintWriter REPONSE_TO_CLIENT;
+	private Message objInput;
 
 	public Provider(Socket socket)
 	{
@@ -30,7 +34,7 @@ public class Provider implements Runnable
 		}
 		finally
 		{
-			System.out.println("Connection closed..");
+			System.out.println("Connection closed...");
 			closeConnection();
 		}
 	} // End of Thread inherited method run()..........
@@ -39,11 +43,14 @@ public class Provider implements Runnable
 	{
 		REQUEST_FROM_CLIENT = createInputStream();
 		REPONSE_TO_CLIENT = createOutputStream();
-		String input = readRequestFromClient();
+//		String input = readRequestFromClient();
+		objInput = readObjRequestFromClient();
+		
+		System.out.println("Message: " + objInput.getMessage());
 
-		while (inputNotEqualToExit(input))
+		while (inputNotEqualToExit(objInput.getMessage()))
 		{
-			if (inputEqualsHello(input))
+			if (inputEqualsHello(objInput.getMessage()))
 			{
 				REPONSE_TO_CLIENT.println("Hello from Server, innit bruv");
 			}
@@ -70,6 +77,11 @@ public class Provider implements Runnable
 	private String readRequestFromClient() throws IOException
 	{
 		return REQUEST_FROM_CLIENT.readLine();
+	}
+	
+	private Message readObjRequestFromClient() throws IOException
+	{
+		return StringUtil.jsonToObj(REQUEST_FROM_CLIENT.readLine(), Message.class);
 	}
 	
 	private boolean inputNotEqualToExit(String input)
