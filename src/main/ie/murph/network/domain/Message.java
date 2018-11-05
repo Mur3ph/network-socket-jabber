@@ -37,6 +37,13 @@ public class Message
 		return message;
 	}
 	
+	public String toString() {
+		return  "Message Subject: " + getSubject() + "\n" + 
+			    "Message Sender: " + getSenderEmailAddress() + "\n" +
+				"Message Recipient: " + getRecipientEmailAddress() + "\n" +
+				"Message: " + getMessage() + "\n";
+	}
+	
 	public static class MessageBuilder
 	{
 		// Required parameters
