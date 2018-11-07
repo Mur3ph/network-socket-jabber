@@ -6,18 +6,18 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.ie.murph.network.domain.Message;
+import main.ie.murph.network.domain.MessageUsingCreationalPattern;
 
 public class MessageTest
 {
-	private Message inboxMessage;
-	private Message sentMessage;
+	private MessageUsingCreationalPattern inboxMessage;
+	private MessageUsingCreationalPattern sentMessage;
 	
 	@Before
 	public void setUp() throws Exception
 	{
-		inboxMessage = new Message.MessageBuilder().message("Hi Hanna et al..").messageFrom("Pop@mail.ie").sendMessageTo("Hanna@mail.ie").build();
-		sentMessage = new Message.MessageBuilder().message("Hi Hanna et al..").messageFrom("Pop@mail.ie").sendMessageTo("Hanna@mail.ie").build();
+		inboxMessage = new MessageUsingCreationalPattern.MessageBuilder().message("Hi Hanna et al..").messageFrom("Pop@mail.ie").sendMessageTo("Hanna@mail.ie").build();
+		sentMessage = new MessageUsingCreationalPattern.MessageBuilder().message("Hi Hanna et al..").messageFrom("Pop@mail.ie").sendMessageTo("Hanna@mail.ie").build();
 	}
 
 	@After

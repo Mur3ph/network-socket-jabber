@@ -1,9 +1,11 @@
 package main.ie.murph.blockchain.algorithm;
-import java.lang.reflect.Type;
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.GsonBuilder;
 
 import main.ie.murph.network.domain.Message;
@@ -11,6 +13,7 @@ import main.ie.murph.network.domain.Message;
 public class StringUtil {
 	
 	public final static String CODE_RESOURCE = "https://medium.com/programmers-blockchain/create-simple-blockchain-java-tutorial-from-scratch-6eeed3cb03fa";
+	private static ObjectMapper mapper = new ObjectMapper();
 	
 	// Applies SHA256 to a string and returns the result. 
 	public static String applySHA256CryptoAlgorithm(String inputBlockData){
@@ -53,8 +56,9 @@ public class StringUtil {
 		return new GsonBuilder().setPrettyPrinting().create().toJson(o);
 	}
 	
-	public static Message jsonToObj(String jsonInString, Type o) {
-		return new Gson().fromJson(jsonInString, o);   
+	public static Message jsonToObj(String jsonInString) throws JsonParseException, JsonMappingException, IOException {
+		System.out.println("From Json: " + mapper.readValue(jsonInString, Message.class));
+		return mapper.readValue(jsonInString, Message.class);   
 	}
 	
 //	Create a char array of length 'difficultyLength', populated by default with 0, or '\u0000' or \0 (which are null characters)
@@ -64,6 +68,12 @@ public class StringUtil {
 	//Returns difficulty string target, to compare to hash. e.g difficulty of 5 will return "00000"  
 	public static String getDificultyString(int difficultyLength) {
 		return new String(new char[difficultyLength]).replace('\0', '0');
+	}
+
+	public static Message jsonToObj(String readLine, Class<Message> class1)
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
