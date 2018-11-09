@@ -12,8 +12,8 @@ public class Provider implements Runnable
 {
 	private Socket CLIENT_SOCKET;
 	private Message OBJECT_PASSED_IN, OBJECT_PASSED_OUT;
-	private ObjectInputStream IN_FROM_CLIENT;
-	private ObjectOutputStream OUT_TO_CLIENT;
+	private ObjectInputStream STREAM_IN_FROM_CLIENT;
+	private ObjectOutputStream STREAM_OUT_TO_CLIENT;
 
 	public Provider(Socket socket)
 	{
@@ -44,21 +44,21 @@ public class Provider implements Runnable
 
 	private void startRespondingToClient() throws IOException, JSONException, ClassNotFoundException
 	{
-		OUT_TO_CLIENT = createObjectOutputStream();
-		IN_FROM_CLIENT = createObjectInputStream();
-		OBJECT_PASSED_IN = readObjRequestFromClient2();
+		STREAM_OUT_TO_CLIENT = createObjectOutputStream();
+		STREAM_IN_FROM_CLIENT = createObjectInputStream();
+		OBJECT_PASSED_IN = readObjRequestFromClient();
 
 		while (inputNotEqualToExit(OBJECT_PASSED_IN.getMessageBody()))
 		{
 			if (inputEqualsHello(OBJECT_PASSED_IN.getMessageBody()))
 			{
 				OBJECT_PASSED_OUT = new Message("Live long, and prosper", "Server, correct innit bruv");
-				OUT_TO_CLIENT.writeObject(OBJECT_PASSED_OUT);
+				STREAM_OUT_TO_CLIENT.writeObject(OBJECT_PASSED_OUT);
 			}
 			else
 			{
 				OBJECT_PASSED_OUT = new Message("Say hello to my little friend", "Server, wrong message innit bruv");
-				OUT_TO_CLIENT.writeObject(OBJECT_PASSED_OUT);
+				STREAM_OUT_TO_CLIENT.writeObject(OBJECT_PASSED_OUT);
 			}
 			this.startRespondingToClient();
 		}
@@ -76,9 +76,9 @@ public class Provider implements Runnable
 		return new ObjectInputStream(CLIENT_SOCKET.getInputStream());
 	}
 
-	private Message readObjRequestFromClient2() throws IOException, JSONException, ClassNotFoundException
+	private Message readObjRequestFromClient() throws IOException, JSONException, ClassNotFoundException
 	{
-		return (Message) IN_FROM_CLIENT.readObject();
+		return (Message) STREAM_IN_FROM_CLIENT.readObject();
 	}
 
 	private boolean inputNotEqualToExit(String input)
@@ -110,14 +110,14 @@ public class Provider implements Runnable
 
 	private void closeBufferedReaderRequestStream() throws IOException
 	{
-		if (IN_FROM_CLIENT != null)
-			IN_FROM_CLIENT.close();
+		if (STREAM_IN_FROM_CLIENT != null)
+			STREAM_IN_FROM_CLIENT.close();
 	}
 
 	private void closePrinterWriterResponseStream() throws IOException
 	{
-		if (OUT_TO_CLIENT != null)
-			OUT_TO_CLIENT.close();
+		if (STREAM_OUT_TO_CLIENT != null)
+			STREAM_OUT_TO_CLIENT.close();
 	}
 
 	private void closeSocketStreamConnection() throws IOException
