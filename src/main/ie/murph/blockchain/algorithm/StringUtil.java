@@ -69,12 +69,4 @@ public class StringUtil {
 	public static String getDificultyString(int difficultyLength) {
 		return new String(new char[difficultyLength]).replace('\0', '0');
 	}
-
-	public static Message jsonToObj(String readLine, Class<Message> class1)
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
 }

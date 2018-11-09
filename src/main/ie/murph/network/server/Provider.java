@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.List;
 
 import org.json.JSONException;
 import main.ie.murph.network.domain.Message;
@@ -13,7 +12,6 @@ public class Provider implements Runnable
 {
 	private Socket CLIENT_SOCKET;
 	private Message OBJECT_PASSED_IN, OBJECT_PASSED_OUT;
-	private List<Message> OBJECT_LIST_PASSED_IN;
 	private ObjectInputStream STREAM_IN_FROM_CLIENT;
 	private ObjectOutputStream STREAM_OUT_TO_CLIENT;
 
