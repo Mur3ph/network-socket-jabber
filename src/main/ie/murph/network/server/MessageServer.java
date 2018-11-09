@@ -52,7 +52,7 @@ public class MessageServer
 		return SERVER_SOCKET_LISTENER.accept();
 	}
 	
-	private Provider startCommunication()
+	private Provider startCommunication() throws IOException
 	{
 		return new Provider(CLIENT_SOCKET);
 	}
