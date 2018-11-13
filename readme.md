@@ -2,6 +2,18 @@
 
 
 
+## TODO
+1. [Synchronization](https://www.baeldung.com/java-synchronized)
+2. [Race Condition](https://stackoverflow.com/questions/34510/what-is-a-race-condition)
+3. []()
+
+
+
+## Network Programming
+1. [Socket Programming in Java](https://www.geeksforgeeks.org/socket-programming-in-java/)
+
+
+
 ## Computer Networking Fundementals
 1. [Logical network topology diagram](http://www.conceptdraw.com/examples/a-logical-diagram)
 2. [Internet protocol suite](https://en.wikipedia.org/wiki/Internet_protocol_suite)
@@ -41,6 +53,7 @@
 ## Articles
 1. [What’s The Difference Between The OSI Seven-Layer Network Model And TCP/IP?](http://www.electronicdesign.com/what-s-difference-between/what-s-difference-between-osi-seven-layer-network-model-and-tcpip)
 2. [OSI and TCP/IP Model Layers](http://www.pearsonitcertification.com/articles/article.aspx?p=1804869)
+3. [char[] preferred over String for passwords?](https://stackoverflow.com/questions/8881291/why-is-char-preferred-over-string-for-passwords)
 
 
 
