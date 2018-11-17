@@ -11,6 +11,7 @@
 
 ## Network Programming
 1. [Socket Programming in Java](https://www.geeksforgeeks.org/socket-programming-in-java/)
+2. [Basics of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP?fbclid=IwAR0q6vhCaXvqgq_MZ5K3QlRuoPimstAg_2FslOM0vOXQg9qeA5WmA8TkdYk)
 
 
 
