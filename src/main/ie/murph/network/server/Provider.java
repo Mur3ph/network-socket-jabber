@@ -5,7 +5,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import org.json.JSONException;
 import main.ie.murph.network.domain.Message;
 
 public class Provider implements Runnable
@@ -29,7 +28,7 @@ public class Provider implements Runnable
 		{
 			startRespondingToClient();
 		}
-		catch (IOException | JSONException | ClassNotFoundException e)
+		catch (IOException | ClassNotFoundException e)
 		{
 			System.out.println("Connection to client lost");
 			System.err.println("Server Error: " + e.getMessage());
@@ -44,7 +43,7 @@ public class Provider implements Runnable
 		}
 	} // End of Thread inherited method run()..........
 
-	private void startRespondingToClient() throws IOException, JSONException, ClassNotFoundException
+	private void startRespondingToClient() throws IOException, ClassNotFoundException
 	{
 		OBJECT_PASSED_IN = readObjRequestFromClient();
 
@@ -76,7 +75,7 @@ public class Provider implements Runnable
 		return new ObjectInputStream(CLIENT_SOCKET.getInputStream());
 	}
 
-	private Message readObjRequestFromClient() throws IOException, JSONException, ClassNotFoundException
+	private Message readObjRequestFromClient() throws IOException, ClassNotFoundException
 	{
 		return (Message) STREAM_IN_FROM_CLIENT.readObject();
 	}
