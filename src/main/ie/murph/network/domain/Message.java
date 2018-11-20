@@ -46,7 +46,7 @@ public class Message implements Serializable
 	@Override
 	public String toString()
 	{
-		return "Subject: " + messageSubject + "\n" + 
-			   "Message: " + messageBody;
+		return "\nSubject: " + messageSubject + 
+			   "\nMessage: " + messageBody;
 	}
 }

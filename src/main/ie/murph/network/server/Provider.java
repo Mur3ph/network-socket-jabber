@@ -51,12 +51,12 @@ public class Provider implements Runnable
 		{
 			if (inputEqualsHello(OBJECT_PASSED_IN.getMessageBody()))
 			{
-				OBJECT_PASSED_OUT = new Message("Live long, and prosper", "Server, correct innit bruv");
+				OBJECT_PASSED_OUT = new Message("Live long, and prosper", OBJECT_PASSED_IN.getMessageBody() + " is correct, innit bruv");
 				STREAM_OUT_TO_CLIENT.writeObject(OBJECT_PASSED_OUT);
 			}
 			else
 			{
-				OBJECT_PASSED_OUT = new Message("Say hello to my little friend", "Server, wrong message innit bruv");
+				OBJECT_PASSED_OUT = new Message("Say hello to my little friend", OBJECT_PASSED_IN.getMessageBody() + " is the wrong message, innit bruv");
 				STREAM_OUT_TO_CLIENT.writeObject(OBJECT_PASSED_OUT);
 			}
 			this.startRespondingToClient();
