@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import main.ie.murph.network.gui.EErrorMessage;
+import main.ie.murph.network.gui.INetwork;
+
 public class MessageServer
 {
-	private static final int PORT = 2012;
+	private static final int PORT = INetwork.PORT_NUMBER;
 	private static ServerSocket SERVER_SOCKET_LISTENER;
 	private static Socket CLIENT_SOCKET;
 
@@ -34,7 +37,11 @@ public class MessageServer
 		}
 		catch (IOException e)
 		{
-			System.out.println("Error: Won't close. " + e);
+			System.out.println(EErrorMessage.CANNOT_DISCONNECT + " " + e);
+			System.err.println(EErrorMessage.SERVER_ERROR + e.getMessage());
+			System.err.println(EErrorMessage.LOCALIZED_ERROR + e.getLocalizedMessage());
+			System.err.println(EErrorMessage.STACK_TRACE + " " + e.getStackTrace());
+			System.err.println(EErrorMessage.EXCEPTION_STRING + e.toString());
 		}
 		finally
 		{

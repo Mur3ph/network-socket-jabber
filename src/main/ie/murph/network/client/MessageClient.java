@@ -8,10 +8,13 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 import main.ie.murph.network.domain.Message;
+import main.ie.murph.network.gui.EErrorMessage;
+import main.ie.murph.network.gui.IGUIRequest;
+import main.ie.murph.network.gui.INetwork;
 
 public class MessageClient
 {
-	private final int PORT = 2012;
+	private final int PORT = INetwork.PORT_NUMBER;
 	ObjectOutputStream OUTPUT_TO_SERVER;
 	ObjectInputStream INPUT_FROM_SERVER;
 	private Socket SOCKET_LINK = null;
@@ -32,7 +35,7 @@ public class MessageClient
 			OUTPUT_TO_SERVER = createObjectOutputStream();
 
 			String messageScannerInput = null;
-			System.out.println("Please enter your username & press enter: ");
+			System.out.println(IGUIRequest.WELCOME);
 
 			do
 			{
@@ -41,25 +44,25 @@ public class MessageClient
 				messageREQUEST = new Message("Greetings", messageScannerInput);
 				OUTPUT_TO_SERVER.writeObject(messageREQUEST);
 
-				if (!messageREQUEST.getMessageBody().equalsIgnoreCase("exit"))
+				if (!messageREQUEST.getMessageBody().equalsIgnoreCase(IGUIRequest.EXIT))
 				{
 					messageResponse = (Message) INPUT_FROM_SERVER.readObject();
 
 					// From server
-					System.out.println("RESONSE: " + messageResponse.toString());
+					System.out.println(IGUIRequest.SERVER_RESPONSE + messageResponse.toString());
 				}
 			}
-			while (!messageREQUEST.getMessageBody().equalsIgnoreCase("exit"));
+			while (!messageREQUEST.getMessageBody().equalsIgnoreCase(IGUIRequest.EXIT));
 
-			System.out.println("You requested session to end.");
+			System.out.println(IGUIRequest.GOODBYE);
 		}
 		catch (IOException e)
 		{
-			System.out.println("Connection to server lost.");
-			System.err.println("Server Error: " + e.getMessage());
-			System.err.println("Localized: " + e.getLocalizedMessage());
-			System.err.println("Stack Trace: " + e.getStackTrace());
-			System.err.println("To String: " + e.toString());
+			System.out.println(EErrorMessage.CONNECTION_LOST);
+			System.err.println(EErrorMessage.SERVER_ERROR + e.getMessage());
+			System.err.println(EErrorMessage.LOCALIZED_ERROR + e.getLocalizedMessage());
+			System.err.println(EErrorMessage.STACK_TRACE + " " + e.getStackTrace());
+			System.err.println(EErrorMessage.EXCEPTION_STRING + e.toString());
 		}
 		finally
 		{
@@ -96,11 +99,11 @@ public class MessageClient
 		}
 		catch (IOException e)
 		{
-			System.out.println("Unable to disconnect..");
-			System.err.println("Server Error: " + e.getMessage());
-			System.err.println("Localized: " + e.getLocalizedMessage());
-			System.err.println("Stack Trace: " + e.getStackTrace());
-			System.err.println("To String: " + e.toString());
+			System.out.println(EErrorMessage.CANNOT_DISCONNECT);
+			System.err.println(EErrorMessage.SERVER_ERROR + e.getMessage());
+			System.err.println(EErrorMessage.LOCALIZED_ERROR + e.getLocalizedMessage());
+			System.err.println(EErrorMessage.STACK_TRACE + " " + e.getStackTrace());
+			System.err.println(EErrorMessage.EXCEPTION_STRING + e.toString());
 			System.exit(1);
 		}
 	} // End of close connection method...
