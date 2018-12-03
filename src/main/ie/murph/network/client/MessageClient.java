@@ -14,7 +14,6 @@ import main.ie.murph.network.gui.INetwork;
 
 public class MessageClient
 {
-	private final int PORT = INetwork.PORT_NUMBER;
 	private ObjectOutputStream OUTPUT_TO_SERVER;
 	private ObjectInputStream INPUT_FROM_SERVER;
 	private Socket SOCKET_LINK = null;
@@ -74,7 +73,7 @@ public class MessageClient
 
 	private Socket createConnection() throws UnknownHostException, IOException
 	{
-		return new Socket(INetwork.SPECIFIED_IP_ADDRESS, PORT);
+		return new Socket(INetwork.SPECIFIED_IP_ADDRESS, INetwork.SPECIFIED_PORT_NUMBER);
 	}
 
 	private ObjectInputStream createObjectInputStream() throws IOException

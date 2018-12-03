@@ -9,7 +9,6 @@ import main.ie.murph.network.gui.INetwork;
 
 public class MessageServer
 {
-	private static final int PORT = INetwork.PORT_NUMBER;
 	private static ServerSocket SERVER_SOCKET_LISTENER;
 	private static Socket CLIENT_SOCKET;
 
@@ -51,7 +50,7 @@ public class MessageServer
 
 	private ServerSocket connectToMachinePort() throws IOException
 	{
-		return new ServerSocket(PORT);
+		return new ServerSocket(INetwork.SPECIFIED_PORT_NUMBER);
 	}
 
 	private Socket acceptConnection() throws IOException
