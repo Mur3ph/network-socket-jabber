@@ -40,7 +40,7 @@ public class MessageClient
 			{
 				// To server
 				messageScannerInput = SCANNER.nextLine();
-				messageREQUEST = new Message("Greetings", messageScannerInput);
+				messageREQUEST = new Message(IGUIRequest.GREETINGS, messageScannerInput);
 				OUTPUT_TO_SERVER.writeObject(messageREQUEST);
 
 				if (!messageREQUEST.getMessageBody().equalsIgnoreCase(IGUIRequest.EXIT))
@@ -68,7 +68,7 @@ public class MessageClient
 			closeConnection();
 		}
 
-		System.out.println("Ending chat.");
+		System.out.println(EErrorMessage.ENDING_CHAT);
 	} // End of my Run method
 
 	private Socket createConnection() throws UnknownHostException, IOException
@@ -88,7 +88,7 @@ public class MessageClient
 
 	private void closeConnection()
 	{
-		System.out.println("Closing connection.");
+		System.out.println(EErrorMessage.CONNECTION_CLOSING);
 		try
 		{
 			closeBufferedReaderRequestStream();

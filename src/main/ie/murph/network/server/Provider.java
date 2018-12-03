@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import main.ie.murph.network.domain.Message;
+import main.ie.murph.network.gui.EErrorMessage;
+import main.ie.murph.network.gui.IGUIRequest;
 
 public class Provider implements Runnable
 {
@@ -23,22 +25,22 @@ public class Provider implements Runnable
 
 	public void run()
 	{
-		System.out.println("Now interacting with the client..");
+		System.out.println(IGUIRequest.INTERACTION_WITH_SERVER);
 		try
 		{
 			startRespondingToClient();
 		}
 		catch (IOException | ClassNotFoundException e)
 		{
-			System.out.println("Connection to client lost");
-			System.err.println("Server Error: " + e.getMessage());
-			System.err.println("Localized: " + e.getLocalizedMessage());
-			System.err.println("Stack Trace: " + e.getStackTrace());
-			System.err.println("To String: " + e.toString());
+			System.out.println(EErrorMessage.CONNECTION_LOST);
+			System.err.println(EErrorMessage.SERVER_ERROR + e.getMessage());
+			System.err.println(EErrorMessage.LOCALIZED_ERROR + e.getLocalizedMessage());
+			System.err.println(EErrorMessage.STACK_TRACE + " " + e.getStackTrace());
+			System.err.println(EErrorMessage.EXCEPTION_STRING + e.toString());
 		}
 		finally
 		{
-			System.out.println("Connection closed...");
+			System.out.println(EErrorMessage.CONNECTION_CLOSED);
 			closeConnection();
 		}
 	} // End of Thread inherited method run()..........
@@ -51,17 +53,17 @@ public class Provider implements Runnable
 		{
 			if (inputEqualsHello(OBJECT_PASSED_IN.getMessageBody()))
 			{
-				OBJECT_PASSED_OUT = new Message("Live long, and prosper", OBJECT_PASSED_IN.getMessageBody() + " is correct, innit bruv");
+				OBJECT_PASSED_OUT = new Message(IGUIRequest.STAR_TREK_QUOTE, OBJECT_PASSED_IN.getMessageBody() + IGUIRequest.CORRECT);
 				STREAM_OUT_TO_CLIENT.writeObject(OBJECT_PASSED_OUT);
 			}
 			else
 			{
-				OBJECT_PASSED_OUT = new Message("Say hello to my little friend", OBJECT_PASSED_IN.getMessageBody() + " is the wrong message, innit bruv");
+				OBJECT_PASSED_OUT = new Message(IGUIRequest.SCARFACE_QUOTE, OBJECT_PASSED_IN.getMessageBody() + IGUIRequest.INCORRECT);
 				STREAM_OUT_TO_CLIENT.writeObject(OBJECT_PASSED_OUT);
 			}
 			this.startRespondingToClient();
 		}
-		System.out.println("You requested session to end.");
+		System.out.println(EErrorMessage.REQUEST_TO_END_SESSION);
 		closeConnection();
 	}
 
@@ -82,27 +84,27 @@ public class Provider implements Runnable
 
 	private boolean inputNotEqualToExit(String input)
 	{
-		return !input.equalsIgnoreCase("exit");
+		return !input.equalsIgnoreCase(IGUIRequest.EXIT);
 	}
 
 	public boolean inputEqualsHello(String input)
 	{
-		return input.equals("hello");
+		return input.equals(IGUIRequest.HELLO);
 	}
 
 	private void closeConnection()
 	{
-		System.out.println("Closing connection...");
+		System.out.println(EErrorMessage.CONNECTION_CLOSING);
 		try
 		{
 			closeBufferedReaderRequestStream();
 			closePrinterWriterResponseStream();
 			closeSocketStreamConnection();
-			System.out.println("Connection closing...");
+			System.out.println(EErrorMessage.CONNECTION_CLOSING);
 		}
 		catch (IOException e)
 		{
-			System.out.println("Unable to disconnect..");
+			System.out.println(EErrorMessage.UNABLE_TO_DISCONNECT);
 			System.exit(1);
 		}
 	} // End of close connection method...

@@ -73,12 +73,12 @@ public class MessageServer
 	{
 		try
 		{
-			System.out.println("Closing connection.");
+			System.out.println(EErrorMessage.CONNECTION_CLOSING);
 			CLIENT_SOCKET.close();
 		}
 		catch (IOException e)
 		{
-			System.out.println("Unable to disconnect.");
+			System.out.println(EErrorMessage.UNABLE_TO_DISCONNECT);
 			System.exit(1);
 		}
 	}
