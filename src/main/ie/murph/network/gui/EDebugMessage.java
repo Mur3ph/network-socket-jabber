@@ -1,6 +1,6 @@
 package main.ie.murph.network.gui;
 
-public enum EErrorMessage
+public enum EDebugMessage
 {
 	CONNECTION_LOST("Connection to server lost: "),
 	SERVER_ERROR("Server Error: "),
@@ -16,7 +16,7 @@ public enum EErrorMessage
 	
 	private final String text;
 
-    private EErrorMessage(final String text) 
+    private EDebugMessage(final String text) 
     {
         this.text = text;
     }

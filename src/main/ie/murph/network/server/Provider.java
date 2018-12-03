@@ -6,7 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import main.ie.murph.network.domain.Message;
-import main.ie.murph.network.gui.EErrorMessage;
+import main.ie.murph.network.gui.EDebugMessage;
 import main.ie.murph.network.gui.IGUIRequest;
 
 public class Provider implements Runnable
@@ -32,15 +32,15 @@ public class Provider implements Runnable
 		}
 		catch (IOException | ClassNotFoundException e)
 		{
-			System.out.println(EErrorMessage.CONNECTION_LOST);
-			System.err.println(EErrorMessage.SERVER_ERROR + e.getMessage());
-			System.err.println(EErrorMessage.LOCALIZED_ERROR + e.getLocalizedMessage());
-			System.err.println(EErrorMessage.STACK_TRACE + " " + e.getStackTrace());
-			System.err.println(EErrorMessage.EXCEPTION_STRING + e.toString());
+			System.out.println(EDebugMessage.CONNECTION_LOST);
+			System.err.println(EDebugMessage.SERVER_ERROR + e.getMessage());
+			System.err.println(EDebugMessage.LOCALIZED_ERROR + e.getLocalizedMessage());
+			System.err.println(EDebugMessage.STACK_TRACE + " " + e.getStackTrace());
+			System.err.println(EDebugMessage.EXCEPTION_STRING + e.toString());
 		}
 		finally
 		{
-			System.out.println(EErrorMessage.CONNECTION_CLOSED);
+			System.out.println(EDebugMessage.CONNECTION_CLOSED);
 			closeConnection();
 		}
 	} // End of Thread inherited method run()..........
@@ -63,7 +63,7 @@ public class Provider implements Runnable
 			}
 			this.startRespondingToClient();
 		}
-		System.out.println(EErrorMessage.REQUEST_TO_END_SESSION);
+		System.out.println(EDebugMessage.REQUEST_TO_END_SESSION);
 		closeConnection();
 	}
 
@@ -94,17 +94,17 @@ public class Provider implements Runnable
 
 	private void closeConnection()
 	{
-		System.out.println(EErrorMessage.CONNECTION_CLOSING);
+		System.out.println(EDebugMessage.CONNECTION_CLOSING);
 		try
 		{
 			closeBufferedReaderRequestStream();
 			closePrinterWriterResponseStream();
 			closeSocketStreamConnection();
-			System.out.println(EErrorMessage.CONNECTION_CLOSING);
+			System.out.println(EDebugMessage.CONNECTION_CLOSING);
 		}
 		catch (IOException e)
 		{
-			System.out.println(EErrorMessage.UNABLE_TO_DISCONNECT);
+			System.out.println(EDebugMessage.UNABLE_TO_DISCONNECT);
 			System.exit(1);
 		}
 	} // End of close connection method...

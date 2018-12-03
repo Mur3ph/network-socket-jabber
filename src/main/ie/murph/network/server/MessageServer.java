@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import main.ie.murph.network.gui.EErrorMessage;
+import main.ie.murph.network.gui.EDebugMessage;
 import main.ie.murph.network.gui.INetwork;
 
 public class MessageServer
@@ -36,11 +36,11 @@ public class MessageServer
 		}
 		catch (IOException e)
 		{
-			System.out.println(EErrorMessage.CANNOT_DISCONNECT + " " + e);
-			System.err.println(EErrorMessage.SERVER_ERROR + e.getMessage());
-			System.err.println(EErrorMessage.LOCALIZED_ERROR + e.getLocalizedMessage());
-			System.err.println(EErrorMessage.STACK_TRACE + " " + e.getStackTrace());
-			System.err.println(EErrorMessage.EXCEPTION_STRING + e.toString());
+			System.out.println(EDebugMessage.CANNOT_DISCONNECT + " " + e);
+			System.err.println(EDebugMessage.SERVER_ERROR + e.getMessage());
+			System.err.println(EDebugMessage.LOCALIZED_ERROR + e.getLocalizedMessage());
+			System.err.println(EDebugMessage.STACK_TRACE + " " + e.getStackTrace());
+			System.err.println(EDebugMessage.EXCEPTION_STRING + e.toString());
 		}
 		finally
 		{
@@ -73,12 +73,12 @@ public class MessageServer
 	{
 		try
 		{
-			System.out.println(EErrorMessage.CONNECTION_CLOSING);
+			System.out.println(EDebugMessage.CONNECTION_CLOSING);
 			CLIENT_SOCKET.close();
 		}
 		catch (IOException e)
 		{
-			System.out.println(EErrorMessage.UNABLE_TO_DISCONNECT);
+			System.out.println(EDebugMessage.UNABLE_TO_DISCONNECT);
 			System.exit(1);
 		}
 	}

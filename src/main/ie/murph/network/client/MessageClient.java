@@ -8,7 +8,7 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 import main.ie.murph.network.domain.Message;
-import main.ie.murph.network.gui.EErrorMessage;
+import main.ie.murph.network.gui.EDebugMessage;
 import main.ie.murph.network.gui.IGUIRequest;
 import main.ie.murph.network.gui.INetwork;
 
@@ -57,18 +57,18 @@ public class MessageClient
 		}
 		catch (IOException e)
 		{
-			System.out.println(EErrorMessage.CONNECTION_LOST);
-			System.err.println(EErrorMessage.SERVER_ERROR + e.getMessage());
-			System.err.println(EErrorMessage.LOCALIZED_ERROR + e.getLocalizedMessage());
-			System.err.println(EErrorMessage.STACK_TRACE + " " + e.getStackTrace());
-			System.err.println(EErrorMessage.EXCEPTION_STRING + e.toString());
+			System.out.println(EDebugMessage.CONNECTION_LOST);
+			System.err.println(EDebugMessage.SERVER_ERROR + e.getMessage());
+			System.err.println(EDebugMessage.LOCALIZED_ERROR + e.getLocalizedMessage());
+			System.err.println(EDebugMessage.STACK_TRACE + " " + e.getStackTrace());
+			System.err.println(EDebugMessage.EXCEPTION_STRING + e.toString());
 		}
 		finally
 		{
 			closeConnection();
 		}
 
-		System.out.println(EErrorMessage.ENDING_CHAT);
+		System.out.println(EDebugMessage.ENDING_CHAT);
 	} // End of my Run method
 
 	private Socket createConnection() throws UnknownHostException, IOException
@@ -88,7 +88,7 @@ public class MessageClient
 
 	private void closeConnection()
 	{
-		System.out.println(EErrorMessage.CONNECTION_CLOSING);
+		System.out.println(EDebugMessage.CONNECTION_CLOSING);
 		try
 		{
 			closeBufferedReaderRequestStream();
@@ -98,11 +98,11 @@ public class MessageClient
 		}
 		catch (IOException e)
 		{
-			System.out.println(EErrorMessage.CANNOT_DISCONNECT);
-			System.err.println(EErrorMessage.SERVER_ERROR + e.getMessage());
-			System.err.println(EErrorMessage.LOCALIZED_ERROR + e.getLocalizedMessage());
-			System.err.println(EErrorMessage.STACK_TRACE + " " + e.getStackTrace());
-			System.err.println(EErrorMessage.EXCEPTION_STRING + e.toString());
+			System.out.println(EDebugMessage.CANNOT_DISCONNECT);
+			System.err.println(EDebugMessage.SERVER_ERROR + e.getMessage());
+			System.err.println(EDebugMessage.LOCALIZED_ERROR + e.getLocalizedMessage());
+			System.err.println(EDebugMessage.STACK_TRACE + " " + e.getStackTrace());
+			System.err.println(EDebugMessage.EXCEPTION_STRING + e.toString());
 			System.exit(1);
 		}
 	} // End of close connection method...
