@@ -5,14 +5,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import main.ie.murph.network.domain.Message;
+import main.ie.murph.network.domain.MessageDefault;
 import main.ie.murph.network.gui.EDebugMessage;
 import main.ie.murph.network.gui.IGUIRequest;
 
 public class Provider implements Runnable
 {
 	private Socket CLIENT_SOCKET;
-	private Message OBJECT_PASSED_IN, OBJECT_PASSED_OUT;
+	private MessageDefault OBJECT_PASSED_IN, OBJECT_PASSED_OUT;
 	private ObjectInputStream STREAM_IN_FROM_CLIENT;
 	private ObjectOutputStream STREAM_OUT_TO_CLIENT;
 
@@ -53,12 +53,12 @@ public class Provider implements Runnable
 		{
 			if (inputEqualsHello(OBJECT_PASSED_IN.getMessageBody()))
 			{
-				OBJECT_PASSED_OUT = new Message(IGUIRequest.STAR_TREK_QUOTE, OBJECT_PASSED_IN.getMessageBody() + IGUIRequest.CORRECT);
+				OBJECT_PASSED_OUT = new MessageDefault(IGUIRequest.STAR_TREK_QUOTE, OBJECT_PASSED_IN.getMessageBody() + IGUIRequest.CORRECT);
 				STREAM_OUT_TO_CLIENT.writeObject(OBJECT_PASSED_OUT);
 			}
 			else
 			{
-				OBJECT_PASSED_OUT = new Message(IGUIRequest.SCARFACE_QUOTE, OBJECT_PASSED_IN.getMessageBody() + IGUIRequest.INCORRECT);
+				OBJECT_PASSED_OUT = new MessageDefault(IGUIRequest.SCARFACE_QUOTE, OBJECT_PASSED_IN.getMessageBody() + IGUIRequest.INCORRECT);
 				STREAM_OUT_TO_CLIENT.writeObject(OBJECT_PASSED_OUT);
 			}
 			this.startRespondingToClient();
@@ -77,9 +77,9 @@ public class Provider implements Runnable
 		return new ObjectInputStream(CLIENT_SOCKET.getInputStream());
 	}
 
-	private Message readObjRequestFromClient() throws IOException, ClassNotFoundException
+	private MessageDefault readObjRequestFromClient() throws IOException, ClassNotFoundException
 	{
-		return (Message) STREAM_IN_FROM_CLIENT.readObject();
+		return (MessageDefault) STREAM_IN_FROM_CLIENT.readObject();
 	}
 
 	private boolean inputNotEqualToExit(String input)

@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.GsonBuilder;
 
-import main.ie.murph.network.domain.Message;
+import main.ie.murph.network.domain.MessageDefault;
 
 public class StringUtil {
 	
@@ -56,9 +56,9 @@ public class StringUtil {
 		return new GsonBuilder().setPrettyPrinting().create().toJson(o);
 	}
 	
-	public static Message jsonToObj(String jsonInString) throws JsonParseException, JsonMappingException, IOException {
-		System.out.println("From Json: " + mapper.readValue(jsonInString, Message.class));
-		return mapper.readValue(jsonInString, Message.class);   
+	public static MessageDefault jsonToObj(String jsonInString) throws JsonParseException, JsonMappingException, IOException {
+		System.out.println("From Json: " + mapper.readValue(jsonInString, MessageDefault.class));
+		return mapper.readValue(jsonInString, MessageDefault.class);   
 	}
 	
 //	Create a char array of length 'difficultyLength', populated by default with 0, or '\u0000' or \0 (which are null characters)

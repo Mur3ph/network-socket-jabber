@@ -2,17 +2,17 @@ package main.ie.murph.network.domain;
 
 import java.io.Serializable;
 
-public class SentMessage implements Message, Serializable
+public class MessageDefault implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	private String messageSubject;
 	private String messageBody;
 	
-	public SentMessage(){}
+	public MessageDefault(){}
 	
-	public SentMessage(String messageBody){}
+	public MessageDefault(String messageBody){}
 	
-	public SentMessage(String messageSubject, String messageBody)
+	public MessageDefault(String messageSubject, String messageBody)
 	{
 		this.messageSubject = messageSubject;
 		this.messageBody = messageBody;
@@ -43,12 +43,5 @@ public class SentMessage implements Message, Serializable
 	{
 		return "\nSubject: " + messageSubject + 
 			   "\nMessage: " + messageBody;
-	}
-
-	@Override
-	public void showMessageToString()
-	{
-		System.out.println("\nSubject: " + messageSubject + 
-				   "\nMessage: " + messageBody );
 	}
 }

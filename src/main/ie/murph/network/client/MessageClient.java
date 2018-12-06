@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-import main.ie.murph.network.domain.Message;
+import main.ie.murph.network.domain.MessageDefault;
 import main.ie.murph.network.gui.EDebugMessage;
 import main.ie.murph.network.gui.IGUIRequest;
 import main.ie.murph.network.gui.INetwork;
@@ -18,7 +18,7 @@ public class MessageClient
 	private ObjectInputStream INPUT_FROM_SERVER;
 	private Socket SOCKET_LINK = null;
 	private final Scanner SCANNER = new Scanner(System.in);
-	private Message messageREQUEST, messageResponse;
+	private MessageDefault messageREQUEST, messageResponse;
 
 	public static void main(String[] args) throws ClassNotFoundException
 	{
@@ -40,12 +40,12 @@ public class MessageClient
 			{
 				// To server
 				messageScannerInput = SCANNER.nextLine();
-				messageREQUEST = new Message(IGUIRequest.GREETINGS, messageScannerInput);
+				messageREQUEST = new MessageDefault(IGUIRequest.GREETINGS, messageScannerInput);
 				OUTPUT_TO_SERVER.writeObject(messageREQUEST);
 
 				if (!messageREQUEST.getMessageBody().equalsIgnoreCase(IGUIRequest.EXIT))
 				{
-					messageResponse = (Message) INPUT_FROM_SERVER.readObject();
+					messageResponse = (MessageDefault) INPUT_FROM_SERVER.readObject();
 
 					// From server
 					System.out.println(IGUIRequest.SERVER_RESPONSE + messageResponse.toString());

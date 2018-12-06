@@ -3,7 +3,7 @@ package main.ie.murph.network.domain;
 import com.google.gson.annotations.SerializedName;
 
 
-public class MessageUsingCreationalPattern
+public class MessageUsingCreationalPatternBuilderPattern
 {
 //	private final User user;
 	private final String subject;
@@ -13,7 +13,7 @@ public class MessageUsingCreationalPattern
 	@SerializedName("getMessage")
 	private final String message;
 	
-	private MessageUsingCreationalPattern(MessageBuilder messageBuilder)
+	private MessageUsingCreationalPatternBuilderPattern(MessageBuilder messageBuilder)
 	{
 		this.subject = messageBuilder.subject;
 		this.recipientEmailAddress = messageBuilder.recipientEmailAddress;
@@ -86,9 +86,9 @@ public class MessageUsingCreationalPattern
 			return this;
 		}
 
-		public MessageUsingCreationalPattern build()
+		public MessageUsingCreationalPatternBuilderPattern build()
 		{
-			return new MessageUsingCreationalPattern(this);
+			return new MessageUsingCreationalPatternBuilderPattern(this);
 		}
 	}
 }
