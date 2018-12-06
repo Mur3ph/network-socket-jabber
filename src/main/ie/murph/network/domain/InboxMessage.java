@@ -18,6 +18,12 @@ public class InboxMessage implements Message, Serializable
 	public void showMessageToString() {
     	childMessages.forEach(Message::showMessageToString);
     }
+    
+	@Override
+	public void printessageName()
+	{
+		childMessages.forEach(Message::printessageName);
+	}
  
     public void addDepartment(InboxMessage department) {
     	childMessages.add(department);

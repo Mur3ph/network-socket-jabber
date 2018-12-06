@@ -51,4 +51,9 @@ public class SentMessage implements Message, Serializable
 		System.out.println("\nSubject: " + messageSubject + 
 				   "\nMessage: " + messageBody );
 	}
+	
+	@Override
+	public void printessageName() {
+        System.out.println(getClass().getSimpleName());
+    }
 }
