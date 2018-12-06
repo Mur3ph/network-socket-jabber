@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-import main.ie.murph.network.domain.MessageDefault;
+import main.ie.murph.network.domain.message.MessageDefault;
 import main.ie.murph.network.gui.EDebugMessage;
 import main.ie.murph.network.gui.IGUIRequest;
 import main.ie.murph.network.gui.INetwork;

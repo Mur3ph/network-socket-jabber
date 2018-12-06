@@ -1,4 +1,4 @@
-package main.ie.murph.network.domain;
+package main.ie.murph.network.domain.message;
 
 import com.google.gson.annotations.SerializedName;
 

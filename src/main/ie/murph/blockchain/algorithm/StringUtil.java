@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.GsonBuilder;
 
-import main.ie.murph.network.domain.MessageDefault;
+import main.ie.murph.network.domain.message.MessageDefault;
 
 public class StringUtil {
 	

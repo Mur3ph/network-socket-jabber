@@ -5,7 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import main.ie.murph.network.domain.MessageDefault;
+import main.ie.murph.network.domain.message.MessageDefault;
 import main.ie.murph.network.gui.EDebugMessage;
 import main.ie.murph.network.gui.IGUIRequest;
 

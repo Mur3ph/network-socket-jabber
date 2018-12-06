@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.ie.murph.network.domain.MessageUsingCreationalPatternBuilderPattern;
+import main.ie.murph.network.domain.message.MessageUsingCreationalPatternBuilderPattern;
 
 public class MessageTest
 {
