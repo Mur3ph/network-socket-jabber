@@ -8,13 +8,7 @@ public class SentMessage implements Message, Serializable
 	private String messageSubject;
 	private String messageBody;
 
-	public SentMessage()
-	{
-	}
-
-	public SentMessage(String messageBody)
-	{
-	}
+	public SentMessage(){}
 
 	public SentMessage(String messageSubject, String messageBody)
 	{

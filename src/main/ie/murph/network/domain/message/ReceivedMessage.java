@@ -8,13 +8,7 @@ public class ReceivedMessage implements Message, Serializable
 	private String messageSubject;
 	private String messageBody;
 
-	public ReceivedMessage()
-	{
-	}
-
-	public ReceivedMessage(String messageBody)
-	{
-	}
+	public ReceivedMessage(){}
 
 	public ReceivedMessage(String messageSubject, String messageBody)
 	{
