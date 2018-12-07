@@ -7,11 +7,15 @@ public class SentMessage implements Message, Serializable
 	private static final long serialVersionUID = 1L;
 	private String messageSubject;
 	private String messageBody;
-	
-	public SentMessage(){}
-	
-	public SentMessage(String messageBody){}
-	
+
+	public SentMessage()
+	{
+	}
+
+	public SentMessage(String messageBody)
+	{
+	}
+
 	public SentMessage(String messageSubject, String messageBody)
 	{
 		this.messageSubject = messageSubject;
@@ -37,23 +41,23 @@ public class SentMessage implements Message, Serializable
 	{
 		this.messageBody = messageBody;
 	}
-	
+
 	@Override
 	public String toString()
 	{
-		return "\nSubject: " + messageSubject + 
-			   "\nMessage: " + messageBody;
+		return "\nSubject: " + messageSubject + "\nMessage: " + messageBody;
 	}
 
 	@Override
 	public void showMessageToString()
 	{
-		System.out.println("\nSubject: " + messageSubject + 
-				   "\nMessage: " + messageBody );
+		System.out.println("\nCategory: " + getClass().getSimpleName() + "\nSubject: " + messageSubject + "\nMessage: "
+				+ messageBody);
 	}
-	
+
 	@Override
-	public void printessageName() {
-        System.out.println(getClass().getSimpleName());
-    }
+	public void printessageName()
+	{
+		System.out.println(getClass().getSimpleName());
+	}
 }
