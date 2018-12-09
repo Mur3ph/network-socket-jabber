@@ -2,6 +2,8 @@ package main.ie.murph.blockchain.algorithm;
 
 import java.util.Date;
 
+import main.ie.murph.utility.StringUtil;
+
 public class Block {
 	
 	public String hash;

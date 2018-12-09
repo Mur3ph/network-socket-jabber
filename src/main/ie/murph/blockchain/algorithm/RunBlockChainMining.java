@@ -3,7 +3,9 @@ package main.ie.murph.blockchain.algorithm;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestBlockChain {
+import main.ie.murph.utility.StringUtil;
+
+public class RunBlockChainMining {
 
 	private static List<Block> blockchain = new ArrayList<Block>();
 	private final static int difficultyLength = 5;

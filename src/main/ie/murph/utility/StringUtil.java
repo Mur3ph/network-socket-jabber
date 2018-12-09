@@ -1,4 +1,4 @@
-package main.ie.murph.blockchain.algorithm;
+package main.ie.murph.utility;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
