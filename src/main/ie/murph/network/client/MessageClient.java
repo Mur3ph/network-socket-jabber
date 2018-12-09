@@ -34,7 +34,7 @@ public class MessageClient
 			OUTPUT_TO_SERVER = createObjectOutputStream();
 
 			String messageScannerInput = null;
-			System.out.println(IGUIRequest.WELCOME);
+			System.out.println(IGUIRequest.REQUEST_USERNAME_LOGIN);
 
 			do
 			{
