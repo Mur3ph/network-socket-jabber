@@ -14,8 +14,8 @@ import main.ie.murph.network.gui.INetwork;
 
 public class MessageClient
 {
-	private ObjectOutputStream OUTPUT_TO_SERVER;
-	private ObjectInputStream INPUT_FROM_SERVER;
+	private ObjectOutputStream REQUEST_TO_SERVER;
+	private ObjectInputStream RESPONSE_FROM_SERVER;
 	private Socket SOCKET_LINK = null;
 	private final Scanner SCANNER = new Scanner(System.in);
 	private MessageDefault messageREQUEST, messageResponse;
@@ -30,8 +30,8 @@ public class MessageClient
 		try
 		{
 			SOCKET_LINK = createConnection();
-			INPUT_FROM_SERVER = createObjectInputStream();
-			OUTPUT_TO_SERVER = createObjectOutputStream();
+			RESPONSE_FROM_SERVER = createObjectInputStream();
+			REQUEST_TO_SERVER = createObjectOutputStream();
 
 			String messageScannerInput = null;
 			System.out.println(IGUIRequest.REQUEST_USERNAME_LOGIN);
@@ -41,11 +41,11 @@ public class MessageClient
 				// To server
 				messageScannerInput = SCANNER.nextLine();
 				messageREQUEST = new MessageDefault(IGUIRequest.GREETINGS, messageScannerInput);
-				OUTPUT_TO_SERVER.writeObject(messageREQUEST);
+				REQUEST_TO_SERVER.writeObject(messageREQUEST);
 
 				if (!messageREQUEST.getMessageBody().equalsIgnoreCase(IGUIRequest.EXIT))
 				{
-					messageResponse = (MessageDefault) INPUT_FROM_SERVER.readObject();
+					messageResponse = (MessageDefault) RESPONSE_FROM_SERVER.readObject();
 
 					// From server
 					System.out.println(IGUIRequest.SERVER_RESPONSE + messageResponse.toString());
@@ -109,14 +109,14 @@ public class MessageClient
 
 	private void closeBufferedReaderRequestStream() throws IOException
 	{
-		if (INPUT_FROM_SERVER != null)
-			INPUT_FROM_SERVER.close();
+		if (RESPONSE_FROM_SERVER != null)
+			RESPONSE_FROM_SERVER.close();
 	}
 
 	private void closePrinterWriterResponseStream() throws IOException
 	{
-		if (OUTPUT_TO_SERVER != null)
-			OUTPUT_TO_SERVER.close();
+		if (REQUEST_TO_SERVER != null)
+			REQUEST_TO_SERVER.close();
 	}
 
 	private void closeSocketStreamConnection() throws IOException
