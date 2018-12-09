@@ -22,4 +22,5 @@ public interface IGUIRequest
 	public final static String STAR_TREK_QUOTE = "Live long, and prosper";
 	public final static String SCARFACE_QUOTE = "Say hello to my little friend";
 	public final static String GREETINGS = "Greetings";
+	public static final String DO_YOU_WANT_TO_CONTINUE_EMAILING = "Do you want to continue sending/reading emails? Y/N";
 }

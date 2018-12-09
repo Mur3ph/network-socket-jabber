@@ -13,5 +13,7 @@
 	<classpathentry kind="lib" path="C:/dev/jars/jackson-json/jackson-databind-2.9.7.jar"/>
 	<classpathentry kind="lib" path="C:/dev/jars/jackson-json/jackson-mapper-0.0.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/dev/jars/java-json.jar"/>
+	<classpathentry kind="lib" path="C:/dev/jars/apache-log4j-2.11.0-bin/log4j-core-2.11.0.jar"/>
+	<classpathentry kind="lib" path="C:/dev/jars/apache-log4j-2.11.0-bin/log4j-1.2-api-2.11.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
