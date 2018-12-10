@@ -7,9 +7,9 @@ import org.apache.log4j.Logger;
 import main.ie.murph.network.client.MessageClient;
 import main.ie.murph.network.gui.IGUIRequest;
 
-public class RecursiveScannerUtil
+public class ClientRecursiveScannerUtil
 {
-	private static final Logger LOGGER = Logger.getLogger(RecursiveScannerUtil.class);
+	private static final Logger LOGGER = Logger.getLogger(ClientRecursiveScannerUtil.class);
 	private static final Scanner READ_IN_USER_INPUT = new Scanner(System.in);
 	
 	public static void askUserToContinue() throws ClassNotFoundException
