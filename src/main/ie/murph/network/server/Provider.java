@@ -84,7 +84,7 @@ public class Provider implements Runnable
 
 	private boolean inputNotEqualToExit(String input)
 	{
-		return !input.equalsIgnoreCase(IGUIRequest.EXIT);
+		return !IGUIRequest.EXIT.equalsIgnoreCase(input);
 	}
 
 	public boolean inputEqualsHello(String input)

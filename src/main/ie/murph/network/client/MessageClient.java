@@ -51,7 +51,7 @@ public class MessageClient
 					System.out.println(IGUIRequest.SERVER_RESPONSE + messageResponse.toString());
 				}
 			}
-			while (!messageREQUEST.getMessageBody().equalsIgnoreCase(IGUIRequest.EXIT));
+			while (!IGUIRequest.EXIT.equalsIgnoreCase(messageREQUEST.getMessageBody()));
 
 			System.out.println(IGUIRequest.GOODBYE);
 		}
