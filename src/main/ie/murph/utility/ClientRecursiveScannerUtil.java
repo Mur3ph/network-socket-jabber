@@ -12,18 +12,19 @@ public class ClientRecursiveScannerUtil
 	private static final Logger LOGGER = Logger.getLogger(ClientRecursiveScannerUtil.class);
 	private static final Scanner READ_IN_USER_INPUT = new Scanner(System.in);
 	
+	
 	public static void askUserToContinue() throws ClassNotFoundException
 	{
 		LOGGER.debug("++askUserToContinue()\n");
 		System.out.println(IGUIRequest.DO_YOU_WANT_TO_CONTINUE_EMAILING);
 
 		String s_continue = READ_IN_USER_INPUT.nextLine();
-		if (s_continue.equalsIgnoreCase("y") || s_continue.equalsIgnoreCase("yes"))
+		if (IGUIRequest.LETTER_Y_CONSTANT.equalsIgnoreCase(s_continue) || IGUIRequest.YES_CONSTANT.equalsIgnoreCase(s_continue))
 		{
 			resetMainThread();
 		}
 		else
-			if (s_continue.equalsIgnoreCase("n") || s_continue.equalsIgnoreCase("no"))
+			if (IGUIRequest.LETTER_N_CONSTANT.equalsIgnoreCase(s_continue) || IGUIRequest.NO_CONSTANT.equalsIgnoreCase(s_continue))
 			{
 				exit();
 			}

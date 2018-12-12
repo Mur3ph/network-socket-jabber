@@ -23,4 +23,8 @@ public interface IGUIRequest
 	public final static String SCARFACE_QUOTE = "Say hello to my little friend";
 	public final static String GREETINGS = "Greetings";
 	public static final String DO_YOU_WANT_TO_CONTINUE_EMAILING = "Do you want to continue sending/reading emails? Y/N";
+	public static final String LETTER_Y_CONSTANT = "y";
+	public static final String LETTER_N_CONSTANT = "n";
+	public static final String YES_CONSTANT = "yes";
+	public static final String NO_CONSTANT = "no";
 }
