@@ -90,7 +90,7 @@ public class Provider implements Runnable
 	public boolean inputEqualsHello(String input)
 	{
 //		return input.equals(IGUIRequest.HELLO);
-		return !IGUIRequest.HELLO.equalsIgnoreCase(input);
+		return IGUIRequest.HELLO.equalsIgnoreCase(input);
 	}
 
 	private void closeConnection()

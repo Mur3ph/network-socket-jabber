@@ -1,8 +1,6 @@
 package main.ie.murph.network.client;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
@@ -11,11 +9,12 @@ import main.ie.murph.network.domain.message.MessageDefault;
 import main.ie.murph.network.gui.EDebugMessage;
 import main.ie.murph.network.gui.IGUIRequest;
 import main.ie.murph.network.gui.INetwork;
+import main.ie.murph.network.streams.ObjectStream;
 
 public class MessageClient
 {
-	private ObjectOutputStream REQUEST_TO_SERVER;
-	private ObjectInputStream RESPONSE_FROM_SERVER;
+	private ObjectStream REQUEST_TO_SERVER;
+	private ObjectStream RESPONSE_FROM_SERVER;
 	private Socket SOCKET_LINK = null;
 	private final Scanner SCANNER = new Scanner(System.in);
 	private MessageDefault messageREQUEST, messageResponse;
@@ -30,8 +29,8 @@ public class MessageClient
 		try
 		{
 			SOCKET_LINK = createConnection();
-			RESPONSE_FROM_SERVER = createObjectInputStream();
 			REQUEST_TO_SERVER = createObjectOutputStream();
+			RESPONSE_FROM_SERVER = createObjectInputStream();
 
 			String messageScannerInput = null;
 			System.out.println(IGUIRequest.REQUEST_USERNAME_LOGIN);
@@ -41,11 +40,12 @@ public class MessageClient
 				// To server
 				messageScannerInput = SCANNER.nextLine();
 				messageREQUEST = new MessageDefault(IGUIRequest.GREETINGS, messageScannerInput);
-				REQUEST_TO_SERVER.writeObject(messageREQUEST);
+				REQUEST_TO_SERVER.sendObjectRequest(messageREQUEST);
 
-				if (!messageREQUEST.getMessageBody().equalsIgnoreCase(IGUIRequest.EXIT))
+//				if (!messageREQUEST.getMessageBody().equalsIgnoreCase(IGUIRequest.EXIT))
+				if (!IGUIRequest.EXIT.equalsIgnoreCase(messageREQUEST.getMessageBody()))
 				{
-					messageResponse = (MessageDefault) RESPONSE_FROM_SERVER.readObject();
+					messageResponse = RESPONSE_FROM_SERVER.receiveObjectResponse();
 
 					// From server
 					System.out.println(IGUIRequest.SERVER_RESPONSE + messageResponse.toString());
@@ -75,15 +75,15 @@ public class MessageClient
 	{
 		return new Socket(INetwork.SPECIFIED_IP_ADDRESS, INetwork.SPECIFIED_PORT_NUMBER);
 	}
-
-	private ObjectInputStream createObjectInputStream() throws IOException
+	
+	private ObjectStream createObjectOutputStream() throws IOException
 	{
-		return new ObjectInputStream(SOCKET_LINK.getInputStream());
+		return new ObjectStream(SOCKET_LINK.getOutputStream());
 	}
 
-	private ObjectOutputStream createObjectOutputStream() throws IOException
+	private ObjectStream createObjectInputStream() throws IOException
 	{
-		return new ObjectOutputStream(SOCKET_LINK.getOutputStream());
+		return new ObjectStream(SOCKET_LINK.getInputStream());
 	}
 
 	private void closeConnection()
@@ -94,7 +94,6 @@ public class MessageClient
 			closeBufferedReaderRequestStream();
 			closePrinterWriterResponseStream();
 			closeSocketStreamConnection();
-			System.out.println("Closed...");
 		}
 		catch (IOException e)
 		{
@@ -110,13 +109,13 @@ public class MessageClient
 	private void closeBufferedReaderRequestStream() throws IOException
 	{
 		if (RESPONSE_FROM_SERVER != null)
-			RESPONSE_FROM_SERVER.close();
+			RESPONSE_FROM_SERVER.closeInputStream();
 	}
 
 	private void closePrinterWriterResponseStream() throws IOException
 	{
 		if (REQUEST_TO_SERVER != null)
-			REQUEST_TO_SERVER.close();
+			REQUEST_TO_SERVER.closeOutputStream();
 	}
 
 	private void closeSocketStreamConnection() throws IOException
