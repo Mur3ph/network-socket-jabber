@@ -41,6 +41,7 @@ public class MessageClient
 				messageScannerInput = SCANNER.nextLine();
 				messageREQUEST = new MessageDefault(IGUIRequest.GREETINGS, messageScannerInput);
 				REQUEST_TO_SERVER.sendObjectRequest(messageREQUEST);
+				REQUEST_TO_SERVER.flushOutputStream();
 
 //				if (!messageREQUEST.getMessageBody().equalsIgnoreCase(IGUIRequest.EXIT))
 				if (!IGUIRequest.EXIT.equalsIgnoreCase(messageREQUEST.getMessageBody()))

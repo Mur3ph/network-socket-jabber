@@ -55,11 +55,13 @@ public class Provider implements Runnable
 			{
 				OBJECT_PASSED_OUT = new MessageDefault(IGUIRequest.STAR_TREK_QUOTE, OBJECT_PASSED_IN.getMessageBody() + IGUIRequest.CORRECT);
 				STREAM_OUT_TO_CLIENT.writeObject(OBJECT_PASSED_OUT);
+				STREAM_OUT_TO_CLIENT.flush();
 			}
 			else
 			{
 				OBJECT_PASSED_OUT = new MessageDefault(IGUIRequest.SCARFACE_QUOTE, OBJECT_PASSED_IN.getMessageBody() + IGUIRequest.INCORRECT);
 				STREAM_OUT_TO_CLIENT.writeObject(OBJECT_PASSED_OUT);
+				STREAM_OUT_TO_CLIENT.flush();
 			}
 			this.startRespondingToClient();
 		}

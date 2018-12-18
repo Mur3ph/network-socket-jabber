@@ -32,6 +32,11 @@ public class ObjectStream
 	{
 		return (MessageDefault) objectInputStream.readObject();
 	}
+	
+	public void flushOutputStream() throws IOException
+	{
+		objectOutputStream.flush();
+	}
 
 	public void closeOutputStream() throws IOException
 	{
