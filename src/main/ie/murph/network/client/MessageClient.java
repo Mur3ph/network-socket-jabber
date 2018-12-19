@@ -6,10 +6,10 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 import main.ie.murph.network.domain.message.MessageDefault;
+import main.ie.murph.network.external.api.streams.ObjectStream;
 import main.ie.murph.network.gui.EDebugMessage;
 import main.ie.murph.network.gui.IGUIRequest;
 import main.ie.murph.network.gui.INetwork;
-import main.ie.murph.network.streams.ObjectStream;
 
 public class MessageClient
 {
@@ -41,7 +41,6 @@ public class MessageClient
 				messageScannerInput = SCANNER.nextLine();
 				messageREQUEST = new MessageDefault(IGUIRequest.GREETINGS, messageScannerInput);
 				REQUEST_TO_SERVER.sendObjectRequest(messageREQUEST);
-				REQUEST_TO_SERVER.flushOutputStream();
 
 //				if (!messageREQUEST.getMessageBody().equalsIgnoreCase(IGUIRequest.EXIT))
 				if (!IGUIRequest.EXIT.equalsIgnoreCase(messageREQUEST.getMessageBody()))
@@ -92,6 +91,7 @@ public class MessageClient
 		System.out.println(EDebugMessage.CONNECTION_CLOSING);
 		try
 		{
+			flushDataBeforeClosingObjectStream();
 			closeBufferedReaderRequestStream();
 			closePrinterWriterResponseStream();
 			closeSocketStreamConnection();
@@ -106,6 +106,11 @@ public class MessageClient
 			System.exit(1);
 		}
 	} // End of close connection method...
+	
+	private void flushDataBeforeClosingObjectStream() throws IOException
+	{
+		REQUEST_TO_SERVER.flushOutputStream();
+	}
 
 	private void closeBufferedReaderRequestStream() throws IOException
 	{

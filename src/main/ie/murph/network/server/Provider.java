@@ -100,6 +100,7 @@ public class Provider implements Runnable
 		System.out.println(EDebugMessage.CONNECTION_CLOSING);
 		try
 		{
+			flushOutputStream();
 			closeBufferedReaderRequestStream();
 			closePrinterWriterResponseStream();
 			closeSocketStreamConnection();
@@ -111,6 +112,11 @@ public class Provider implements Runnable
 			System.exit(1);
 		}
 	} // End of close connection method...
+	
+	public void flushOutputStream() throws IOException
+	{
+		STREAM_OUT_TO_CLIENT.flush();
+	}
 
 	private void closeBufferedReaderRequestStream() throws IOException
 	{

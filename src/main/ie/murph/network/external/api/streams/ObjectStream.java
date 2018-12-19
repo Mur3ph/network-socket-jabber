@@ -1,4 +1,4 @@
-package main.ie.murph.network.streams;
+package main.ie.murph.network.external.api.streams;
 
 import java.io.IOException;
 import java.io.InputStream;
