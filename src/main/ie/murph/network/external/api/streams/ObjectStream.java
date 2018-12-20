@@ -10,8 +10,8 @@ import main.ie.murph.network.domain.message.MessageDefault;
 
 public class ObjectStream
 {
-	private ObjectOutputStream objectOutputStream;
-	private ObjectInputStream objectInputStream;
+	private OutputStream objectOutputStream;
+	private InputStream objectInputStream;
 
 	public ObjectStream(OutputStream outputStream) throws IOException
 	{
@@ -25,12 +25,12 @@ public class ObjectStream
 
 	public void sendObjectRequest(Object object) throws IOException
 	{
-		objectOutputStream.writeObject(object);
+		((ObjectOutputStream) objectOutputStream).writeObject(object);
 	}
 
 	public MessageDefault receiveObjectResponse() throws ClassNotFoundException, IOException
 	{
-		return (MessageDefault) objectInputStream.readObject();
+		return (MessageDefault) ((ObjectInputStream) objectInputStream).readObject();
 	}
 	
 	public void flushOutputStream() throws IOException
