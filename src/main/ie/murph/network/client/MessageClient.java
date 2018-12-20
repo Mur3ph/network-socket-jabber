@@ -15,7 +15,6 @@ public class MessageClient
 {
 	private ObjectStream REQUEST_TO_SERVER;
 	private ObjectStream RESPONSE_FROM_SERVER;
-	private Socket SOCKET_LINK = null;
 	private final Scanner SCANNER = new Scanner(System.in);
 	private MessageDefault messageREQUEST, messageResponse;
 
@@ -26,11 +25,10 @@ public class MessageClient
 
 	private MessageClient() throws ClassNotFoundException
 	{
-		try
+		try(Socket socket = createConnection();)
 		{
-			SOCKET_LINK = createConnection();
-			REQUEST_TO_SERVER = createObjectOutputStream();
-			RESPONSE_FROM_SERVER = createObjectInputStream();
+			REQUEST_TO_SERVER = createObjectOutputStream(socket);
+			RESPONSE_FROM_SERVER = createObjectInputStream(socket);
 
 			String messageScannerInput = null;
 			System.out.println(IGUIRequest.REQUEST_USERNAME_LOGIN);
@@ -76,14 +74,14 @@ public class MessageClient
 		return new Socket(INetwork.SPECIFIED_IP_ADDRESS, INetwork.SPECIFIED_PORT_NUMBER);
 	}
 	
-	private ObjectStream createObjectOutputStream() throws IOException
+	private ObjectStream createObjectOutputStream(Socket socket) throws IOException
 	{
-		return new ObjectStream(SOCKET_LINK.getOutputStream());
+		return new ObjectStream(socket.getOutputStream());
 	}
 
-	private ObjectStream createObjectInputStream() throws IOException
+	private ObjectStream createObjectInputStream(Socket socket) throws IOException
 	{
-		return new ObjectStream(SOCKET_LINK.getInputStream());
+		return new ObjectStream(socket.getInputStream());
 	}
 
 	private void closeConnection()
@@ -94,7 +92,6 @@ public class MessageClient
 			flushDataBeforeClosingObjectStream();
 			closeBufferedReaderRequestStream();
 			closePrinterWriterResponseStream();
-			closeSocketStreamConnection();
 		}
 		catch (IOException e)
 		{
@@ -122,12 +119,6 @@ public class MessageClient
 	{
 		if (REQUEST_TO_SERVER != null)
 			REQUEST_TO_SERVER.closeOutputStream();
-	}
-
-	private void closeSocketStreamConnection() throws IOException
-	{
-		if (SOCKET_LINK != null)
-			SOCKET_LINK.close();
 	}
 
 }
