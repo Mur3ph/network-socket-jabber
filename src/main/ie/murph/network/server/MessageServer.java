@@ -9,7 +9,6 @@ import main.ie.murph.network.gui.INetwork;
 
 public class MessageServer
 {
-	private static ServerSocket SERVER_SOCKET_LISTENER;
 	private static Socket CLIENT_SOCKET;
 
 	public static void main(String[] args)
@@ -24,12 +23,11 @@ public class MessageServer
 
 	private void establishedConnection()
 	{
-		try
+		try(ServerSocket SERVER_SOCKET_LISTENER = connectToMachinePort();)
 		{
-			SERVER_SOCKET_LISTENER = connectToMachinePort();
 			while (true)
 			{
-				CLIENT_SOCKET = acceptConnection();
+				CLIENT_SOCKET = acceptConnection(SERVER_SOCKET_LISTENER);
 				Provider connect = startCommunication();
 				createThreadForEachClientCommunication(connect);
 			}
@@ -53,7 +51,7 @@ public class MessageServer
 		return new ServerSocket(INetwork.SPECIFIED_PORT_NUMBER);
 	}
 
-	private Socket acceptConnection() throws IOException
+	private Socket acceptConnection(ServerSocket SERVER_SOCKET_LISTENER) throws IOException
 	{
 		return SERVER_SOCKET_LISTENER.accept();
 	}
