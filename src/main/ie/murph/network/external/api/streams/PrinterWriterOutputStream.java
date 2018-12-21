@@ -7,10 +7,21 @@ import java.net.Socket;
 
 public class PrinterWriterOutputStream
 {
-	private PrintWriter out = null;
+	private PrintWriter printWriter = null;
 	private Socket socketConnection;
-	// out = new PrintWriter(socketConnection.getOutputStream(), true);
 
+	public PrinterWriterOutputStream(){}
+	
+	public PrintWriter getPrintWriter()
+	{
+		return printWriter;
+	}
+
+	public void setPrintWriter(Socket socketConnection) throws IOException
+	{
+		this.printWriter = new PrintWriter(socketConnection.getOutputStream(), true);
+	}
+	
 	public void connectToServer(String ip) throws IOException
 	{
 		int Port_Number = 9999;
@@ -19,4 +30,5 @@ public class PrinterWriterOutputStream
 		socketConnection = new Socket(InetAddress.getByName(Ip_Address), Port_Number);
 		System.out.println("Connected to:" + socketConnection.getInetAddress().getHostName());
 	}
+
 }
