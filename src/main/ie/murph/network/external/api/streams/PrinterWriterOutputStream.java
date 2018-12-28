@@ -10,16 +10,19 @@ public class PrinterWriterOutputStream
 	private PrintWriter printWriter = null;
 	private Socket socketConnection;
 
-	public PrinterWriterOutputStream(){}
+	public PrinterWriterOutputStream(Socket socketConnection)
+	{
+		this.socketConnection = socketConnection;
+	}
 	
 	public PrintWriter getPrintWriter()
 	{
 		return printWriter;
 	}
 
-	public void setPrintWriter(Socket socketConnection) throws IOException
+	public void setPrintWriter() throws IOException
 	{
-		this.printWriter = new PrintWriter(socketConnection.getOutputStream(), true);
+		this.printWriter = new PrintWriter(this.socketConnection.getOutputStream(), true);
 	}
 	
 	public void connectToServer(String ip) throws IOException
