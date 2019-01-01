@@ -11,7 +11,7 @@ public class BufferedReaderInputStream
 	
 	public BufferedReaderInputStream(){}
 
-	public BufferedReader getBufinput()
+	public BufferedReader getBufferedReader()
 	{
 		return bufferedReader;
 	}
