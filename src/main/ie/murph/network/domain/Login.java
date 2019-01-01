@@ -1,9 +1,12 @@
 package main.ie.murph.network.domain;
 
+import java.util.Map;
+
 public class Login
 {
 	private String username;
-	private byte[] password;
+	private Byte[] password;
+	private Map<String, Byte[]> databaseOfUsers;
 	
 	public String getUsername()
 	{
@@ -13,17 +16,32 @@ public class Login
 	{
 		this.username = username;
 	}
-	public byte[] getPassword()
+	public Byte[] getPassword()
 	{
 		return password;
 	}
-	public void setPassword(byte[] password)
+	public void setPassword(Byte[] password)
 	{
 		this.password = password;
 	}
 	
-	public void resetPassword(byte[] password)
+	public void resetPassword(Byte[] password)
 	{
 		this.password = password;
+	}
+	
+	public void addUserToDtabase(String usernameKey, Byte[] passwordValue)
+	{
+		databaseOfUsers.put(usernameKey, passwordValue);
+	}
+	
+	public Byte[] retrieveUserFromDtabase(String usernameKey)
+	{
+		return databaseOfUsers.get(usernameKey);
+	}
+	
+	public boolean isUserExist(String usernameKey)
+	{
+		return databaseOfUsers.containsKey(usernameKey);
 	}
 }
