@@ -24,6 +24,9 @@ public class ObjectStream
 //		objectOutputStream = new ObjectOutputStream(outputStream);
 //		objectOutputStream = new BufferedOutputStream(objectOutputStream);
 		
+//		objectOutputStream = new BufferedOutputStream(outputStream);
+//		objectOutputStream = new ObjectOutputStream(objectOutputStream);
+		
 		objectOutputStream = new ObjectOutputStream(outputStream);
 	}
 
@@ -31,6 +34,9 @@ public class ObjectStream
 	{
 //		objectInputStream = new ObjectInputStream(inputStream);
 //		objectInputStream = new BufferedInputStream(objectInputStream);
+		
+//		objectInputStream = new BufferedInputStream(inputStream);
+//		objectInputStream = new ObjectInputStream(objectInputStream);
 		
 		objectInputStream = new ObjectInputStream(inputStream);
 	}
