@@ -9,7 +9,8 @@ import org.apache.log4j.Logger;
 
 public class Login
 {
-	private static final Logger LOGGER = LogManager.getLogger(Login.class);
+	private static final Logger LOGGER = Logger.getLogger(Login.class);
+	private static final Logger logger2 = LogManager.getLogger(Login.class);
 	private String username;
 	private char[] password;
 	private Map<String, char[]> databaseOfUsers;
@@ -63,6 +64,8 @@ public class Login
 		char[] passwordValue = new char[]{'p','a','s','s','w','d'};
 		login.addUserToDtabase(usernameKey, passwordValue);
 		String convertCharToString = Arrays.toString(login.retrieveUserFromDtabase(usernameKey));// Convert char to string..
-		LOGGER.debug("Password: " + convertCharToString); // Convert char to string..
+		LOGGER.trace("Password: " + convertCharToString); // Convert char to string..
+		logger2.debug(convertCharToString);
+		System.out.println(convertCharToString);
 	}
 }
