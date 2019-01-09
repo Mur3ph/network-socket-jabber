@@ -21,3 +21,38 @@
 2019-01-09 16:43:58 WARN  Login:83 - warn
 2019-01-09 16:43:58 ERROR Login:84 - error
 2019-01-09 16:43:58 FATAL Login:85 - fatal
+2019-01-09 17:16:42 INFO  MessageClient:38 - ++MessageClient(): Please enter your username & press enter: 
+2019-01-09 17:16:42 INFO  Provider:33 - ++run(): Now interacting with the client..
+2019-01-09 17:30:48 DEBUG Login:73 - ++convertCharToString()
+2019-01-09 17:30:48 INFO  Login:67 - Password: [p, a, s, s, w, d]
+2019-01-09 17:30:48 DEBUG Login:81 - debug
+2019-01-09 17:30:48 INFO  Login:82 - info
+2019-01-09 17:30:48 WARN  Login:83 - warn
+2019-01-09 17:30:48 ERROR Login:84 - error
+2019-01-09 17:30:48 FATAL Login:85 - fatal
+2019-01-09 17:33:50 DEBUG Login:73 - ++convertCharToString()
+2019-01-09 17:33:50 INFO  Login:67 - Password: [p, a, s, s, w, d]
+2019-01-09 17:33:50 DEBUG Login:81 - debug
+2019-01-09 17:33:50 INFO  Login:82 - info
+2019-01-09 17:33:50 WARN  Login:83 - warn
+2019-01-09 17:33:50 ERROR Login:84 - error
+2019-01-09 17:33:50 FATAL Login:85 - fatal
+2019-01-09 17:34:20 INFO  MessageClient:39 - ++MessageClient(): Please enter your username & press enter: 
+2019-01-09 17:34:20 INFO  Provider:33 - ++communicateWithClient(): Now interacting with the client..
+2019-01-09 17:34:34 INFO  MessageClient:52 - ++communicateWithServer(): RESONSE FROM SERVER: 
+Subject: Say hello to my little friend
+Message: hi is the wrong message, innit bruv
+2019-01-09 17:34:51 INFO  MessageClient:52 - ++communicateWithServer(): RESONSE FROM SERVER: 
+Subject: Live long, and prosper
+Message: hello is correct, innit bruv
+2019-01-09 17:35:03 INFO  MessageClient:56 - You requested session to end.
+2019-01-09 17:35:03 INFO  Provider:66 - --startRespondingToClient(): You requested session to end
+2019-01-09 17:35:03 INFO  Provider:92 - ++closeConnection(): Closing connection...
+2019-01-09 17:35:03 INFO  MessageClient:84 - ++closeConnection(): Closing connection...
+2019-01-09 17:35:03 INFO  MessageClient:67 - --communicateWithServer(): Ending chat.
+2019-01-09 17:35:03 INFO  Provider:66 - --startRespondingToClient(): You requested session to end
+2019-01-09 17:35:03 INFO  Provider:92 - ++closeConnection(): Closing connection...
+2019-01-09 17:35:03 INFO  Provider:66 - --startRespondingToClient(): You requested session to end
+2019-01-09 17:35:03 INFO  Provider:92 - ++closeConnection(): Closing connection...
+2019-01-09 17:35:03 INFO  Provider:43 - --communicateWithClient(): Connection closed.
+2019-01-09 17:35:03 INFO  Provider:92 - ++closeConnection(): Closing connection...

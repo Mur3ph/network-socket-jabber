@@ -4,11 +4,15 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import main.ie.murph.network.gui.EDebugMessage;
 import main.ie.murph.network.gui.INetwork;
 
 public class MessageServer
 {
+	private static final Logger LOGGER = LogManager.getLogger(MessageServer.class.getName());
 	private static Socket CLIENT_SOCKET;
 
 	public static void main(String[] args)
@@ -34,11 +38,11 @@ public class MessageServer
 		}
 		catch (IOException e)
 		{
-			System.out.println(EDebugMessage.CANNOT_DISCONNECT + " " + e);
-			System.err.println(EDebugMessage.SERVER_ERROR + e.getMessage());
-			System.err.println(EDebugMessage.LOCALIZED_ERROR + e.getLocalizedMessage());
-			System.err.println(EDebugMessage.STACK_TRACE + " " + e.getStackTrace());
-			System.err.println(EDebugMessage.EXCEPTION_STRING + e.toString());
+			LOGGER.info("--establishedConnection(): " + EDebugMessage.CANNOT_DISCONNECT);
+			LOGGER.error("--establishedConnection(): " + EDebugMessage.SERVER_ERROR + e.getMessage());
+			LOGGER.error("--establishedConnection(): " + EDebugMessage.LOCALIZED_ERROR + e.getLocalizedMessage());
+			LOGGER.error("--establishedConnection(): " + EDebugMessage.STACK_TRACE + " " + e.getStackTrace());
+			LOGGER.error("--establishedConnection(): " + EDebugMessage.EXCEPTION_STRING + e.toString());
 		}
 		finally
 		{
@@ -71,12 +75,12 @@ public class MessageServer
 	{
 		try
 		{
-			System.out.println(EDebugMessage.CONNECTION_CLOSING);
+			LOGGER.info("++closeConnection(): " + EDebugMessage.CONNECTION_CLOSING);
 			CLIENT_SOCKET.close();
 		}
 		catch (IOException e)
 		{
-			System.out.println(EDebugMessage.UNABLE_TO_DISCONNECT);
+			LOGGER.error("--closeConnection(): " + EDebugMessage.UNABLE_TO_DISCONNECT);
 			System.exit(1);
 		}
 	}
