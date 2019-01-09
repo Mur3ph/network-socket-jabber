@@ -9,16 +9,14 @@ import org.apache.log4j.Logger;
 
 public class Login
 {
-	private static Logger LOGGER = LogManager.getRootLogger();
-//	private static final Logger LOGGER = LogManager.getLogger(Login.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(Login.class.getName());
 	private String username;
 	private char[] password;
 	private Map<String, char[]> databaseOfUsers;
 	
 	public Login()
 	{
-//		LOGGER.error("Configuration File Defined: " + System.getProperty("user.dir"));
-		LOGGER = Logger.getLogger(Login.class);
+		System.getProperty("user.dir");
 		databaseOfUsers = new HashMap<String, char[]>();
 	}
 	
@@ -65,15 +63,18 @@ public class Login
 		String usernameKey = "Minnie";
 		char[] passwordValue = new char[]{'p','a','s','s','w','d'};
 		login.addUserToDtabase(usernameKey, passwordValue);
-		String convertCharToString = Arrays.toString(login.retrieveUserFromDtabase(usernameKey));// Convert char to string..
-//		if(LOGGER.isDebugEnabled()){
-//			LOGGER.debug("Password: " + convertCharToString); // Convert char to string..
-//		}
-//		logger2.trace(convertCharToString);
-		System.out.println(convertCharToString);
+		String convertCharToString = convertCharToString(login, usernameKey);
+		LOGGER.info("Password: " + convertCharToString);
 		log();
 	}
 	
+	private static String convertCharToString(Login login, String usernameKey) {
+		if(LOGGER.isDebugEnabled()){
+			LOGGER.debug("++convertCharToString()"); 
+		}
+		return Arrays.toString(login.retrieveUserFromDtabase(usernameKey));// Convert char to string..;
+	}
+
 	private static void log()
 	{
 		LOGGER.trace("trace");
