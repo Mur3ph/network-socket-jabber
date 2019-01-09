@@ -1,0 +1,5 @@
+2019-01-09 15:55:12 DEBUG Login:80 - debug
+2019-01-09 15:55:12 INFO  Login:81 - info
+2019-01-09 15:55:12 WARN  Login:82 - warn
+2019-01-09 15:55:12 ERROR Login:83 - error
+2019-01-09 15:55:12 FATAL Login:84 - fatal

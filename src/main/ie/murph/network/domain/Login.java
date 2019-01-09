@@ -9,14 +9,16 @@ import org.apache.log4j.Logger;
 
 public class Login
 {
-	private static final Logger LOGGER = Logger.getLogger(Login.class);
-	private static final Logger logger2 = LogManager.getLogger(Login.class);
+	private static Logger LOGGER = LogManager.getRootLogger();
+//	private static final Logger LOGGER = LogManager.getLogger(Login.class.getName());
 	private String username;
 	private char[] password;
 	private Map<String, char[]> databaseOfUsers;
 	
 	public Login()
 	{
+//		LOGGER.error("Configuration File Defined: " + System.getProperty("user.dir"));
+		LOGGER = Logger.getLogger(Login.class);
 		databaseOfUsers = new HashMap<String, char[]>();
 	}
 	
@@ -64,8 +66,21 @@ public class Login
 		char[] passwordValue = new char[]{'p','a','s','s','w','d'};
 		login.addUserToDtabase(usernameKey, passwordValue);
 		String convertCharToString = Arrays.toString(login.retrieveUserFromDtabase(usernameKey));// Convert char to string..
-		LOGGER.trace("Password: " + convertCharToString); // Convert char to string..
-		logger2.debug(convertCharToString);
+//		if(LOGGER.isDebugEnabled()){
+//			LOGGER.debug("Password: " + convertCharToString); // Convert char to string..
+//		}
+//		logger2.trace(convertCharToString);
 		System.out.println(convertCharToString);
+		log();
+	}
+	
+	private static void log()
+	{
+		LOGGER.trace("trace");
+		LOGGER.debug("debug");
+		LOGGER.info("info");
+        LOGGER.warn("warn");
+        LOGGER.error("error");
+        LOGGER.fatal("fatal");
 	}
 }
