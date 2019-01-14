@@ -39,21 +39,25 @@ public class Login
 	
 	public void resetPassword(char[] password)
 	{
+		LOGGER.info("++resetPassword()");
 		this.password = password;
 	}
 	
 	public void addUserToDtabase(String usernameKey, char[] passwordValue)
 	{
+		LOGGER.info("++addUserToDtabase()");
 		databaseOfUsers.put(usernameKey, passwordValue);
 	}
 	
 	public char[] retrieveUserFromDtabase(String usernameKey)
 	{
+		LOGGER.info("++retrieveUserFromDtabase()");
 		return databaseOfUsers.get(usernameKey);
 	}
 	
 	public boolean isUserExist(String usernameKey)
 	{
+		LOGGER.info("++isUserExist()");
 		return databaseOfUsers.containsKey(usernameKey);
 	}
 	
