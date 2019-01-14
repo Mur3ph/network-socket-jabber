@@ -26,17 +26,18 @@ public class MessageClient {
 	}
 
 	private MessageClient() throws ClassNotFoundException {
+		LOGGER.info("++MessageClient()");
 		communicateWithServer();
 	} // End of my Run method
 
 	private void communicateWithServer() throws ClassNotFoundException {
-
+		LOGGER.info("++communicateWithServer()");
 		try (Socket socket = createConnection();) {
 			REQUEST_TO_SERVER = createObjectOutputStream(socket);
 			RESPONSE_FROM_SERVER = createObjectInputStream(socket);
 
 			String messageScannerInput = null;
-			LOGGER.info("++MessageClient(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
+			LOGGER.info("++communicateWithServer(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
 
 			do {
 				// To server
@@ -69,14 +70,17 @@ public class MessageClient {
 	}
 
 	private Socket createConnection() throws UnknownHostException, IOException {
+		LOGGER.info("++createConnection()");
 		return new Socket(INetwork.SPECIFIED_IP_ADDRESS, INetwork.SPECIFIED_PORT_NUMBER);
 	}
 
 	private ObjectStream createObjectOutputStream(Socket socket) throws IOException {
+		LOGGER.info("++createObjectOutputStream()");
 		return new ObjectStream(socket.getOutputStream());
 	}
 
 	private ObjectStream createObjectInputStream(Socket socket) throws IOException {
+		LOGGER.info("++createObjectInputStream()");
 		return new ObjectStream(socket.getInputStream());
 	}
 
@@ -97,15 +101,18 @@ public class MessageClient {
 	} // End of close connection method...
 
 	private void flushDataBeforeClosingObjectStream() throws IOException {
+		LOGGER.info("++flushDataBeforeClosingObjectStream()");
 		REQUEST_TO_SERVER.flushOutputStream();
 	}
 
 	private void closeBufferedReaderRequestStream() throws IOException {
+		LOGGER.info("++closeBufferedReaderRequestStream()");
 		if (RESPONSE_FROM_SERVER != null)
 			RESPONSE_FROM_SERVER.closeInputStream();
 	}
 
 	private void closePrinterWriterResponseStream() throws IOException {
+		LOGGER.info("++closePrinterWriterResponseStream()");
 		if (REQUEST_TO_SERVER != null)
 			REQUEST_TO_SERVER.closeOutputStream();
 	}
