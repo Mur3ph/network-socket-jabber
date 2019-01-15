@@ -69,7 +69,6 @@ public class Login
 		login.addUserToDtabase(usernameKey, passwordValue);
 		String convertCharToString = convertCharToString(login, usernameKey);
 		LOGGER.info("Password: " + convertCharToString);
-		log();
 	}
 	
 	private static String convertCharToString(Login login, String usernameKey) {
@@ -79,13 +78,4 @@ public class Login
 		return Arrays.toString(login.retrieveUserFromDtabase(usernameKey));// Convert char to string..;
 	}
 
-	private static void log()
-	{
-		LOGGER.trace("trace");
-		LOGGER.debug("debug");
-		LOGGER.info("info");
-        LOGGER.warn("warn");
-        LOGGER.error("error");
-        LOGGER.fatal("fatal");
-	}
 }

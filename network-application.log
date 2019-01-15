@@ -56,3 +56,30 @@ Message: hello is correct, innit bruv
 2019-01-09 17:35:03 INFO  Provider:92 - ++closeConnection(): Closing connection...
 2019-01-09 17:35:03 INFO  Provider:43 - --communicateWithClient(): Connection closed.
 2019-01-09 17:35:03 INFO  Provider:92 - ++closeConnection(): Closing connection...
+2019-01-15 22:13:58 INFO  Login:48 - ++addUserToDtabase()
+2019-01-15 22:13:58 DEBUG Login:77 - ++convertCharToString()
+2019-01-15 22:13:58 INFO  Login:54 - ++retrieveUserFromDtabase()
+2019-01-15 22:13:58 INFO  Login:71 - Password: [t, e, s, t, S, t, r, i, n, g]
+2019-01-15 22:13:58 DEBUG Login:85 - debug
+2019-01-15 22:13:58 INFO  Login:86 - info
+2019-01-15 22:13:58 WARN  Login:87 - warn
+2019-01-15 22:13:58 ERROR Login:88 - error
+2019-01-15 22:13:58 FATAL Login:89 - fatal
+2019-01-15 22:15:35 INFO  Login:48 - ++addUserToDtabase()
+2019-01-15 22:15:35 DEBUG Login:77 - ++convertCharToString()
+2019-01-15 22:15:35 INFO  Login:54 - ++retrieveUserFromDtabase()
+2019-01-15 22:15:35 INFO  Login:71 - Password: [p, a, s, s, w, d]
+2019-01-15 22:15:35 DEBUG Login:85 - debug
+2019-01-15 22:15:35 INFO  Login:86 - info
+2019-01-15 22:15:35 WARN  Login:87 - warn
+2019-01-15 22:15:35 ERROR Login:88 - error
+2019-01-15 22:15:35 FATAL Login:89 - fatal
+2019-01-15 22:16:31 INFO  Login:48 - ++addUserToDtabase()
+2019-01-15 22:16:31 DEBUG Login:77 - ++convertCharToString()
+2019-01-15 22:16:31 INFO  Login:54 - ++retrieveUserFromDtabase()
+2019-01-15 22:16:31 INFO  Login:71 - Password: [p, a, s, s, w, d]
+2019-01-15 22:16:31 DEBUG Login:85 - debug
+2019-01-15 22:16:31 INFO  Login:86 - info
+2019-01-15 22:16:31 WARN  Login:87 - warn
+2019-01-15 22:16:31 ERROR Login:88 - error
+2019-01-15 22:16:31 FATAL Login:89 - fatal
