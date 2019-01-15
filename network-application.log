@@ -83,3 +83,34 @@ Message: hello is correct, innit bruv
 2019-01-15 22:16:31 WARN  Login:87 - warn
 2019-01-15 22:16:31 ERROR Login:88 - error
 2019-01-15 22:16:31 FATAL Login:89 - fatal
+2019-01-15 22:20:28 INFO  Login:48 - ++addUserToDtabase()
+2019-01-15 22:20:28 DEBUG Login:75 - ++convertCharToString()
+2019-01-15 22:20:28 INFO  Login:54 - ++retrieveUserFromDtabase()
+2019-01-15 22:20:28 INFO  Login:70 - Password: [p, a, s, s, w, d]
+2019-01-15 22:21:07 INFO  Login:48 - ++addUserToDtabase()
+2019-01-15 22:21:07 DEBUG Login:76 - ++convertCharToString()
+2019-01-15 22:21:07 INFO  Login:54 - ++retrieveUserFromDtabase()
+2019-01-15 22:21:07 INFO  Login:70 - Password String: [p, a, s, s, w, d]
+2019-01-15 22:21:07 INFO  Login:71 - Password Character Array: [Ljava.lang.Character;@75881071
+2019-01-15 22:21:36 INFO  Login:48 - ++addUserToDtabase()
+2019-01-15 22:21:36 DEBUG Login:76 - ++convertCharToString()
+2019-01-15 22:21:36 INFO  Login:54 - ++retrieveUserFromDtabase()
+2019-01-15 22:21:36 INFO  Login:70 - Password String: [p, a, s, s, w, d]
+2019-01-15 22:21:36 INFO  Login:71 - Password Character Array: [Ljava.lang.Character;@75881071
+2019-01-15 23:01:15 INFO  Login:48 - ++addUserToDtabase()
+2019-01-15 23:01:15 DEBUG Login:76 - ++convertCharToString()
+2019-01-15 23:01:15 INFO  Login:54 - ++retrieveUserFromDtabase()
+2019-01-15 23:01:15 INFO  Login:70 - Password String: [p, a, s, s, w, d]
+2019-01-15 23:01:15 INFO  Login:71 - Password Character Array: [Ljava.lang.Character;@75881071
+2019-01-15 23:04:04 INFO  Login:48 - ++addUserToDtabase()
+2019-01-15 23:04:04 DEBUG Login:77 - ++convertCharToString()
+2019-01-15 23:04:04 INFO  Login:54 - ++retrieveUserFromDtabase()
+2019-01-15 23:04:04 INFO  Login:70 - Password String: [p, a, s, s, w, d]
+2019-01-15 23:04:04 INFO  Login:71 - Password Character Array: [Ljava.lang.Character;@75881071
+2019-01-15 23:04:04 INFO  Login:72 - Password Character Array: [p, a, s, s, w, d]
+2019-01-15 23:09:11 INFO  Login:48 - ++addUserToDtabase()
+2019-01-15 23:09:11 DEBUG Login:77 - ++convertCharToString()
+2019-01-15 23:09:11 INFO  Login:54 - ++retrieveUserFromDtabase()
+2019-01-15 23:09:11 INFO  Login:70 - Password String: [p, a, s, s, w, d]
+2019-01-15 23:09:11 INFO  Login:71 - Password Character Array: [Ljava.lang.Character;@75881071
+2019-01-15 23:09:11 INFO  Login:72 - Password Character Array: [Ljava.lang.Character;@2a70a3d8
