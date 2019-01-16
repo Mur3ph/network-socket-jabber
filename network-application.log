@@ -114,3 +114,29 @@ Message: hello is correct, innit bruv
 2019-01-15 23:09:11 INFO  Login:70 - Password String: [p, a, s, s, w, d]
 2019-01-15 23:09:11 INFO  Login:71 - Password Character Array: [Ljava.lang.Character;@75881071
 2019-01-15 23:09:11 INFO  Login:72 - Password Character Array: [Ljava.lang.Character;@2a70a3d8
+2019-01-16 23:31:16 INFO  Login:43 - ++addUserToDtabase()
+2019-01-16 23:31:16 DEBUG Login:69 - ++convertCharToString()
+2019-01-16 23:31:16 INFO  Login:48 - ++retrieveUserFromDtabase()
+2019-01-16 23:31:16 INFO  Login:62 - Password String: [p, a, s, s, w, d]
+2019-01-16 23:31:16 INFO  Login:63 - Password Character Array: [Ljava.lang.Character;@75881071
+2019-01-16 23:31:16 INFO  Login:64 - Password Character Array: [Ljava.lang.Character;@2a70a3d8
+2019-01-16 23:33:18 INFO  Login:43 - ++addUserToDtabase()
+2019-01-16 23:33:18 DEBUG Login:69 - ++convertCharToString()
+2019-01-16 23:33:18 INFO  Login:48 - ++retrieveUserFromDtabase()
+2019-01-16 23:33:18 INFO  Login:62 - Password String: [p, a, s, s, w, d]
+2019-01-16 23:33:18 INFO  Login:63 - Password Character Array: [Ljava.lang.Character;@75881071
+2019-01-16 23:33:18 INFO  Login:64 - Password Character Array: [p, a, s, s, w, d]
+2019-01-16 23:36:00 INFO  Login:43 - ++addUserToDtabase()
+2019-01-16 23:36:00 DEBUG Login:71 - ++convertCharToString()
+2019-01-16 23:36:00 INFO  Login:48 - ++retrieveUserFromDtabase()
+2019-01-16 23:36:00 INFO  Login:62 - Password String: [p, a, s, s, w, d]
+2019-01-16 23:36:00 INFO  Login:63 - Password Character Array 1: [Ljava.lang.Character;@75881071
+2019-01-16 23:36:00 INFO  Login:64 - Password Character Array 2: [p, a, s, s, w, d]
+2019-01-16 23:36:00 INFO  Login:65 - Password Character Array 3: p
+2019-01-16 23:44:47 INFO  Login:43 - ++addUserToDtabase()
+2019-01-16 23:44:47 DEBUG Login:73 - ++convertCharToString()
+2019-01-16 23:44:47 INFO  Login:48 - ++retrieveUserFromDtabase()
+2019-01-16 23:44:47 INFO  Login:64 - Password String: [p, a, s, s, w, d]
+2019-01-16 23:44:47 INFO  Login:65 - Password Character Array 1: [Ljava.lang.Character;@75881071
+2019-01-16 23:44:47 INFO  Login:66 - Password Character Array 2: [p, a, s, s, w, d]
+2019-01-16 23:44:47 INFO  Login:67 - Password char Array 1: [C@782663d3
