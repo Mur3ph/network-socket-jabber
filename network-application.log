@@ -1,0 +1,20 @@
+2019-01-19 16:39:39 INFO  ReadFile:30 - -1
+2019-01-19 16:39:39 INFO  ReadFile:36 - [B@64485a47
+2019-01-19 16:39:39 INFO  ReadFile:37 - Testing baby.. 
+2019-01-19 16:40:46 INFO  ReadFile:30 - Log 1: -1
+2019-01-19 16:40:46 INFO  ReadFile:36 - Log 2: [B@64485a47
+2019-01-19 16:41:45 INFO  ReadFile:30 - Log 1: -1
+2019-01-19 16:41:45 INFO  ReadFile:31 - Log 1.1: [B@64485a47
+2019-01-19 16:41:45 INFO  ReadFile:37 - Log 2: [B@25bbf683
+2019-01-19 16:42:09 INFO  ReadFile:30 - Log 1: -1
+2019-01-19 16:42:09 INFO  ReadFile:31 - Log 1.1: [Digest Input Stream] SHA-256 Message Digest from SUN, <in progress>
+
+2019-01-19 16:42:09 INFO  ReadFile:37 - Log 2: [B@64485a47
+2019-01-19 16:49:40 INFO  ReadFile:34 - Log 1: -1
+2019-01-19 16:49:40 INFO  ReadFile:35 - Log 1.1: [Digest Input Stream] SHA-256 Message Digest from SUN, <in progress>
+
+2019-01-19 16:49:40 INFO  ReadFile:41 - Log 2: [B@64485a47
+2019-01-19 16:49:40 INFO  ReadFile:51 - Log 1: -1
+2019-01-19 16:49:40 INFO  ReadFile:52 - Log 1.1: [Digest Input Stream] MD5 Message Digest from SUN, <in progress>
+
+2019-01-19 16:49:40 INFO  ReadFile:55 - Log 2: [B@6ec8211c
