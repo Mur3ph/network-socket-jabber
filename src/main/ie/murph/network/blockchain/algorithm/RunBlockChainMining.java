@@ -1,11 +1,11 @@
-package main.ie.murph.blockchain.algorithm;
+package main.ie.murph.network.blockchain.algorithm;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import main.ie.murph.utility.StringUtil;
+import main.ie.murph.network.utility.StringUtil;
 
 public class RunBlockChainMining {
 

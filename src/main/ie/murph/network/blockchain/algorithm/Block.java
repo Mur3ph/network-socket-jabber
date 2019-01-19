@@ -1,10 +1,10 @@
-package main.ie.murph.blockchain.algorithm;
+package main.ie.murph.network.blockchain.algorithm;
 
 import java.util.Date;
 
 import org.apache.log4j.Logger;
 
-import main.ie.murph.utility.StringUtil;
+import main.ie.murph.network.utility.StringUtil;
 
 public class Block {
 	private static final Logger LOGGER = Logger.getLogger(Block.class);

@@ -1,4 +1,4 @@
-package main.ie.murph.utility;
+package main.ie.murph.network.utility;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

@@ -1,4 +1,4 @@
-package main.ie.murph.utility;
+package main.ie.murph.network.utility;
 
 import java.util.Scanner;
 
