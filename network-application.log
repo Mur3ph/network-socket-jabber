@@ -18,3 +18,28 @@
 2019-01-19 16:49:40 INFO  ReadFile:52 - Log 1.1: [Digest Input Stream] MD5 Message Digest from SUN, <in progress>
 
 2019-01-19 16:49:40 INFO  ReadFile:55 - Log 2: [B@6ec8211c
+2019-01-22 23:05:18 INFO  MessageClient:29 - ++MessageClient()
+2019-01-22 23:05:18 INFO  MessageClient:34 - ++communicateWithServer()
+2019-01-22 23:05:18 INFO  MessageClient:73 - ++createConnection()
+2019-01-22 23:05:18 INFO  MessageClient:78 - ++createObjectOutputStream()
+2019-01-22 23:05:18 INFO  MessageClient:83 - ++createObjectInputStream()
+2019-01-22 23:05:18 INFO  MessageClient:40 - ++communicateWithServer(): Please enter your username & press enter: 
+2019-01-22 23:05:18 INFO  Provider:33 - ++communicateWithClient(): Now interacting with the client..
+2019-01-22 23:05:34 INFO  MessageClient:53 - ++communicateWithServer(): RESONSE FROM SERVER: 
+Subject: Say hello to my little friend
+Message: hi is the wrong message, innit bruv
+2019-01-22 23:05:57 INFO  Provider:37 - ++communicateWithClient(): Connection to server lost: 
+2019-01-22 23:05:57 ERROR Provider:38 - ++communicateWithClient(): Server Error: Connection reset
+2019-01-22 23:05:57 ERROR Provider:39 - ++communicateWithClient(): Localized Error: Connection reset
+2019-01-22 23:05:57 ERROR Provider:40 - ++communicateWithClient(): Stack Trace Error:  [Ljava.lang.StackTraceElement;@500fcd7d
+2019-01-22 23:05:57 ERROR Provider:41 - ++communicateWithClient(): Exception ToString(): java.net.SocketException: Connection reset
+2019-01-22 23:05:57 INFO  Provider:43 - --communicateWithClient(): Connection closed.
+2019-01-22 23:05:57 INFO  Provider:92 - ++closeConnection(): Closing connection...
+2019-01-22 23:05:57 INFO  Provider:98 - --closeConnection(): Closing connection...
+2019-01-22 23:14:04 INFO  Login:43 - ++addUserToDtabase()
+2019-01-22 23:14:04 DEBUG Login:29 - ++convertCharToString()
+2019-01-22 23:14:04 INFO  Login:48 - ++retrieveUserFromDtabase()
+2019-01-22 23:14:04 INFO  Login:20 - Password String: [p, a, s, s, w, d]
+2019-01-22 23:14:04 INFO  Login:21 - Password Character Array 1: [Ljava.lang.Character;@2a70a3d8
+2019-01-22 23:14:04 INFO  Login:22 - Password Character Array 2: [p, a, s, s, w, d]
+2019-01-22 23:14:04 INFO  Login:23 - Password char Array 1: [C@1990a65e

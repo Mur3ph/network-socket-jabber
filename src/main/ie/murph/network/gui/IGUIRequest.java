@@ -3,6 +3,10 @@ package main.ie.murph.network.gui;
 public interface IGUIRequest
 {
 	// Constant variables used throughout the application
+	public final static String LOGIN_MENU =   "\nPress 1: Login " +
+											  "\nPress 2: Register/ Sign Up" +
+											  "\nPress 3: Forgot Password" +
+											  "\nPress 4: Forgot Username";
 	public final static String REQUEST_USERNAME_LOGIN = "Please enter your username & press enter: ";
 	public final static String REQUEST_PASSWORD_LOGIN = "Please enter your passowrd & press enter: ";
 	public final static String RETURN_FAILED_LOGIN_MESSAGE = "Username and/or Password you entered are incorrect!";
@@ -11,7 +15,6 @@ public interface IGUIRequest
 											  "\nPress 3: To View Friends List" +
 											  "\nPress 4: To View Colleagues List" +
 											  "\nPress 5: Todo List";
-	
 	public final static String GOODBYE = "You requested session to end.";
 	public final static String EXIT = "exit";
 	public final static String HELLO = "hello";
