@@ -8,6 +8,7 @@ import java.util.Scanner;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import main.ie.murph.network.domain.Login;
 import main.ie.murph.network.domain.message.MessageDefault;
 import main.ie.murph.network.external.api.streams.ObjectStream;
 import main.ie.murph.network.gui.EDebugMessage;
@@ -20,6 +21,7 @@ public class MessageClient {
 	private ObjectStream RESPONSE_FROM_SERVER;
 	private final Scanner SCANNER = new Scanner(System.in);
 	private MessageDefault messageREQUEST, messageResponse;
+	private Login login = new Login();
 
 	public static void main(String[] args) throws ClassNotFoundException {
 		new MessageClient();
@@ -56,11 +58,7 @@ public class MessageClient {
 
 			LOGGER.info(IGUIRequest.GOODBYE);
 		} catch (IOException e) {
-			LOGGER.info("--communicateWithServer(): " + EDebugMessage.CONNECTION_LOST);
-			LOGGER.error("--communicateWithServer(): " + EDebugMessage.SERVER_ERROR + e.getMessage());
-			LOGGER.error("--communicateWithServer(): " + EDebugMessage.LOCALIZED_ERROR + e.getLocalizedMessage());
-			LOGGER.error("--communicateWithServer(): " + EDebugMessage.STACK_TRACE + " " + e.getStackTrace());
-			LOGGER.error("--communicateWithServer(): " + EDebugMessage.EXCEPTION_STRING + e.toString());
+			logExceptionMessage(e);
 		} finally {
 			closeConnection();
 		}
@@ -82,6 +80,41 @@ public class MessageClient {
 	private ObjectStream createObjectInputStream(Socket socket) throws IOException {
 		LOGGER.info("++createObjectInputStream()");
 		return new ObjectStream(socket.getInputStream());
+	}
+	
+	private void userLoginPage()
+	{
+		LOGGER.info("++communicateWithServer(): " + IGUIRequest.LOGIN_MENU);
+		switch (SCANNER.nextInt())
+	    {
+	      case 1: // Login method
+	      case 2: // Register method
+	      case 3: // Forgot Password method
+	      case 4: // Forgot User name method
+	               break;
+	      default:	System.out.println("What day is it?");;
+	    }
+	}
+	
+	private void login()
+	{
+		LOGGER.info("++communicateWithServer(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
+		if(login.isUserExist("username"))
+		{
+			// Redirect to home/Email/Message page
+		}
+		else
+		{
+			// Register new user
+		}
+	}
+	
+	private void logExceptionMessage(IOException e) {
+		LOGGER.info("--communicateWithServer(): " + EDebugMessage.CONNECTION_LOST);
+		LOGGER.error("--communicateWithServer(): " + EDebugMessage.SERVER_ERROR + e.getMessage());
+		LOGGER.error("--communicateWithServer(): " + EDebugMessage.LOCALIZED_ERROR + e.getLocalizedMessage());
+		LOGGER.error("--communicateWithServer(): " + EDebugMessage.STACK_TRACE + " " + e.getStackTrace());
+		LOGGER.error("--communicateWithServer(): " + EDebugMessage.EXCEPTION_STRING + e.toString());
 	}
 
 	private void closeConnection() {
