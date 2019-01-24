@@ -84,11 +84,11 @@ public class MessageClient {
 	
 	private void userLoginPage()
 	{
-		LOGGER.info("++communicateWithServer(): " + IGUIRequest.LOGIN_MENU);
+		LOGGER.info("++userLoginPage(): " + IGUIRequest.LOGIN_MENU);
 		switch (SCANNER.nextInt())
 	    {
-	      case 1: // Login method
-	      case 2: // Register method
+	      case 1: this.login();
+	      case 2: this.registerNewUser();
 	      case 3: // Forgot Password method
 	      case 4: // Forgot User name method
 	               break;
@@ -98,15 +98,26 @@ public class MessageClient {
 	
 	private void login()
 	{
-		LOGGER.info("++communicateWithServer(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
+		LOGGER.info("++login(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
 		if(login.isUserExist("username"))
 		{
-			// Redirect to home/Email/Message page
+			LOGGER.info("++login(): " + IGUIRequest.REQUEST_PASSWORD_LOGIN);
+			// Validate password
+			// Redirect to home/Email/Message page or RETURN_FAILED_LOGIN_MESSAGE
 		}
 		else
 		{
-			// Register new user
+			LOGGER.info("Register new user account");
+			this.registerNewUser();
 		}
+	}
+	
+	private void registerNewUser()
+	{
+		LOGGER.info("++communicateWithServer(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
+		LOGGER.info("++communicateWithServer(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
+		login.setUsername("");
+		login.addUserToDtabase("", login.convertStringToCharArrayJava8("password"));
 	}
 	
 	private void logExceptionMessage(IOException e) {
