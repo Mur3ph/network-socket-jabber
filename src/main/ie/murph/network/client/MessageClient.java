@@ -116,8 +116,8 @@ public class MessageClient {
 	{
 		LOGGER.info("++communicateWithServer(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
 		LOGGER.info("++communicateWithServer(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
-		login.setUsername("");
-		login.addUserToDtabase("", login.convertStringToCharArrayJava8("password"));
+		login.addUserToDtabase("username", login.convertStringToCharArrayJava8("password"));
+		// Redirect back to main menu options
 	}
 	
 	private void logExceptionMessage(IOException e) {

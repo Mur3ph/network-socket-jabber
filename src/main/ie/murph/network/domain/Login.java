@@ -12,6 +12,7 @@ public class Login {
 	private String username;
 	private char[] password;
 	private Map<String, Character[]> databaseOfUsers;
+	private Map<String, String> databaseOfUsersMessages;
 
 	public Login() {
 		System.getProperty("user.dir");
@@ -54,18 +55,18 @@ public class Login {
 		return databaseOfUsers.containsKey(usernameKey);
 	}
 
-	public static String convertCharToString(Login login, String usernameKey) {
+	public String convertCharToString(Login login, String usernameKey) {
 		if (LOGGER.isDebugEnabled()) {
 			LOGGER.debug("++convertCharToString()");
 		}
 		return Arrays.toString(login.retrieveUserFromDtabase(usernameKey));// Convert char to string..;
 	}
 
-	public static Character[] convertStringToCharArrayJava8(String passwordValueStr) {
+	public Character[] convertStringToCharArrayJava8(String passwordValueStr) {
 		return passwordValueStr.chars().mapToObj(c -> (char) c).toArray(Character[]::new);
 	}
 
-	public static char[] convertStringToChar(String password) {
+	public char[] convertStringToChar(String password) {
 		return password.toCharArray();
 	}
 
