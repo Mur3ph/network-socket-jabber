@@ -21,6 +21,8 @@ public class LoginTest {
 		LOGGER.info("Password Character Array 1: " + convertStringToCharArrayJava8(testPassword));
 		LOGGER.info("Password Character Array 2: " + Arrays.toString(convertStringToCharArrayJava8(testPassword)));
 		LOGGER.info("Password char Array 1: " + convertStringToChar(testPassword));
+		
+		
 
 	}
 

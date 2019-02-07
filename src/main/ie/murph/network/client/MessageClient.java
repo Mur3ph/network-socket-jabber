@@ -82,7 +82,7 @@ public class MessageClient {
 		return new ObjectStream(socket.getInputStream());
 	}
 	
-	private void userLoginPage()
+	public void userLoginPage()
 	{
 		LOGGER.info("++userLoginPage(): " + IGUIRequest.LOGIN_MENU);
 		switch (SCANNER.nextInt())
