@@ -1,4 +1,4 @@
-package test.ie.murph.network.domain;
+package test.unit.ie.murph.network.domain;
 
 import java.util.Arrays;
 
