@@ -11,8 +11,6 @@ import org.apache.log4j.Logger;
 
 public class Login {
 	private static final Logger LOGGER = LogManager.getLogger(Login.class.getName());
-//	private String username;
-//	private char[] password;
 	private Map<String, Character[]> databaseOfUsers;
 	private Map<String, List<String>> databaseOfUsersMessages;
 	private List<String> list;
@@ -22,34 +20,28 @@ public class Login {
 		databaseOfUsers = new HashMap<String, Character[]>();
 	}
 
-//	public String getUsername() {
-//		return username;
-//	}
-//
-//	public void setUsername(String username) {
-//		this.username = username;
-//	}
-//
-//	public char[] getPassword() {
-//		return password;
-//	}
-//
-//	public void setPassword(char[] password) {
-//		this.password = password;
-//	}
-//
-//	public void resetPassword(char[] password) {
-//		LOGGER.info("++resetPassword()");
-//		this.password = password;
-//	}
-
-	public void addUserToDtabase(String usernameKey, Character[] passwordValue) {
+	public void addNewUserToDtabase(String usernameKey, Character[] passwordValue) {
 		LOGGER.info("++addUserToDtabase()");
 		databaseOfUsers.put(usernameKey, passwordValue);
 	}
 
 	public Character[] retrieveUserFromDtabase(String usernameKey) {
 		LOGGER.info("++retrieveUserFromDtabase()");
+		return databaseOfUsers.get(usernameKey);
+	}
+
+	public Character[] validateCredentialsUserFromDtabase(String usernameKey, String usersPassword) {
+		LOGGER.info("++validateCredentialsUserFromDtabase()");
+		Character[] passwordToBeValidated =  convertStringToCharArrayJava8(usersPassword);
+		Character[] storedPassword = databaseOfUsers.get(usernameKey);
+		boolean isEqual = Arrays.equals(passwordToBeValidated, storedPassword);
+		if(isEqual)
+		{
+			LOGGER.info("++validateCredentialsUserFromDtabase(): Login Successful ");
+		}
+		else {
+			LOGGER.info("++validateCredentialsUserFromDtabase(): Login Failure ");
+		}
 		return databaseOfUsers.get(usernameKey);
 	}
 

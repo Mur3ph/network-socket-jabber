@@ -15,15 +15,14 @@ public class LoginTest {
 		String usernameKey = "Minnie";
 		String testPassword = "passwd";
 
-		login.addUserToDtabase(usernameKey, convertStringToCharArrayJava8(testPassword));
+		login.addNewUserToDtabase(usernameKey, convertStringToCharArrayJava8(testPassword));
 		String convertCharToString = convertCharToString(login, usernameKey);
 		LOGGER.info("Password String: " + convertCharToString);
 		LOGGER.info("Password Character Array 1: " + convertStringToCharArrayJava8(testPassword));
 		LOGGER.info("Password Character Array 2: " + Arrays.toString(convertStringToCharArrayJava8(testPassword)));
 		LOGGER.info("Password char Array 1: " + convertStringToChar(testPassword));
-		
-		
-
+		LOGGER.info("Correct Password: Should pass test: " + login.validateCredentialsUserFromDtabase(usernameKey, testPassword));
+		LOGGER.info("Incorrect Password: Should fail test: " + login.validateCredentialsUserFromDtabase(usernameKey, "wrong_password"));
 	}
 
 	private static String convertCharToString(Login login, String usernameKey) {

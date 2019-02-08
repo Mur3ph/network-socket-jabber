@@ -99,9 +99,11 @@ public class MessageClient {
 	private void login()
 	{
 		LOGGER.info("++login(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
-		if(login.isUserExist("username"))
+		String username = this.SCANNER.next();
+		if(login.isUserExist(username))
 		{
 			LOGGER.info("++login(): " + IGUIRequest.REQUEST_PASSWORD_LOGIN);
+			String userPassword = this.SCANNER.next();
 			// Validate password
 			// Redirect to home/Email/Message page or RETURN_FAILED_LOGIN_MESSAGE
 		}
@@ -116,7 +118,7 @@ public class MessageClient {
 	{
 		LOGGER.info("++communicateWithServer(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
 		LOGGER.info("++communicateWithServer(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
-		login.addUserToDtabase("username", login.convertStringToCharArrayJava8("password"));
+		login.addNewUserToDtabase("username", login.convertStringToCharArrayJava8("password"));
 		// Redirect back to main menu options
 	}
 	
