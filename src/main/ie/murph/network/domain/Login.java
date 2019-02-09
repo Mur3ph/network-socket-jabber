@@ -11,29 +11,29 @@ import org.apache.log4j.Logger;
 
 public class Login {
 	private static final Logger LOGGER = LogManager.getLogger(Login.class.getName());
-	private Map<String, Character[]> databaseOfUsers;
-	private Map<String, List<String>> databaseOfUsersMessages;
-	private List<String> list;
+	private Map<String, Character[]> MAP_DATABASE_OF_USERS;
+	private Map<String, List<String>> MAP_DATABASE_OF_USERS_MESSAGES;
+	private List<String> LIST_OF_MESSAGES;
 
 	public Login() {
 		System.getProperty("user.dir");
-		databaseOfUsers = new HashMap<String, Character[]>();
+		MAP_DATABASE_OF_USERS = new HashMap<String, Character[]>();
 	}
 
-	public void addNewUserToDtabase(String usernameKey, Character[] passwordValue) {
+	public void addNewUserToDtabase(String usernameKey, String passwordValue) {
 		LOGGER.info("++addUserToDtabase()");
-		databaseOfUsers.put(usernameKey, passwordValue);
+		MAP_DATABASE_OF_USERS.put(usernameKey, this.convertStringToCharArrayJava8(passwordValue));
 	}
 
 	public Character[] retrieveUserFromDtabase(String usernameKey) {
 		LOGGER.info("++retrieveUserFromDtabase()");
-		return databaseOfUsers.get(usernameKey);
+		return MAP_DATABASE_OF_USERS.get(usernameKey);
 	}
 
 	public Character[] validateCredentialsUserFromDtabase(String usernameKey, String usersPassword) {
 		LOGGER.info("++validateCredentialsUserFromDtabase()");
-		Character[] passwordToBeValidated =  convertStringToCharArrayJava8(usersPassword);
-		Character[] storedPassword = databaseOfUsers.get(usernameKey);
+		Character[] passwordToBeValidated =  this.convertStringToCharArrayJava8(usersPassword);
+		Character[] storedPassword = MAP_DATABASE_OF_USERS.get(usernameKey);
 		boolean isEqual = Arrays.equals(passwordToBeValidated, storedPassword);
 		if(isEqual)
 		{
@@ -42,12 +42,12 @@ public class Login {
 		else {
 			LOGGER.info("++validateCredentialsUserFromDtabase(): Login Failure ");
 		}
-		return databaseOfUsers.get(usernameKey);
+		return MAP_DATABASE_OF_USERS.get(usernameKey);
 	}
 
 	public boolean isUserExist(String usernameKey) {
 		LOGGER.info("++isUserExist()");
-		return databaseOfUsers.containsKey(usernameKey);
+		return MAP_DATABASE_OF_USERS.containsKey(usernameKey);
 	}
 
 	public String convertCharToString(Login login, String usernameKey) {
@@ -69,13 +69,13 @@ public class Login {
 
 	public Map<String, List<String>> getUsersMessages() {
 		LOGGER.debug("++getUsersMessages()");
-		return databaseOfUsersMessages;
+		return MAP_DATABASE_OF_USERS_MESSAGES;
 	}
 
 	public void printUsersMessages(String username) {
 		LOGGER.debug("++printUsersMessages()");
 		if (keyExists(username)) {
-			list.forEach((v) -> System.out.println("Username: " + username + " Message: " + v));
+			LIST_OF_MESSAGES.forEach((v) -> System.out.println("Username: " + username + " Message: " + v));
 		}
 	}
 
@@ -83,25 +83,25 @@ public class Login {
 		LOGGER.debug("++sendUsersMessages()");
 		if (keyExists(username)) {
 			LOGGER.debug("++sendUsersMessages()");
-			list = grabListOfMessagesBelongingTo(username);
-			addMessageToUsersList(list, message);
+			LIST_OF_MESSAGES = grabListOfMessagesBelongingTo(username);
+			addMessageToUsersList(LIST_OF_MESSAGES, message);
 		} else {
 			LOGGER.debug("++sendUsersMessages()");
-			list = createNewList();
-			addMessageToUsersList(list, message);
-			createNewUserMessages(username, list);
+			LIST_OF_MESSAGES = createNewList();
+			addMessageToUsersList(LIST_OF_MESSAGES, message);
+			createNewUserMessages(username, LIST_OF_MESSAGES);
 		}
 		LOGGER.debug("--sendUsersMessages()");
 	}
 
 	private boolean keyExists(String username) {
 		LOGGER.debug("++keyExists()");
-		return databaseOfUsersMessages.containsKey(username);
+		return MAP_DATABASE_OF_USERS_MESSAGES.containsKey(username);
 	}
 
 	private List<String> grabListOfMessagesBelongingTo(String username) {
 		LOGGER.debug("++grabListOfMessagesBelongingTo()");
-		return databaseOfUsersMessages.get(username);
+		return MAP_DATABASE_OF_USERS_MESSAGES.get(username);
 	}
 
 	private void addMessageToUsersList(List<String> list, String message) {
@@ -116,6 +116,6 @@ public class Login {
 
 	private void createNewUserMessages(String username, List<String> list) {
 		LOGGER.debug("++createNewUserMessages()");
-		databaseOfUsersMessages.put(username, list);
+		MAP_DATABASE_OF_USERS_MESSAGES.put(username, list);
 	}
 }

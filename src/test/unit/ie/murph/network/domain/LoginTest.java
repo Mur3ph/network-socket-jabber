@@ -15,7 +15,7 @@ public class LoginTest {
 		String usernameKey = "Minnie";
 		String testPassword = "passwd";
 
-		login.addNewUserToDtabase(usernameKey, convertStringToCharArrayJava8(testPassword));
+		login.addNewUserToDtabase(usernameKey, testPassword);
 		String convertCharToString = convertCharToString(login, usernameKey);
 		LOGGER.info("Password String: " + convertCharToString);
 		LOGGER.info("Password Character Array 1: " + convertStringToCharArrayJava8(testPassword));
