@@ -18,6 +18,7 @@ public class Login {
 	public Login() {
 		System.getProperty("user.dir");
 		MAP_DATABASE_OF_USERS = new HashMap<String, Character[]>();
+		MAP_DATABASE_OF_USERS_MESSAGES = new HashMap<String, List<String>>();
 	}
 
 	public void addNewUserToDtabase(String usernameKey, String passwordValue) {
@@ -79,7 +80,7 @@ public class Login {
 		}
 	}
 	
-	public void printMaoOfUsersMessages(String username) {
+	public void printMapOfUsersMessages(String username) {
 		LOGGER.debug("++printMaoOfUsersMessages()");
 		if (keyExists(username)) {
 			MAP_DATABASE_OF_USERS_MESSAGES.forEach((k, v) -> System.out.println("Username: " + k + " Message: " + v));

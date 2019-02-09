@@ -23,6 +23,8 @@ public class LoginTest {
 		LOGGER.info("Password char Array 1: " + convertStringToChar(testPassword));
 		LOGGER.info("Correct Password: Should pass test: " + login.validateCredentialsUserFromDtabase(usernameKey, testPassword));
 		LOGGER.info("Incorrect Password: Should fail test: " + login.validateCredentialsUserFromDtabase(usernameKey, "wrong_password"));
+		
+		tesNewUserWithMessaging();
 	}
 
 	private static String convertCharToString(Login login, String usernameKey) {
@@ -38,6 +40,25 @@ public class LoginTest {
 
 	private static char[] convertStringToChar(String password) {
 		return password.toCharArray();
+	}
+	
+	public static void tesNewUserWithMessaging() {
+		LOGGER.debug("++tesNewUserWithMessaging()");
+		Login login = new Login();
+		String usernameKey = "Minnie";
+		String testPassword = "password";
+
+		login.addNewUserToDtabase(usernameKey, testPassword);
+		login.sendUsersMessages(usernameKey, testPassword);
+		login.sendUsersMessages(usernameKey, testPassword);
+		login.sendUsersMessages(usernameKey, testPassword);
+		
+		LOGGER.debug("++tesNewUserWithMessaging() - MAP: ");
+		login.printMapOfUsersMessages(usernameKey);
+		
+		LOGGER.debug("++tesNewUserWithMessaging() - LIST: ");
+		login.printListOfUsersMessages(usernameKey);
+		
 	}
 	
 }
