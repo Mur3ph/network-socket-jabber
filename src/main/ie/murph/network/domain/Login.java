@@ -72,13 +72,20 @@ public class Login {
 		return MAP_DATABASE_OF_USERS_MESSAGES;
 	}
 
-	public void printUsersMessages(String username) {
-		LOGGER.debug("++printUsersMessages()");
+	public void printListOfUsersMessages(String username) {
+		LOGGER.debug("++printListOfUsersMessages()");
 		if (keyExists(username)) {
 			LIST_OF_MESSAGES.forEach((v) -> System.out.println("Username: " + username + " Message: " + v));
 		}
 	}
-
+	
+	public void printMaoOfUsersMessages(String username) {
+		LOGGER.debug("++printMaoOfUsersMessages()");
+		if (keyExists(username)) {
+			MAP_DATABASE_OF_USERS_MESSAGES.forEach((k, v) -> System.out.println("Username: " + k + " Message: " + v));
+		}
+	}
+	
 	public void sendUsersMessages(String username, String message) {
 		LOGGER.debug("++sendUsersMessages()");
 		if (keyExists(username)) {

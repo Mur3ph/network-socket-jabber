@@ -1,0 +1,16 @@
+2019-02-09 14:22:19 INFO  Login:24 - ++addUserToDtabase()
+2019-02-09 14:22:19 DEBUG Login:61 - ++convertStringToCharArrayJava8()
+2019-02-09 14:22:19 DEBUG Login:30 - ++convertCharToString()
+2019-02-09 14:22:19 INFO  Login:29 - ++retrieveUserFromDtabase()
+2019-02-09 14:22:19 INFO  Login:20 - Password String: [p, a, s, s, w, d]
+2019-02-09 14:22:19 INFO  Login:21 - Password Character Array 1: [Ljava.lang.Character;@64485a47
+2019-02-09 14:22:19 INFO  Login:22 - Password Character Array 2: [p, a, s, s, w, d]
+2019-02-09 14:22:19 INFO  Login:23 - Password char Array 1: [C@25bbf683
+2019-02-09 14:22:19 INFO  Login:34 - ++validateCredentialsUserFromDtabase()
+2019-02-09 14:22:19 DEBUG Login:61 - ++convertStringToCharArrayJava8()
+2019-02-09 14:22:19 INFO  Login:40 - ++validateCredentialsUserFromDtabase(): Login Successful 
+2019-02-09 14:22:19 INFO  Login:24 - Correct Password: Should pass test: [Ljava.lang.Character;@6ec8211c
+2019-02-09 14:22:19 INFO  Login:34 - ++validateCredentialsUserFromDtabase()
+2019-02-09 14:22:19 DEBUG Login:61 - ++convertStringToCharArrayJava8()
+2019-02-09 14:22:19 INFO  Login:43 - ++validateCredentialsUserFromDtabase(): Login Failure 
+2019-02-09 14:22:19 INFO  Login:25 - Incorrect Password: Should fail test: [Ljava.lang.Character;@6ec8211c
