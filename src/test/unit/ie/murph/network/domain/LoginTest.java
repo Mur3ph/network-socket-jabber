@@ -11,11 +11,16 @@ public class LoginTest {
 	private static final Logger LOGGER = LogManager.getLogger(Login.class.getName());
 
 	public static void main(String[] args) {
+		registerUserToDatabaseTest();
+		registerUserWithMessagingTest();
+	}
+
+	private static void registerUserToDatabaseTest() {
 		Login login = new Login();
 		String usernameKey = "Minnie";
 		String testPassword = "passwd";
 
-		login.addNewUserToDtabase(usernameKey, testPassword);
+		login.registerNewUserToDtabase(usernameKey, testPassword);
 		String convertCharToString = convertCharToString(login, usernameKey);
 		LOGGER.info("Password String: " + convertCharToString);
 		LOGGER.info("Password Character Array 1: " + convertStringToCharArrayJava8(testPassword));
@@ -23,8 +28,6 @@ public class LoginTest {
 		LOGGER.info("Password char Array 1: " + convertStringToChar(testPassword));
 		LOGGER.info("Correct Password: Should pass test: " + login.validateCredentialsUserFromDtabase(usernameKey, testPassword));
 		LOGGER.info("Incorrect Password: Should fail test: " + login.validateCredentialsUserFromDtabase(usernameKey, "wrong_password"));
-		
-		tesNewUserWithMessaging();
 	}
 
 	private static String convertCharToString(Login login, String usernameKey) {
@@ -42,23 +45,33 @@ public class LoginTest {
 		return password.toCharArray();
 	}
 	
-	public static void tesNewUserWithMessaging() {
+	public static void registerUserWithMessagingTest() {
 		LOGGER.debug("++tesNewUserWithMessaging()");
 		Login login = new Login();
 		String usernameKey = "Minnie";
 		String testPassword = "password";
 
-		login.addNewUserToDtabase(usernameKey, testPassword);
-		login.sendUsersMessages(usernameKey, testPassword);
-		login.sendUsersMessages(usernameKey, testPassword);
-		login.sendUsersMessages(usernameKey, testPassword);
+		login.registerNewUserToDtabase(usernameKey, testPassword);
 		
+		populateUserMessages(login, usernameKey, testPassword);
+		
+		printMappedUserWithMessages(login, usernameKey);
+		printListOfUserMesages(login, usernameKey);
+	}
+
+	private static void populateUserMessages(Login login, String usernameKey, String testPassword) {
+		login.sendUsersMessages(usernameKey, testPassword);
+		login.sendUsersMessages(usernameKey, testPassword);
+		login.sendUsersMessages(usernameKey, testPassword);
+	}
+
+	private static void printMappedUserWithMessages(Login login, String usernameKey) {
 		LOGGER.debug("++tesNewUserWithMessaging() - MAP: ");
 		login.printMapOfUsersMessages(usernameKey);
-		
-		LOGGER.debug("++tesNewUserWithMessaging() - LIST: ");
-		login.printListOfUsersMessages(usernameKey);
-		
 	}
 	
+	private static void printListOfUserMesages(Login login, String usernameKey) {
+		LOGGER.debug("++tesNewUserWithMessaging() - LIST: ");
+		login.printListOfUsersMessages(usernameKey);
+	}
 }

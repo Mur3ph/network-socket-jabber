@@ -21,7 +21,7 @@ public class Login {
 		MAP_DATABASE_OF_USERS_MESSAGES = new HashMap<String, List<String>>();
 	}
 
-	public void addNewUserToDtabase(String usernameKey, String passwordValue) {
+	public void registerNewUserToDtabase(String usernameKey, String passwordValue) {
 		LOGGER.info("++addUserToDtabase()");
 		MAP_DATABASE_OF_USERS.put(usernameKey, this.convertStringToCharArrayJava8(passwordValue));
 	}
