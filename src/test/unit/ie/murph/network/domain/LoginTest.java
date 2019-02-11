@@ -9,6 +9,9 @@ import main.ie.murph.network.domain.Login;
 
 public class LoginTest {
 	private static final Logger LOGGER = LogManager.getLogger(Login.class.getName());
+	private static final Login login = new Login();
+	private static final String testUsernameKey = "Minnie";
+	private static final String testPassword = "password";
 
 	public static void main(String[] args) {
 		registerUserToDatabaseTest();
@@ -16,62 +19,54 @@ public class LoginTest {
 	}
 
 	private static void registerUserToDatabaseTest() {
-		Login login = new Login();
-		String usernameKey = "Minnie";
-		String testPassword = "passwd";
-
-		login.registerNewUserToDtabase(usernameKey, testPassword);
-		String convertCharToString = convertCharToString(login, usernameKey);
+		login.registerNewUserToDtabase(testUsernameKey, testPassword);
+		String convertCharToString = convertCharToString();
 		LOGGER.info("Password String: " + convertCharToString);
-		LOGGER.info("Password Character Array 1: " + convertStringToCharArrayJava8(testPassword));
-		LOGGER.info("Password Character Array 2: " + Arrays.toString(convertStringToCharArrayJava8(testPassword)));
-		LOGGER.info("Password char Array 1: " + convertStringToChar(testPassword));
-		LOGGER.info("Correct Password: Should pass test: " + login.validateCredentialsUserFromDtabase(usernameKey, testPassword));
-		LOGGER.info("Incorrect Password: Should fail test: " + login.validateCredentialsUserFromDtabase(usernameKey, "wrong_password"));
+		LOGGER.info("Password Character Array 1: " + convertStringToCharArrayJava8());
+		LOGGER.info("Password Character Array 2: " + Arrays.toString(convertStringToCharArrayJava8()));
+		LOGGER.info("Password char Array 1: " + convertStringToChar());
+		LOGGER.info("Correct Password: Should pass test: " + login.validateCredentialsUserFromDtabase(testUsernameKey, testPassword));
+		LOGGER.info("Incorrect Password: Should fail test: " + login.validateCredentialsUserFromDtabase(testUsernameKey, "wrong_password"));
 	}
 
-	private static String convertCharToString(Login login, String usernameKey) {
+	private static String convertCharToString() {
 		if (LOGGER.isDebugEnabled()) {
 			LOGGER.debug("++convertCharToString()");
 		}
-		return Arrays.toString(login.retrieveUserFromDtabase(usernameKey));// Convert char to string..;
+		return Arrays.toString(login.retrieveUserFromDtabase(testUsernameKey));// Convert char to string..;
 	}
 
-	private static Character[] convertStringToCharArrayJava8(String passwordValueStr) {
-		return passwordValueStr.chars().mapToObj(c -> (char) c).toArray(Character[]::new);
+	private static Character[] convertStringToCharArrayJava8() {
+		return testPassword.chars().mapToObj(c -> (char) c).toArray(Character[]::new);
 	}
 
-	private static char[] convertStringToChar(String password) {
-		return password.toCharArray();
+	private static char[] convertStringToChar() {
+		return testPassword.toCharArray();
 	}
 	
-	public static void registerUserWithMessagingTest() {
+	private static void registerUserWithMessagingTest() {
 		LOGGER.debug("++tesNewUserWithMessaging()");
-		Login login = new Login();
-		String usernameKey = "Minnie";
-		String testPassword = "password";
-
-		login.registerNewUserToDtabase(usernameKey, testPassword);
+		login.registerNewUserToDtabase(testUsernameKey, testPassword);
 		
-		populateUserMessages(login, usernameKey, testPassword);
+		populateUserMessages();
 		
-		printMappedUserWithMessages(login, usernameKey);
-		printListOfUserMesages(login, usernameKey);
+		printMappedUserWithMessages();
+		printListOfUserMesages();
 	}
 
-	private static void populateUserMessages(Login login, String usernameKey, String testPassword) {
+	private static void populateUserMessages() {
 		for(int x = 0; x < 5; x++) {
-			login.sendUsersMessages(usernameKey, testPassword);
+			login.sendUsersMessages(testUsernameKey, testPassword);
 		}
 	}
 
-	private static void printMappedUserWithMessages(Login login, String usernameKey) {
+	private static void printMappedUserWithMessages() {
 		LOGGER.debug("++tesNewUserWithMessaging() - MAP: ");
-		login.printMapOfUsersMessages(usernameKey);
+		login.printMapOfUsersMessages(testUsernameKey);
 	}
 	
-	private static void printListOfUserMesages(Login login, String usernameKey) {
+	private static void printListOfUserMesages() {
 		LOGGER.debug("++tesNewUserWithMessaging() - LIST: ");
-		login.printListOfUsersMessages(usernameKey);
+		login.printListOfUsersMessages(testUsernameKey);
 	}
 }
