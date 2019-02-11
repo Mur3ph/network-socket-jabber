@@ -60,9 +60,9 @@ public class LoginTest {
 	}
 
 	private static void populateUserMessages(Login login, String usernameKey, String testPassword) {
-		login.sendUsersMessages(usernameKey, testPassword);
-		login.sendUsersMessages(usernameKey, testPassword);
-		login.sendUsersMessages(usernameKey, testPassword);
+		for(int x = 0; x < 5; x++) {
+			login.sendUsersMessages(usernameKey, testPassword);
+		}
 	}
 
 	private static void printMappedUserWithMessages(Login login, String usernameKey) {
