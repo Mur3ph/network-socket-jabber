@@ -82,9 +82,9 @@ public class MessageClient {
 		return new ObjectStream(socket.getInputStream());
 	}
 	
-	public void userLoginPage()
+	public void userLoginPage(String userRegisteredSuccessMessage)
 	{
-		LOGGER.info("++userLoginPage(): " + IGUIRequest.LOGIN_MENU);
+		LOGGER.info("++userLoginPage(): \n" + userRegisteredSuccessMessage + "\n" + IGUIRequest.LOGIN_MENU);
 		switch (SCANNER.nextInt())
 	    {
 	      case 1: this.login();
@@ -104,23 +104,25 @@ public class MessageClient {
 		{
 			LOGGER.info("++login(): " + IGUIRequest.REQUEST_PASSWORD_LOGIN);
 			String userPassword = this.SCANNER.next();
+			login.validateCredentialsUserFromDtabase(username, userPassword);
 			// Validate password
 			// Redirect to home/Email/Message page or RETURN_FAILED_LOGIN_MESSAGE
 		}
 		else
 		{
 			LOGGER.info("Register new user account");
-			this.registerNewUser(username);
+			this.registerNewUser();
 		}
 	}
 	
-	private void registerNewUser(String username)
+	private void registerNewUser()
 	{
-		LOGGER.info("++communicateWithServer(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
-		LOGGER.info("++communicateWithServer(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
-		login.registerNewUserToDtabase("username", "password");
-		login();
-		// Redirect back to main menu options with message saying new user registered
+		LOGGER.info("++registerNewUser(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
+		String username = this.SCANNER.next();
+		LOGGER.info("++registerNewUser(): " + IGUIRequest.REQUEST_PASSWORD_LOGIN);
+		String password = this.SCANNER.next();
+		login.registerNewUserToDtabase(username, password);
+		userLoginPage("Welcome, User Register Successfully");
 	}
 	
 	private void logExceptionMessage(IOException e) {
