@@ -110,16 +110,17 @@ public class MessageClient {
 		else
 		{
 			LOGGER.info("Register new user account");
-			this.registerNewUser();
+			this.registerNewUser(username);
 		}
 	}
 	
-	private void registerNewUser()
+	private void registerNewUser(String username)
 	{
 		LOGGER.info("++communicateWithServer(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
 		LOGGER.info("++communicateWithServer(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
 		login.registerNewUserToDtabase("username", "password");
-		// Redirect back to main menu options
+		login();
+		// Redirect back to main menu options with message saying new user registered
 	}
 	
 	private void logExceptionMessage(IOException e) {
