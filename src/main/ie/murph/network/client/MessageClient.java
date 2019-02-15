@@ -104,9 +104,16 @@ public class MessageClient {
 		{
 			LOGGER.info("++login(): " + IGUIRequest.REQUEST_PASSWORD_LOGIN);
 			String userPassword = this.SCANNER.next();
-			login.validateCredentialsUserFromDtabase(username, userPassword);
-			// Validate password
-			// Redirect to home/Email/Message page or RETURN_FAILED_LOGIN_MESSAGE
+			boolean loginResultSuccessful = login.validateCredentialsUserFromDtabase(username, userPassword);
+			if(loginResultSuccessful)
+			{
+				// Redirect to home/Email/Message page
+				LOGGER.info("++validateCredentialsUserFromDtabase(): Login Successful ");
+			}
+			else {
+				// RETURN_FAILED_LOGIN_MESSAGE
+				LOGGER.info("++validateCredentialsUserFromDtabase(): Login Failure ");
+			}
 		}
 		else
 		{

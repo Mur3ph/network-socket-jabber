@@ -31,7 +31,7 @@ public class Login {
 		return MAP_DATABASE_OF_USERS.get(usernameKey);
 	}
 
-	public Character[] validateCredentialsUserFromDtabase(String usernameKey, String usersPassword) {
+	public boolean validateCredentialsUserFromDtabase(String usernameKey, String usersPassword) {
 		LOGGER.info("++validateCredentialsUserFromDtabase()");
 		Character[] passwordToBeValidated =  this.convertStringToCharArrayJava8(usersPassword);
 		Character[] storedPassword = MAP_DATABASE_OF_USERS.get(usernameKey);
@@ -39,11 +39,12 @@ public class Login {
 		if(isEqual)
 		{
 			LOGGER.info("++validateCredentialsUserFromDtabase(): Login Successful ");
+			return true;
 		}
 		else {
 			LOGGER.info("++validateCredentialsUserFromDtabase(): Login Failure ");
+			return false;
 		}
-		return MAP_DATABASE_OF_USERS.get(usernameKey);
 	}
 
 	public boolean isUserExist(String usernameKey) {
