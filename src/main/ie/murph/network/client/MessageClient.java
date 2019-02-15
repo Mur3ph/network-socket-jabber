@@ -102,18 +102,7 @@ public class MessageClient {
 		String username = this.SCANNER.next();
 		if(login.isUserExist(username))
 		{
-			LOGGER.info("++login(): " + IGUIRequest.REQUEST_PASSWORD_LOGIN);
-			String userPassword = this.SCANNER.next();
-			boolean loginResultSuccessful = login.validateCredentialsUserFromDtabase(username, userPassword);
-			if(loginResultSuccessful)
-			{
-				// Redirect to home/Email/Message page
-				LOGGER.info("++validateCredentialsUserFromDtabase(): Login Successful ");
-			}
-			else {
-				// RETURN_FAILED_LOGIN_MESSAGE
-				LOGGER.info("++validateCredentialsUserFromDtabase(): Login Failure ");
-			}
+			validateUserLogin(username);
 		}
 		else
 		{
@@ -122,6 +111,24 @@ public class MessageClient {
 		}
 	}
 	
+	private void validateUserLogin(String username) {
+		LOGGER.info("++validateUserLogin(): " + IGUIRequest.REQUEST_PASSWORD_LOGIN);
+		String userPassword = this.SCANNER.next();
+		if(loginResultSuccessful(username, userPassword))
+		{
+			// Redirect to home/Email/Message page
+			LOGGER.info("++validateUserLogin(): Login Successful ");
+		}
+		else {
+			// RETURN_FAILED_LOGIN_MESSAGE
+			LOGGER.info("++validateUserLogin(): Login Failure ");
+		}
+	}
+
+	private boolean loginResultSuccessful(String username, String userPassword) {
+		return login.validateCredentialsUserFromDtabase(username, userPassword);
+	}
+
 	private void registerNewUser()
 	{
 		LOGGER.info("++registerNewUser(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
