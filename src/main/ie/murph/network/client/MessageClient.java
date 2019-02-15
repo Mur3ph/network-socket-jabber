@@ -40,7 +40,9 @@ public class MessageClient {
 
 			String messageScannerInput = null;
 			LOGGER.info("++communicateWithServer(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
-
+			
+			userLoginPage("\nLETS ROCK.!");
+			
 			do {
 				// To server
 				messageScannerInput = SCANNER.nextLine();
