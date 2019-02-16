@@ -29,6 +29,7 @@ public class MessageClient {
 
 	private MessageClient() throws ClassNotFoundException {
 		LOGGER.info("++MessageClient()");
+		userLoginPage("\nLETS ROCK.!");
 		communicateWithServer();
 	} // End of my Run method
 
@@ -38,26 +39,8 @@ public class MessageClient {
 			REQUEST_TO_SERVER = createObjectOutputStream(socket);
 			RESPONSE_FROM_SERVER = createObjectInputStream(socket);
 
-			String messageScannerInput = null;
 			LOGGER.info("++communicateWithServer(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
-			
-			userLoginPage("\nLETS ROCK.!");
-			
-			do {
-				// To server
-				messageScannerInput = SCANNER.nextLine();
-				messageREQUEST = new MessageDefault(IGUIRequest.GREETINGS, messageScannerInput);
-				REQUEST_TO_SERVER.sendObjectRequest(messageREQUEST);
-
-				// if (!messageREQUEST.getMessageBody().equalsIgnoreCase(IGUIRequest.EXIT))
-				if (!IGUIRequest.EXIT.equalsIgnoreCase(messageREQUEST.getMessageBody())) {
-					messageResponse = RESPONSE_FROM_SERVER.receiveObjectResponse();
-
-					// From server
-					LOGGER.info("++communicateWithServer(): " + IGUIRequest.SERVER_RESPONSE + messageResponse.toString());
-				}
-			} while (!IGUIRequest.EXIT.equalsIgnoreCase(messageREQUEST.getMessageBody()));
-
+			sendMessages();
 			LOGGER.info(IGUIRequest.GOODBYE);
 		} catch (IOException e) {
 			logExceptionMessage(e);
@@ -67,6 +50,24 @@ public class MessageClient {
 
 		LOGGER.info("--communicateWithServer(): " + EDebugMessage.ENDING_CHAT);
 
+	}
+
+	private void sendMessages() throws IOException, ClassNotFoundException {
+		String messageScannerInput = null;
+		do {
+			// To server
+			messageScannerInput = SCANNER.nextLine();
+			messageREQUEST = new MessageDefault(IGUIRequest.GREETINGS, messageScannerInput);
+			REQUEST_TO_SERVER.sendObjectRequest(messageREQUEST);
+
+			// if (!messageREQUEST.getMessageBody().equalsIgnoreCase(IGUIRequest.EXIT))
+			if (!IGUIRequest.EXIT.equalsIgnoreCase(messageREQUEST.getMessageBody())) {
+				messageResponse = RESPONSE_FROM_SERVER.receiveObjectResponse();
+
+				// From server
+				LOGGER.info("++communicateWithServer(): " + IGUIRequest.SERVER_RESPONSE + messageResponse.toString());
+			}
+		} while (!IGUIRequest.EXIT.equalsIgnoreCase(messageREQUEST.getMessageBody()));
 	}
 
 	private Socket createConnection() throws UnknownHostException, IOException {
@@ -93,6 +94,7 @@ public class MessageClient {
 	      case 2: this.registerNewUser();
 	      case 3: // Forgot Password method
 	      case 4: // Forgot User name method
+	      case 5: // Send Messages..
 	               break;
 	      default:	System.out.println("What day is it?");;
 	    }
@@ -108,7 +110,7 @@ public class MessageClient {
 		}
 		else
 		{
-			LOGGER.info("Register new user account");
+			LOGGER.info("++login(); Register new user account");
 			this.registerNewUser();
 		}
 	}
