@@ -29,9 +29,23 @@ public class MessageClient {
 
 	private MessageClient() throws ClassNotFoundException {
 		LOGGER.info("++MessageClient()");
-		userLoginPage("\nLETS ROCK.!");
-		communicateWithServer();
+		run();
 	} // End of my Run method
+	
+	public void run() throws ClassNotFoundException
+	{
+		LOGGER.info("++run()");
+		if(login.isUserLoggedIn())
+		{
+			LOGGER.info("++run(): communicateWithServer()");
+			communicateWithServer();
+		}
+		else 
+		{
+			LOGGER.info("++run(): userLoginPage()");
+			userLoginPage("\nLETS ROCK.!");
+		}
+	}
 
 	private void communicateWithServer() throws ClassNotFoundException {
 		LOGGER.info("++communicateWithServer()");
@@ -85,7 +99,7 @@ public class MessageClient {
 		return new ObjectStream(socket.getInputStream());
 	}
 	
-	public void userLoginPage(String userRegisteredSuccessMessage)
+	public void userLoginPage(String userRegisteredSuccessMessage) throws ClassNotFoundException
 	{
 		LOGGER.info("++userLoginPage(): \n" + userRegisteredSuccessMessage + "\n" + IGUIRequest.LOGIN_MENU);
 		switch (SCANNER.nextInt())
@@ -100,7 +114,7 @@ public class MessageClient {
 	    }
 	}
 	
-	private void login()
+	private void login() throws ClassNotFoundException
 	{
 		LOGGER.info("++login(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
 		String username = this.SCANNER.next();
@@ -115,13 +129,14 @@ public class MessageClient {
 		}
 	}
 	
-	private void validateUserLogin(String username) {
+	private void validateUserLogin(String username) throws ClassNotFoundException {
 		LOGGER.info("++validateUserLogin(): " + IGUIRequest.REQUEST_PASSWORD_LOGIN);
 		String userPassword = this.SCANNER.next();
 		if(loginResultSuccessful(username, userPassword))
 		{
 			// Redirect to home/Email/Message page
 			LOGGER.info("++validateUserLogin(): Login Successful ");
+			run();
 		}
 		else {
 			// RETURN_FAILED_LOGIN_MESSAGE
@@ -133,7 +148,7 @@ public class MessageClient {
 		return login.validateCredentialsUserFromDtabase(username, userPassword);
 	}
 
-	private void registerNewUser()
+	private void registerNewUser() throws ClassNotFoundException
 	{
 		LOGGER.info("++registerNewUser(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
 		String username = this.SCANNER.next();
