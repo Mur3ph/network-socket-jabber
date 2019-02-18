@@ -14,6 +14,7 @@ public class Login {
 	private Map<String, Character[]> MAP_DATABASE_OF_USERS;
 	private Map<String, List<String>> MAP_DATABASE_OF_USERS_MESSAGES;
 	private List<String> LIST_OF_MESSAGES;
+	private boolean islogin = false;
 
 	public Login() {
 		System.getProperty("user.dir");
@@ -39,10 +40,12 @@ public class Login {
 		if(isEqual)
 		{
 			LOGGER.info("++validateCredentialsUserFromDtabase(): Login Successful ");
+			islogin = true;
 			return true;
 		}
 		else {
 			LOGGER.info("++validateCredentialsUserFromDtabase(): Login Failure ");
+			islogin = false;
 			return false;
 		}
 	}
@@ -62,6 +65,11 @@ public class Login {
 	public Character[] convertStringToCharArrayJava8(String passwordValueStr) {
 		LOGGER.debug("++convertStringToCharArrayJava8()");
 		return passwordValueStr.chars().mapToObj(c -> (char) c).toArray(Character[]::new);
+	}
+	
+	public boolean isUserLoggedIn() {
+		LOGGER.info("++isUserLoggedIn()");
+		return islogin;
 	}
 
 	public char[] convertStringToChar(String password) {
