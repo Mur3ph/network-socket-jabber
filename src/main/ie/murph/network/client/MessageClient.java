@@ -52,7 +52,6 @@ public class MessageClient {
 		try (Socket socket = createConnection();) {
 			REQUEST_TO_SERVER = createObjectOutputStream(socket);
 			RESPONSE_FROM_SERVER = createObjectInputStream(socket);
-
 			LOGGER.info("++communicateWithServer(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
 			sendMessages();
 			LOGGER.info(IGUIRequest.GOODBYE);
@@ -61,9 +60,7 @@ public class MessageClient {
 		} finally {
 			closeConnection();
 		}
-
 		LOGGER.info("--communicateWithServer(): " + EDebugMessage.ENDING_CHAT);
-
 	}
 
 	private void sendMessages() throws IOException, ClassNotFoundException {
