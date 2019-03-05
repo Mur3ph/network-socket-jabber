@@ -8,12 +8,12 @@ import java.util.Scanner;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import main.ie.murph.network.constants.text.EDebugMessage;
+import main.ie.murph.network.constants.text.IGUIRequest;
+import main.ie.murph.network.constants.text.INetwork;
 import main.ie.murph.network.domain.Login;
 import main.ie.murph.network.domain.message.MessageDefault;
 import main.ie.murph.network.external.api.streams.ObjectStream;
-import main.ie.murph.network.gui.EDebugMessage;
-import main.ie.murph.network.gui.IGUIRequest;
-import main.ie.murph.network.gui.INetwork;
 
 public class MessageClient {
 	private static final Logger LOGGER = LogManager.getLogger(MessageClient.class.getName());

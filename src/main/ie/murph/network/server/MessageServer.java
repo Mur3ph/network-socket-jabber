@@ -7,8 +7,8 @@ import java.net.Socket;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import main.ie.murph.network.gui.EDebugMessage;
-import main.ie.murph.network.gui.INetwork;
+import main.ie.murph.network.constants.text.EDebugMessage;
+import main.ie.murph.network.constants.text.INetwork;
 
 public class MessageServer
 {

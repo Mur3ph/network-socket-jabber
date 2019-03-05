@@ -8,9 +8,9 @@ import java.net.Socket;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import main.ie.murph.network.constants.text.EDebugMessage;
+import main.ie.murph.network.constants.text.IGUIRequest;
 import main.ie.murph.network.domain.message.MessageDefault;
-import main.ie.murph.network.gui.EDebugMessage;
-import main.ie.murph.network.gui.IGUIRequest;
 
 public class Provider implements Runnable {
 	private static final Logger LOGGER = LogManager.getLogger(Provider.class.getName());

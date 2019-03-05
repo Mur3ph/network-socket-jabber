@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import main.ie.murph.network.gui.INetwork;
+import main.ie.murph.network.constants.text.INetwork;
 
 public class MessageSocket
 {

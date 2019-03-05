@@ -1,4 +1,4 @@
-package main.ie.murph.network.gui;
+package main.ie.murph.network.constants.text;
 
 public interface ITodo
 {
