@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import main.ie.murph.network.constants.text.EDebugMessage;
 import main.ie.murph.network.constants.text.IGUIRequest;
 import main.ie.murph.network.domain.message.MessageDefault;
+import main.ie.murph.network.gui.ClientCommunication;
 
 public class Provider implements Runnable {
 	private static final Logger LOGGER = LogManager.getLogger(Provider.class.getName());
@@ -18,9 +19,11 @@ public class Provider implements Runnable {
 	private MessageDefault OBJECT_PASSED_IN, OBJECT_PASSED_OUT;
 	private ObjectInputStream STREAM_IN_FROM_CLIENT;
 	private ObjectOutputStream STREAM_OUT_TO_CLIENT;
+	private ClientCommunication CLIENT_COMMUNICATION;
 
-	public Provider(Socket socket) throws IOException {
+	public Provider(Socket socket, ClientCommunication clientCommunication) throws IOException {
 		CLIENT_SOCKET = socket;
+		CLIENT_COMMUNICATION = clientCommunication;
 		STREAM_OUT_TO_CLIENT = createObjectOutputStream();
 		STREAM_IN_FROM_CLIENT = createObjectInputStream();
 	}
@@ -50,21 +53,26 @@ public class Provider implements Runnable {
 		OBJECT_PASSED_IN = readObjRequestFromClient();
 
 		while (inputNotEqualToExit(OBJECT_PASSED_IN.getMessageBody())) {
-			if (inputEqualsHello(OBJECT_PASSED_IN.getMessageBody())) {
-				OBJECT_PASSED_OUT = new MessageDefault(IGUIRequest.STAR_TREK_QUOTE,
-						OBJECT_PASSED_IN.getMessageBody() + IGUIRequest.CORRECT);
-				STREAM_OUT_TO_CLIENT.writeObject(OBJECT_PASSED_OUT);
-				STREAM_OUT_TO_CLIENT.flush();
-			} else {
-				OBJECT_PASSED_OUT = new MessageDefault(IGUIRequest.SCARFACE_QUOTE,
-						OBJECT_PASSED_IN.getMessageBody() + IGUIRequest.INCORRECT);
-				STREAM_OUT_TO_CLIENT.writeObject(OBJECT_PASSED_OUT);
-				STREAM_OUT_TO_CLIENT.flush();
-			}
+//			greetingsGame();
+			CLIENT_COMMUNICATION.userLoginPage("\nLETS ROCK.!");
 			this.startRespondingToClient();
 		}
 		LOGGER.info("--startRespondingToClient(): " + EDebugMessage.REQUEST_TO_END_SESSION);
 		closeConnection();
+	}
+
+	private void greetingsGame() throws IOException {
+		if (inputEqualsHello(OBJECT_PASSED_IN.getMessageBody())) {
+			OBJECT_PASSED_OUT = new MessageDefault(IGUIRequest.STAR_TREK_QUOTE,
+					OBJECT_PASSED_IN.getMessageBody() + IGUIRequest.CORRECT);
+			STREAM_OUT_TO_CLIENT.writeObject(OBJECT_PASSED_OUT);
+			STREAM_OUT_TO_CLIENT.flush();
+		} else {
+			OBJECT_PASSED_OUT = new MessageDefault(IGUIRequest.SCARFACE_QUOTE,
+					OBJECT_PASSED_IN.getMessageBody() + IGUIRequest.INCORRECT);
+			STREAM_OUT_TO_CLIENT.writeObject(OBJECT_PASSED_OUT);
+			STREAM_OUT_TO_CLIENT.flush();
+		}
 	}
 
 	private ObjectOutputStream createObjectOutputStream() throws IOException {

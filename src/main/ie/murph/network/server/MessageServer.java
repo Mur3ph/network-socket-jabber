@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import main.ie.murph.network.constants.text.EDebugMessage;
 import main.ie.murph.network.constants.text.INetwork;
+import main.ie.murph.network.gui.ClientCommunication;
 
 public class MessageServer
 {
@@ -32,7 +33,8 @@ public class MessageServer
 			while (true)
 			{
 				CLIENT_SOCKET = acceptConnection(SERVER_SOCKET_LISTENER);
-				Provider connect = startCommunication();
+				ClientCommunication clientCommunication = new ClientCommunication();
+				Provider connect = startCommunication(clientCommunication);
 				createThreadForEachClientCommunication(connect);
 			}
 		}
@@ -60,9 +62,9 @@ public class MessageServer
 		return SERVER_SOCKET_LISTENER.accept();
 	}
 	
-	private Provider startCommunication() throws IOException
+	private Provider startCommunication(ClientCommunication clientCommunication) throws IOException
 	{
-		return new Provider(CLIENT_SOCKET);
+		return new Provider(CLIENT_SOCKET, clientCommunication);
 	}
 	
 	private void createThreadForEachClientCommunication(Provider connect)
