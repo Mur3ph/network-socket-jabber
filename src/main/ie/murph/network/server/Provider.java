@@ -54,6 +54,7 @@ public class Provider implements Runnable {
 
 		while (inputNotEqualToExit(OBJECT_PASSED_IN.getMessageBody())) {
 			CLIENT_COMMUNICATION.userLoginPage("\nLETS ROCK.!");
+			
 			this.startRespondingToClient();
 		}
 		LOGGER.info("--startRespondingToClient(): " + EDebugMessage.REQUEST_TO_END_SESSION);
