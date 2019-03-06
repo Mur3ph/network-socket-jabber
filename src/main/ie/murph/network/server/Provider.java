@@ -53,7 +53,6 @@ public class Provider implements Runnable {
 		OBJECT_PASSED_IN = readObjRequestFromClient();
 
 		while (inputNotEqualToExit(OBJECT_PASSED_IN.getMessageBody())) {
-//			greetingsGame();
 			CLIENT_COMMUNICATION.userLoginPage("\nLETS ROCK.!");
 			this.startRespondingToClient();
 		}
@@ -61,7 +60,7 @@ public class Provider implements Runnable {
 		closeConnection();
 	}
 
-	private void greetingsGame() throws IOException {
+	public void greetingsGame() throws IOException {
 		if (inputEqualsHello(OBJECT_PASSED_IN.getMessageBody())) {
 			OBJECT_PASSED_OUT = new MessageDefault(IGUIRequest.STAR_TREK_QUOTE,
 					OBJECT_PASSED_IN.getMessageBody() + IGUIRequest.CORRECT);
