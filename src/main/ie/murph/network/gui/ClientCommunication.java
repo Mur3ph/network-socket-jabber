@@ -1,5 +1,6 @@
 package main.ie.murph.network.gui;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import org.apache.log4j.LogManager;
@@ -7,12 +8,15 @@ import org.apache.log4j.Logger;
 
 import main.ie.murph.network.constants.text.IGUIRequest;
 import main.ie.murph.network.domain.Login;
+import main.ie.murph.network.domain.message.MessageDefault;
+import main.ie.murph.network.external.api.streams.ObjectStream;
 
 public class ClientCommunication {
 
 	private static final Logger LOGGER = LogManager.getLogger(ClientCommunication.class.getName());
 	private final Scanner SCANNER = new Scanner(System.in);
 	private Login login = new Login();
+	private MessageDefault messageREQUEST, messageResponse;
 	
 	public void userLoginPage(String userRegisteredSuccessMessage) throws ClassNotFoundException
 	{
@@ -71,6 +75,23 @@ public class ClientCommunication {
 		String password = this.SCANNER.next();
 		login.registerNewUserToDtabase(username, password);
 		userLoginPage("Welcome, User Register Successfully");
+	}
+	
+	public void sendMessages(ObjectStream REQUEST_TO_SERVER, ObjectStream RESPONSE_FROM_SERVER) throws IOException, ClassNotFoundException {
+		String messageRequestScannerInput = null;
+		do {
+			// To server
+			messageRequestScannerInput = SCANNER.nextLine();
+			messageREQUEST = new MessageDefault(IGUIRequest.GREETINGS, messageRequestScannerInput);
+			REQUEST_TO_SERVER.sendObjectRequest(messageREQUEST);
+
+			if (!IGUIRequest.EXIT.equalsIgnoreCase(messageREQUEST.getMessageBody())) {
+				messageResponse = RESPONSE_FROM_SERVER.receiveObjectResponse();
+
+				// From server
+				LOGGER.info("++communicateWithServer(): " + IGUIRequest.SERVER_RESPONSE + messageResponse.toString());
+			}
+		} while (!IGUIRequest.EXIT.equalsIgnoreCase(messageREQUEST.getMessageBody()));
 	}
 	
 }

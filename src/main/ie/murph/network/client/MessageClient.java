@@ -14,7 +14,6 @@ import org.apache.log4j.Logger;
 import main.ie.murph.network.constants.text.EDebugMessage;
 import main.ie.murph.network.constants.text.IGUIRequest;
 import main.ie.murph.network.constants.text.INetwork;
-import main.ie.murph.network.domain.message.MessageDefault;
 import main.ie.murph.network.external.api.streams.ObjectStream;
 import main.ie.murph.network.gui.ClientCommunication;
 
@@ -25,7 +24,7 @@ public class MessageClient {
 	private BufferedReader BUFFERED_INPUT_RESPONSE_FROM_SERVER;
 	private PrintWriter WRITER_REQUEST_TO_SERVER;
 	private final Scanner SCANNER = new Scanner(System.in);
-	private MessageDefault messageREQUEST, messageResponse;
+	
 	private ClientCommunication clientCommunication;
 
 	public static void main(String[] args) throws ClassNotFoundException {
@@ -55,7 +54,7 @@ public class MessageClient {
 			BUFFERED_INPUT_RESPONSE_FROM_SERVER = createReaderResponse(socket);
 
 			LOGGER.info("++communicateWithServer(): " + IGUIRequest.REQUEST_USERNAME_LOGIN);
-			sendMessages();
+			clientCommunication.sendMessages(REQUEST_TO_SERVER, REQUEST_TO_SERVER);
 			LOGGER.info(IGUIRequest.GOODBYE);
 		} catch (IOException e) {
 			logExceptionMessage(e);
@@ -90,40 +89,22 @@ public class MessageClient {
 		return new BufferedReader(new InputStreamReader(socket.getInputStream()));
 	}
 	
-	private void sendMessages() throws IOException, ClassNotFoundException {
-		String messageScannerInput = null;
-		do {
-			// To server
-			messageScannerInput = SCANNER.nextLine();
-			messageREQUEST = new MessageDefault(IGUIRequest.GREETINGS, messageScannerInput);
-			REQUEST_TO_SERVER.sendObjectRequest(messageREQUEST);
-
-			// if (!messageREQUEST.getMessageBody().equalsIgnoreCase(IGUIRequest.EXIT))
-			if (!IGUIRequest.EXIT.equalsIgnoreCase(messageREQUEST.getMessageBody())) {
-				messageResponse = RESPONSE_FROM_SERVER.receiveObjectResponse();
-
-				// From server
-				LOGGER.info("++communicateWithServer(): " + IGUIRequest.SERVER_RESPONSE + messageResponse.toString());
-			}
-		} while (!IGUIRequest.EXIT.equalsIgnoreCase(messageREQUEST.getMessageBody()));
-	}
-	
 	public void sendInstructions() throws IOException, ClassNotFoundException {
-		String messageScannerInput, messageResponse = null;
+		String messageRequest, messageResponse = null;
 		do {
 			clientCommunication.userLoginPage("++navigateInstructions() - Let's begin from Message Client.!.");
 			
 			// To server
-			messageScannerInput = SCANNER.nextLine();
-			WRITER_REQUEST_TO_SERVER.write(messageScannerInput);
+			messageRequest = SCANNER.nextLine();
+			WRITER_REQUEST_TO_SERVER.write(messageRequest);
 
-			if (!IGUIRequest.EXIT.equalsIgnoreCase(messageREQUEST.getMessageBody())) {
+			if (!IGUIRequest.EXIT.equalsIgnoreCase(messageRequest)) {
 				messageResponse = BUFFERED_INPUT_RESPONSE_FROM_SERVER.readLine();
 
 				// From server
 				LOGGER.info("++communicateWithServer(): " + IGUIRequest.SERVER_RESPONSE + messageResponse.toString());
 			}
-		} while (!IGUIRequest.EXIT.equalsIgnoreCase(messageREQUEST.getMessageBody()));
+		} while (!IGUIRequest.EXIT.equalsIgnoreCase(messageRequest));
 	}
 
 	private void logExceptionMessage(IOException e) {
