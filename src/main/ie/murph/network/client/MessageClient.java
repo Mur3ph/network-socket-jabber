@@ -16,6 +16,7 @@ import main.ie.murph.network.constants.text.IGUIRequest;
 import main.ie.murph.network.constants.text.INetwork;
 import main.ie.murph.network.domain.message.MessageDefault;
 import main.ie.murph.network.external.api.streams.ObjectStream;
+import main.ie.murph.network.gui.ClientCommunication;
 
 public class MessageClient {
 	private static final Logger LOGGER = LogManager.getLogger(MessageClient.class.getName());
@@ -25,13 +26,15 @@ public class MessageClient {
 	private PrintWriter WRITER_REQUEST_TO_SERVER;
 	private final Scanner SCANNER = new Scanner(System.in);
 	private MessageDefault messageREQUEST, messageResponse;
+	private ClientCommunication clientCommunication;
 
 	public static void main(String[] args) throws ClassNotFoundException {
-		new MessageClient();
+		new MessageClient(new ClientCommunication());
 	}
 
-	private MessageClient() throws ClassNotFoundException {
+	private MessageClient(ClientCommunication clientCommunication) throws ClassNotFoundException {
 		LOGGER.info("++MessageClient()");
+		this.clientCommunication = clientCommunication;
 		run();
 	} // End of my Run method
 
@@ -98,6 +101,24 @@ public class MessageClient {
 			// if (!messageREQUEST.getMessageBody().equalsIgnoreCase(IGUIRequest.EXIT))
 			if (!IGUIRequest.EXIT.equalsIgnoreCase(messageREQUEST.getMessageBody())) {
 				messageResponse = RESPONSE_FROM_SERVER.receiveObjectResponse();
+
+				// From server
+				LOGGER.info("++communicateWithServer(): " + IGUIRequest.SERVER_RESPONSE + messageResponse.toString());
+			}
+		} while (!IGUIRequest.EXIT.equalsIgnoreCase(messageREQUEST.getMessageBody()));
+	}
+	
+	public void sendInstructions() throws IOException, ClassNotFoundException {
+		String messageScannerInput, messageResponse = null;
+		do {
+			clientCommunication.userLoginPage("++navigateInstructions() - Let's begin from Message Client.!.");
+			
+			// To server
+			messageScannerInput = SCANNER.nextLine();
+			WRITER_REQUEST_TO_SERVER.write(messageScannerInput);
+
+			if (!IGUIRequest.EXIT.equalsIgnoreCase(messageREQUEST.getMessageBody())) {
+				messageResponse = BUFFERED_INPUT_RESPONSE_FROM_SERVER.readLine();
 
 				// From server
 				LOGGER.info("++communicateWithServer(): " + IGUIRequest.SERVER_RESPONSE + messageResponse.toString());
