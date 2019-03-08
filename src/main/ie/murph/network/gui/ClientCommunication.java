@@ -18,7 +18,7 @@ public class ClientCommunication {
 	private Login login = new Login();
 	private MessageDefault messageREQUEST, messageResponse;
 	
-	public void userLoginPage(String userRegisteredSuccessMessage) throws ClassNotFoundException
+	public void userLoginInstruction(String userRegisteredSuccessMessage) throws ClassNotFoundException
 	{
 		LOGGER.info("++userLoginPage(): \n" + userRegisteredSuccessMessage + "\n" + IGUIRequest.LOGIN_MENU);
 		switch (SCANNER.nextInt())
@@ -27,7 +27,7 @@ public class ClientCommunication {
 	      case 2: this.registerNewUser();
 	      case 3: // Forgot Password method
 	      case 4: // Forgot User name method
-	      case 5: // Send Messages..
+//	      case 5: this.sendMessages();
 	               break;
 	      default:	System.out.println("What day is it?");;
 	    }
@@ -74,7 +74,7 @@ public class ClientCommunication {
 		LOGGER.info("++registerNewUser(): " + IGUIRequest.REQUEST_PASSWORD_LOGIN);
 		String password = this.SCANNER.next();
 		login.registerNewUserToDtabase(username, password);
-		userLoginPage("Welcome, User Register Successfully");
+		userLoginInstruction("Welcome, User Register Successfully");
 	}
 	
 	public void sendMessages(ObjectStream REQUEST_TO_SERVER, ObjectStream RESPONSE_FROM_SERVER) throws IOException, ClassNotFoundException {

@@ -89,10 +89,10 @@ public class MessageClient {
 		return new BufferedReader(new InputStreamReader(socket.getInputStream()));
 	}
 	
-	public void sendInstructions() throws IOException, ClassNotFoundException {
+	public void userLoginInstructions() throws IOException, ClassNotFoundException {
 		String messageRequest, messageResponse = null;
 		do {
-			clientCommunication.userLoginPage("++navigateInstructions() - Let's begin from Message Client.!.");
+			clientCommunication.userLoginInstruction("++navigateInstructions() - Let's begin from Message Client.!.");
 			
 			// To server
 			messageRequest = SCANNER.nextLine();
@@ -100,7 +100,7 @@ public class MessageClient {
 
 			if (!IGUIRequest.EXIT.equalsIgnoreCase(messageRequest)) {
 				messageResponse = BUFFERED_INPUT_RESPONSE_FROM_SERVER.readLine();
-
+				
 				// From server
 				LOGGER.info("++communicateWithServer(): " + IGUIRequest.SERVER_RESPONSE + messageResponse.toString());
 			}
