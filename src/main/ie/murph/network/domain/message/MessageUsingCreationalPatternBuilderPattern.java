@@ -1,6 +1,6 @@
 package main.ie.murph.network.domain.message;
 
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 
 
 public class MessageUsingCreationalPatternBuilderPattern
@@ -10,7 +10,7 @@ public class MessageUsingCreationalPatternBuilderPattern
 	private final String recipientEmailAddress;
 	private final String senderEmailAddress;
 	
-	@SerializedName("getMessage")
+//	@SerializedName("getMessage")
 	private final String message;
 	
 	private MessageUsingCreationalPatternBuilderPattern(MessageBuilder messageBuilder)

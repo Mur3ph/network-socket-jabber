@@ -5,28 +5,29 @@ import java.security.NoSuchAlgorithmException;
 
 import org.apache.log4j.Logger;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.GsonBuilder;
+//import com.fasterxml.jackson.core.JsonParseException;
+//import com.fasterxml.jackson.databind.JsonMappingException;
+//import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.google.gson.GsonBuilder;
 
 import main.ie.murph.network.domain.message.MessageDefault;
 
 public class StringUtil {
 	private static final Logger LOGGER = Logger.getLogger(StringUtil.class.getSimpleName());
 	public final static String CODE_RESOURCE = "https://medium.com/programmers-blockchain/create-simple-blockchain-java-tutorial-from-scratch-6eeed3cb03fa";
-	private static ObjectMapper mapper = new ObjectMapper();
+	
+//	private static ObjectMapper mapper = new ObjectMapper();
 	
 	// Applies SHA256 to a string and returns the result. 
 	public static String applySHA256CryptoAlgorithm(String inputBlockData){
 		LOGGER.info("++applySHA256CryptoAlgorithm()");
 		try {
 			MessageDigest messageDigest = initializeSHA256AlgorithmInstance();
-//			LOGGER.info("++removeDepartment(): messageDigest: "  + messageDigest);
+			LOGGER.info("++removeDepartment(): messageDigest: "  + messageDigest);
 	        
 			// Applies SHA256 to our input
 			byte[] encodedhash = messageDigest.digest(inputBlockData.getBytes("UTF-8"));
-//			LOGGER.info("++removeDepartment(): "hash1: " + encodedhash");
+			LOGGER.info("++removeDepartment(): " + encodedhash);
 	        
 			StringBuffer hexString = bytesToHex(encodedhash);
 			
@@ -61,12 +62,12 @@ public class StringUtil {
 	// Short hand helper to turn Object into a JSON string
 	public static String getJson(Object o) {
 		LOGGER.info("++getJson()");
-		return new GsonBuilder().setPrettyPrinting().create().toJson(o);
+		return null; //new GsonBuilder().setPrettyPrinting().create().toJson(o);
 	}
 	
-	public static MessageDefault jsonToObj(String jsonInString) throws JsonParseException, JsonMappingException, IOException {
-		LOGGER.info("++jsonToObj()" + "From Json: " + mapper.readValue(jsonInString, MessageDefault.class));
-		return mapper.readValue(jsonInString, MessageDefault.class);   
+	public static MessageDefault jsonToObj(String jsonInString) throws IOException {
+		LOGGER.info("++jsonToObj()" + "From Json: " ); //+ mapper.readValue(jsonInString, MessageDefault.class));
+		return null; //mapper.readValue(jsonInString, MessageDefault.class);   
 	}
 	
 //	Create a char array of length 'difficultyLength', populated by default with 0, or '\u0000' or \0 (which are null characters)
