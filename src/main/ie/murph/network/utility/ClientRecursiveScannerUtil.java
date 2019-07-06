@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import main.ie.murph.network.client.MessageClient;
-import main.ie.murph.network.constants.text.IGUIRequest;
+import main.ie.murph.network.communicator.client.MessageClient;
+import main.ie.murph.network.communicator.constants.text.IGUIRequest;
 
 public class ClientRecursiveScannerUtil
 {
