@@ -5,6 +5,7 @@ import java.util.Hashtable;
 import java.util.Set;
 import java.util.UUID;
 
+import main.ie.murph.network.distributed.hashtable.domain.History;
 import main.ie.murph.network.distributed.hashtable.domain.Point;
 import main.ie.murph.network.distributed.hashtable.domain.User;
 
@@ -12,11 +13,12 @@ public class RunProtocol {
 
 	private static final int SET_SIZE = 9;
 	private static Set<Point> points;
-	private static Hashtable<User, Set<Point>> table;
+//	History might have to change to list as Set won't allow duplication 
+	private static Hashtable<User, Set<History>> table;
 	
 	public RunProtocol(){
 		points = new HashSet<>(SET_SIZE);
-		table = new Hashtable<User, Set<Point>>();
+		table = new Hashtable<User, Set<History>>();
 	}
 
 	public static void main(String[] args){

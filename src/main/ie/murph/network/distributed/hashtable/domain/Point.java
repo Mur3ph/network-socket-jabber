@@ -1,18 +1,22 @@
 package main.ie.murph.network.distributed.hashtable.domain;
 
+import main.ie.murph.network.distributed.hashtable.domain.Enum.Mark;
+import main.ie.murph.network.distributed.hashtable.domain.Enum.Position;
+
 public class Point {
 
-	private String mark = "";
+	private Mark mark;
+	private Position position;
 	
-	public Point(String mark){
+	public Point(Mark mark){
 		this.mark = mark;
 	}
 	
-	public void setMark(String mark){
+	public void setMark(Mark mark){
 		this.mark = mark;
 	}
 	
-	public String getMark(String mark){
+	public Mark getMark(Mark mark){
 		return this.mark;
 	}
 
@@ -21,6 +25,7 @@ public class Point {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((mark == null) ? 0 : mark.hashCode());
+		result = prime * result + ((position == null) ? 0 : position.hashCode());
 		return result;
 	}
 
@@ -33,10 +38,9 @@ public class Point {
 		if (getClass() != obj.getClass())
 			return false;
 		Point other = (Point) obj;
-		if (mark == null) {
-			if (other.mark != null)
-				return false;
-		} else if (!mark.equals(other.mark))
+		if (mark != other.mark)
+			return false;
+		if (position != other.position)
 			return false;
 		return true;
 	}
