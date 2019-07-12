@@ -22,14 +22,7 @@ public class RunProtocol {
 	}
 
 	public static void main(String[] args){
-//		learningResources();
 		
-	}
-	
-	public static void learningResources(){
-		System.out.println(Resources.CHORD_PEER_TO_PEER);
-		System.out.println(Resources.CHORD_PEER_TO_PEER_IMAGE);
-		System.out.println();
 	}
 	
 	public Hashtable<User, Map<String, History>> getHashTable(){
@@ -38,6 +31,12 @@ public class RunProtocol {
 	
 	public Set<Point> getPoints(){
 		return points;
+	}
+	
+	public static void learningResources(){
+		System.out.println(Resources.CHORD_PEER_TO_PEER);
+		System.out.println(Resources.CHORD_PEER_TO_PEER_IMAGE);
+		System.out.println();
 	}
 	
 }
