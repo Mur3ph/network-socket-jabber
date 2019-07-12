@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 import main.ie.murph.network.distributed.hashtable.domain.History;
 import main.ie.murph.network.distributed.hashtable.domain.Point;
@@ -23,14 +22,22 @@ public class RunProtocol {
 	}
 
 	public static void main(String[] args){
-//		learningREsources();
+//		learningResources();
 		
 	}
 	
-	public static void learningREsources(){
+	public static void learningResources(){
 		System.out.println(Resources.CHORD_PEER_TO_PEER);
 		System.out.println(Resources.CHORD_PEER_TO_PEER_IMAGE);
 		System.out.println();
+	}
+	
+	public Hashtable<User, Map<String, History>> getHashTable(){
+		return table;
+	}
+	
+	public Set<Point> getPoints(){
+		return points;
 	}
 	
 }
