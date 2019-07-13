@@ -13,7 +13,7 @@ public class RunProtocol {
 
 	private static final int SET_SIZE = 9;
 	private static Set<Point> points;
-//	For Map below String will be date and History will be Users history :)
+//	For Map below the String will be date and History will be Users history :)
 	private static Hashtable<User, Map<String, History>> table;
 	
 	public RunProtocol(){
